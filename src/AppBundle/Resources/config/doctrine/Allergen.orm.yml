@@ -1,0 +1,32 @@
+AppBundle\Entity\Allergen:
+    type: entity
+    table: Allergens
+    id:
+        allergenid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: allergenId
+            generator:
+                strategy: IDENTITY
+    fields:
+        image:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+    oneToMany:
+        products:
+            targetEntity: Productcontains
+            mappedBy: allergenid
+            cascade: { }
+    lifecycleCallbacks: {  }

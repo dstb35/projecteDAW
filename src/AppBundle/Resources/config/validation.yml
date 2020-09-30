@@ -1,0 +1,48 @@
+AppBundle\Entity\Allergen:
+    properties:
+        name:
+            - NotBlank: {message: "El nombre no puede estar vacío"}
+            - Length:
+                max: 45
+                maxMessage: "Longitud máxima 45 carácteres"
+                
+AppBundle\Entity\Restaurant:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [email]
+            errorPath: email
+            message: 'El email ya existe.'
+    properties:
+       email:
+           - NotBlank: {message: "El email no puede estar vacío"}
+           - Email:
+                message: El email "{{ value }}" no es válido.
+                # checkMX: true
+                # If true, then the checkdnsrr PHP function will be used to check the validity of the MX record of the host of the given email.
+                checkHost: true
+                #If true, then the checkdnsrr PHP function will be used to check the validity of the MX or the A or the AAAA record of the host of the given email.
+       #versiones symfony 4 y 5 https://symfony.com/blog/new-in-symfony-4-3-compromised-password-validator
+       #password:
+           #- NotCompromisedPassword: 
+           #The following constraint ensures that the rawPassword property of the User class doesn’t store a compromised password:
+               
+AppBundle\Entity\Employee:
+    properties:
+        name:
+            - NotBlank: {message: "El nombre no puede estar vacío"}
+            - Length:
+                max: 255
+                maxMessage: "Longitud máxima 255 carácteres"               
+                
+AppBundle\Entity\Product:
+    properties:
+        name:
+            - NotBlank: {message: "El nombre no puede estar vacío"}
+            - Length:
+                max: 45
+                maxMessage: "Longitud máxima 60 carácteres"
+        price:
+            - GreaterThanOrEqual:
+                value: 0
+                message: "Cantidad mayor que 0"
+                

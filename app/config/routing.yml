@@ -1,0 +1,55 @@
+pruebas_homepage:
+    path: /
+    defaults: { _controller: AppBundle:Default:index}
+    
+login:
+    path: /login
+    defaults: { _controller: AppBundle:User:login}
+    
+logout:
+    path: /logout
+    
+login_check:
+    path: /login_check
+
+allergen_add:
+    path: /allergen/add
+    defaults: { _controller: AppBundle:Allergen:add}
+    
+allergen_remove:
+    path: /allergen/remove/{id}
+    defaults: { _controller: AppBundle:Allergen:remove}
+    requirements:
+        page: '\d+'
+
+allergen_index:
+    path: /allergen/index
+    defaults: {_controller: AppBundle:Allergen:index}
+    
+employee_add:
+    path: /employee/add
+    defaults: { _controller: AppBundle:Employee:add}
+    
+employee_remove:
+    path: /employee/remove/{id}
+    defaults: { _controller: AppBundle:Employee:remove}
+    requirements:
+        page: '\d+'
+
+employee_index:
+    path: /employee/index
+    defaults: {_controller: AppBundle:Employee:index}
+   
+product_add:
+    path: /product/add
+    defaults: { _controller: AppBundle:Product:add}
+    
+product_remove:
+    path: /product/remove/{id}
+    defaults: { _controller: AppBundle:Product:remove}
+    requirements:
+        page: '\d+'
+
+product_index:
+    path: /product/index
+    defaults: {_controller: AppBundle:Product:index}

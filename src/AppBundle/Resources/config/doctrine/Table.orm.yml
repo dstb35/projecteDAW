@@ -1,0 +1,29 @@
+AppBundle\Entity\Table:
+    type: entity
+    table: Tables
+    indexes:
+        fk_restaurant_table_idx:
+            columns:
+                - restaurantId
+    id:
+        tableid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: tableId
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        restaurantid:
+            targetEntity: Restaurant
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: tables
+            joinColumns:
+                restaurantId:
+                    referencedColumnName: restaurantId
+            orphanRemoval: true
+    lifecycleCallbacks: {  }

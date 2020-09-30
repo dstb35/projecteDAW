@@ -1,0 +1,60 @@
+AppBundle\Entity\Order:
+    type: entity
+    table: Orders
+    indexes:
+        fk_employee_order_idx:
+            columns:
+                - employeeId
+        fk_table_order_idx:
+            columns:
+                - tableId
+    id:
+        orderid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: orderId
+            generator:
+                strategy: IDENTITY
+    fields:
+        created:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+        paid:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+        total:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                default: '0'
+    manyToOne:
+        employeeid:
+            targetEntity: Employee
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                employeeId:
+                    referencedColumnName: employeeId
+            orphanRemoval: false
+        tableid:
+            targetEntity: Table
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tableId:
+                    referencedColumnName: tableId
+            orphanRemoval: true
+    lifecycleCallbacks: {  }

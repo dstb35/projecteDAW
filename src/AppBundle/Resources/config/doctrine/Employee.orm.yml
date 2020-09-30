@@ -1,0 +1,38 @@
+AppBundle\Entity\Employee:
+    type: entity
+    table: Employees
+    indexes:
+        restaurantId_idx:
+            columns:
+                - restaurantId
+    id:
+        employeeid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: employeeId
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    manyToOne:
+        restaurantid:
+            targetEntity: Restaurant
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: employees
+            joinColumns:
+                restaurantId:
+                    referencedColumnName: restaurantId
+                    nullable: false
+            orphanRemoval: true
+            
+    lifecycleCallbacks: {  }

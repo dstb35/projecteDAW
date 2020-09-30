@@ -1,0 +1,53 @@
+AppBundle\Entity\Orderline:
+    type: entity
+    table: OrderLines
+    indexes:
+        fk_order_orderline_idx:
+            columns:
+                - orderId
+        fk_product_orderline_idx:
+            columns:
+                - productId
+    id:
+        orderlineid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: orderlineId
+            generator:
+                strategy: IDENTITY
+    fields:
+        quantity:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        subtotal:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        orderid:
+            targetEntity: Order
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                orderId:
+                    referencedColumnName: orderId
+            orphanRemoval: true
+        productid:
+            targetEntity: Product
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                productId:
+                    referencedColumnName: productId
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

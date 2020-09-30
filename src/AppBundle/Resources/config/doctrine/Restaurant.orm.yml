@@ -1,0 +1,90 @@
+AppBundle\Entity\Restaurant:
+    type: entity
+    table: Restaurants
+    uniqueConstraints:
+        email_UNIQUE:
+            columns:
+                - email
+    id:
+        restaurantid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: restaurantId
+            generator:
+                strategy: IDENTITY
+    fields:
+        address:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+        cif:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        created:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        manager:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        paid:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+        paiddate:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: paidDate
+        password:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+        phone:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    oneToMany:
+        products:
+            targetEntity: Product
+            mappedBy: restaurantid
+            cascade: { }
+        tables:
+            targetEntity: Table
+            mappedBy: restaurantid
+            cascade: { }
+        employees:
+            targetEntity: Employee
+            mappedBy: restaurantid
+            cascade: { }
+    lifecycleCallbacks: {  }

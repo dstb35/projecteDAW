@@ -1,0 +1,59 @@
+AppBundle\Entity\Product:
+    type: entity
+    table: Products
+    indexes:
+        fk_restaurantId_product_idx:
+            columns:
+                - restaurantId
+    id:
+        productid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: productId
+            generator:
+                strategy: IDENTITY
+    fields:
+        description:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 60
+            options:
+                fixed: false
+        price:
+            type: float
+            nullable: false
+            precision: 10
+            scale: 0
+        name:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+    manyToOne:
+        restaurantid:
+            targetEntity: Restaurant
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: products
+            ondelete: "CASCADE"
+            joinColumns:
+                restaurantId:
+                    referencedColumnName: restaurantId
+            orphanRemoval: true
+    oneToMany:
+        allergens:
+            targetEntity: Productcontains
+            mappedBy: productid
+            cascade: { }
+    lifecycleCallbacks: {  }

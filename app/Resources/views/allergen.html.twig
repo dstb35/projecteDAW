@@ -1,0 +1,24 @@
+{%  extends "layout.html.twig" %}
+{% block content %}
+
+	<div class="container-fluid">
+		<h2><a href="{{ path('allergen_add') }}">Añadir alérgeno</a><hr/></h2>
+		<div class="row">
+			{%  for allergen in allergens %}
+				<div class="col-lg-3 text-center">
+					<img class="img-thumbnail" src="{{ asset('uploads/allergens_images/' ~ allergen.image) }}"></img>
+					<h4>
+						<span class="label label-info">{{  allergen.name }}</span>
+						{%  if allergen.getProducts|length == 0 %}
+							<a class="btn btn-danger" href="{{ path('allergen_remove', {'id': allergen.allergenid}) }}">Eliminar</a>
+						{%  else %}
+							<span class="label label-info">{{  allergen.getProducts|length }} productos</span>
+						{%  endif %}
+					</h4>
+					<hr/>
+				</div>
+			{%  endfor %}
+		</div>
+	</div>
+	<div class=""clearfix"></div>
+{%  endblock %}
