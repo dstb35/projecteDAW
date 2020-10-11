@@ -1,22 +1,44 @@
-{%  extends "layout.html.twig" %}
+{% extends "layout.html.twig" %}
+
 {% block content %}
 
-	<div class="container-fluid">
-		<h2><a href="{{ path('product_add') }}">Añadir producto</a><hr/></h2>
-		<div class="row">
-			{%  for product in products %}
-				<div class="col-lg-3 text-center">
-					<img class="img-thumbnail" src="{{ asset('uploads/products_images/' ~ product.image) }}"></img>
-					<h4>
-						<span class="label label-info">{{  product.name }}</span>
-						<span class="label label-info">{{  product.description }}</span>
-						<span class="label label-info">{{  product.price }}</span>
-						<a class="btn btn-danger" href="{{ path('product_remove', {'id': product.productid}) }}">Eliminar</a>						
-					</h4>
-					<hr/>
-				</div>
-			{%  endfor %}
-		</div>
-	</div>
-	<div class=""clearfix"></div>
-{%  endblock %}
+    <script src=" {{ asset('js/js.js') }}"></script>
+    <div class="container-fluid">
+        <div>
+            <span>Carrito</span>
+            <ul id="cart" class="list-group">
+            </ul>
+            <span id="total">0</span>
+        </div>
+
+        <div id="title"></div><h1>{{ title }}</h1></div>
+        <h2><a href="{{ path('product_add') }}">Añadir producto</a>
+            <hr/>
+        </h2>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-3 text-center">
+                    <img class="img-thumbnail" src="{{ asset('uploads/products_images/' ~ product.image) }}"></img>
+                    <h4>
+                        <span class="label label-info">{{ product.name }}</span>
+                        <span class="label label-info">{{ product.description }}</span>
+                        <span class="label label-info">{{ product.price }} €</span>
+                        <button id="comprar" type="button" data-name="{{ product.name|json_encode() }}"
+                                data-id="{{ product.productid|json_encode() }}"
+                                data-price="{{ product.price|json_encode() }}"
+                                class="btn btn-info">Comprar
+                        </button>
+                        <button id="eliminar" type="button" data-id="{{ product.productid|json_encode() }}"
+                                class="btn btn-info">Eliminar
+                        </button>
+                        {% if is_granted('ROLE_USER') and app.user == product.restaurantid %}
+                            <a class="btn btn-danger" href="{{ path('product_remove', {'id': id, 'productid': product.productid }) }}">Borrar</a>
+                        {% endif %}
+                    </h4>
+                    <hr/>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

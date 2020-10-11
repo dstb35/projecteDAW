@@ -20,7 +20,7 @@ class AllergenType extends AbstractType {
 				->add('name', TextType::class, array("required" => true, "attr" => array(
 						"class" => "form-name form-control"
 			)))
-				->add('image', FileType::class, array("required" => "required",
+				->add('image', FileType::class, array("required" => false,
 					"attr" => array(
 						"class" => "form-name form-control"
 					),

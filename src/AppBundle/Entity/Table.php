@@ -16,7 +16,11 @@ class Table
      * @var \AppBundle\Entity\Restaurant
      */
     private $restaurantid;
-
+	
+	/**
+     * @var string
+     */
+    private $name;
 
     /**
      * Get tableid
@@ -50,6 +54,30 @@ class Table
     public function getRestaurantid()
     {
         return $this->restaurantid;
+    }
+	
+	/**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Employee
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
 

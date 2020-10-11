@@ -13,6 +13,10 @@ security:
                 class: AppBundle:Restaurant
                 property: email
 
+    role_hierarchy:
+        ROLE_USER: ROLE_USER
+        ROLE_ADMIN: ROLE_USER
+
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:

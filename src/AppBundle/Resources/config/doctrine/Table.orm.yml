@@ -15,6 +15,13 @@ AppBundle\Entity\Table:
             column: tableId
             generator:
                 strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
     manyToOne:
         restaurantid:
             targetEntity: Restaurant

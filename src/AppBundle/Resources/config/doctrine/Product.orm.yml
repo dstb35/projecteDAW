@@ -51,9 +51,21 @@ AppBundle\Entity\Product:
                 restaurantId:
                     referencedColumnName: restaurantId
             orphanRemoval: true
-    oneToMany:
+    #oneToMany:
+    #    allergens:
+    #       targetEntity: Productcontains
+    #      mappedBy: productid
+    #     cascade: { }
+    manyToMany:
         allergens:
-            targetEntity: Productcontains
-            mappedBy: productid
-            cascade: { }
+            targetEntity: Allergen
+            inversedBy: products
+            joinTable:
+                name: productcontains
+                joinColumns:
+                    productid:
+                        referencedColumnName: productId
+                inverseJoinColumns:
+                    allergenid:
+                        referencedColumnName: allergenId
     lifecycleCallbacks: {  }

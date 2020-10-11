@@ -24,16 +24,17 @@ class AllergenController extends Controller {
 
 	public function indexAction() {
 		$em = $this->getDoctrine()->getManager();
-		$allergen_repo = $em->getRepository("AppBundle:Allergen");
+		$allergen_repo = $em->getRepository('AppBundle:Allergen');
 		$allergens = $allergen_repo->findAll();
 
-		return $this->render("allergen.html.twig", array(
-					"allergens" => $allergens
+		return $this->render('allergen.html.twig', array(
+					'allergens' => $allergens
 		));
 	}
 
 	public function addAction(Request $request) {
-		$title = "Añadir alérgeno";
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para crear alérgenos');
+		$title = 'Añadir alérgeno';
 		$allergen = new Allergen();
 		$form = $this->createForm(AllergenType::class, $allergen);
 
@@ -60,8 +61,8 @@ class AllergenController extends Controller {
 								$filename
 						);
 					} catch (FileException $e) {
-						$status = "No se ha podido guardar la imagen" . $e->getMessage();
-						$this->session->getFlashBag()->add("danger", $status);
+						$status = 'No se ha podido guardar la imagen' . $e->getMessage();
+						$this->session->getFlashBag()->add('danger', $status);
 						// ... handle exception if something happens during file upload
 					}
 					//$allergen->setImage($newFilename);
@@ -71,31 +72,31 @@ class AllergenController extends Controller {
 				$em->persist($allergen);
 				$flush = $em->flush();
 				if ($flush == null) {
-					$status = "El alérgeno se ha creado correctamente";
-					$this->session->getFlashBag()->add("success", $status);
-					return $this->redirectToRoute("allergen_index");
+					$status = 'El alérgeno se ha creado correctamente';
+					$this->session->getFlashBag()->add('success', $status);
+					return $this->redirectToRoute('allergen_index');
 				} else {
-					$status = "El alérgeno NO se ha creado correctamente";
-					$this->session->getFlashBag()->add("danger", $status);
+					$status = 'El alérgeno NO se ha creado correctamente';
+					$this->session->getFlashBag()->add('danger', $status);
 				}
 			} else {
 				$errors = $form->getErrors(true);
 				foreach ($errors as $error) {
-					$this->session->getFlashBag()->add("danger", $error->getMessage());
+					$this->session->getFlashBag()->add('danger', $error->getMessage());
 				}
 			}
 		}
 
-		return $this->render("add.html.twig", array(
-					"form" => $form->createView(),
-					"title" => $title
+		return $this->render('add.html.twig', array(
+					'form' => $form->createView(),
+					'title' => $title
 		));
 	}
 
 	public function removeAction($id) {
 		if (is_numeric($id) && $id > 0) {
 			$em = $this->getDoctrine()->getManager();
-			$allergen_repo = $em->getRepository("AppBundle:Allergen");
+			$allergen_repo = $em->getRepository('AppBundle:Allergen');
 			$allergen = $allergen_repo->find($id);
 
 			if ($allergen) {
@@ -103,25 +104,24 @@ class AllergenController extends Controller {
 					$fs = new Filesystem();
 					$fs->remove($this->getParameter('allergens_images') . '/' . $allergen->getImage());
 				} catch (IOException $e) {
-					$status = "No se ha podido borrar el archivo de imagen" . $e->getMessage();
-					$this->session->getFlashBag()->add("danger", $status);
+					$status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+					$this->session->getFlashBag()->add('danger', $status);
 				}
 				$em->remove($allergen);
 				$flush = $em->flush();
 
 				if ($flush == null) {
-					$status = "El alérgeno se ha borrado correctamente";
-					$this->session->getFlashBag()->add("success", $status);
+					$status = 'El alérgeno se ha borrado correctamente';
+					$this->session->getFlashBag()->add('success', $status);
 				} else {
-					$status = "El alérgeno NO se ha borrado correctamente";
-					$this->session->getFlashBag()->add("danger", $status);
+					$status = 'El alérgeno NO se ha borrado correctamente';
+					$this->session->getFlashBag()->add('danger', $status);
 				}
 			} else {
-				$status = "No se ha encontrado el alérgeno con id: ".$id;
-				$this->session->getFlashBag()->add("danger", $status);
+				$status = 'No se ha encontrado el alérgeno con id: '.$id;
+				$this->session->getFlashBag()->add('danger', $status);
 			}
-			return $this->redirectToRoute("allergen_index");
+			return $this->redirectToRoute('allergen_index');
 		}
 	}
-
 }

@@ -10,23 +10,23 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 
-class ProductType extends AbstractType
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
+class ProductType extends AbstractType {
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function buildForm(FormBuilderInterface $builder, array $options) {
+		$builder
 				->add('name', TextType::class, array("required" => true, "attr" => array(
 						"class" => "form-name form-control"
 			)))
 				->add('description', TextareaType::class, array("required" => false, "attr" => array(
 						"class" => "form-name form-control"
 			)))
-				->add('image', FileType::class, array("required" => true,
+				->add('image', FileType::class, array("required" => false,
 					"attr" => array(
 						"class" => "form-name form-control"
 					),
@@ -51,27 +51,34 @@ class ProductType extends AbstractType
 					"attr" => array(
 						"class" => "form-name form-control"
 			)))
+				 ->add('allergens', EntityType::class, array(
+				  "class" => "AppBundle:Allergen",
+				  "choice_label" => "name",
+				  "multiple" => true,
+				  "expanded" =>true,
+				  "required" => false,
+				  "attr" => array(
+				  "class" => "form-name form-control form-check"
+				  ))) 
 				->add('Guardar', SubmitType::class, array("attr" => array(
 						"class" => "form-submit btn btn-success",
 		)));
-    }
+	}
+
 	/**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Product'
-        ));
-    }
+	 * {@inheritdoc}
+	 */
+	public function configureOptions(OptionsResolver $resolver) {
+		$resolver->setDefaults(array(
+			'data_class' => 'AppBundle\Entity\Product'
+		));
+	}
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_product';
-    }
-
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getBlockPrefix() {
+		return 'appbundle_product';
+	}
 
 }

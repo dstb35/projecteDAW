@@ -24,9 +24,8 @@ AppBundle\Entity\Allergen:
             length: 45
             options:
                 fixed: false
-    oneToMany:
+    manyToMany:
         products:
-            targetEntity: Productcontains
-            mappedBy: allergenid
-            cascade: { }
+            targetEntity: Product
+            mappedBy: allergens
     lifecycleCallbacks: {  }

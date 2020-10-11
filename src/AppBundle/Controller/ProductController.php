@@ -9,7 +9,6 @@ use AppBundle\Form\ProductType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-//use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -21,25 +20,42 @@ class ProductController extends Controller {
 		$this->session = new Session();
 	}
 
-	public function indexAction() {
-		$em = $this->getDoctrine()->getManager();
-		$product_repo = $em->getRepository("AppBundle:Product");
-		$products = $product_repo->findAll();
+	public function indexAction($id) {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para crear productos');
+		if (is_numeric($id) && $id > 0) {
+			$em = $this->getDoctrine()->getManager();
+			$product_repo = $em->getRepository('AppBundle:Product');
+			$products = $product_repo->findBy(array('restaurantid' => $id));
+			$restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+			if (isset($restaurant)) {
+				$title = 'Productos para restaurante ' . $restaurant->getName();
+			} else {
+				$title = 'Restaurante no encontrado para id: ' . $id;
+			}
 
-		return $this->render("product.html.twig", array(
-					"products" => $products
-		));
+			return $this->render('product.html.twig', array(
+						'title' => $title,
+						'products' => $products,
+						'id' => $id
+			));
+		} else {
+			return $this->render('product.html.twig', array(
+						'title' => $title,
+						'products' => 'ID de restaurante incorrecto',
+						'id' => $id
+			));
+		}
 	}
 
 	public function addAction(Request $request, UserInterface $user = null) {
-		$title = "Añadir producto";
+		$title = 'Añadir producto';
+		$em = $this->getDoctrine()->getManager();
 		$product = new Product();
 		$form = $this->createForm(ProductType::class, $product);
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted()) {
 			$product = $form->getData();
-			$em = $this->getDoctrine()->getManager();
 			if ($user) {
 				$product->setRestaurantid($user);
 				if ($form->isValid()) {
@@ -55,71 +71,68 @@ class ProductController extends Controller {
 									$newFilename
 							);
 						} catch (FileException $e) {
-							$status = "No se ha podido guardar la imagen" . $e->getMessage();
-							$this->session->getFlashBag()->add("danger", $status);
+							$status = 'No se ha podido guardar la imagen' . $e->getMessage();
+							$this->session->getFlashBag()->add('danger', $status);
 						}
 						$product->setImage($newFilename);
 					}
-					$em = $this->getDoctrine()->getManager();
+
 					$em->persist($product);
 					$flush = $em->flush();
+
 					if ($flush == null) {
-						$status = "El producto se ha creado correctamente";
-						$this->session->getFlashBag()->add("success", $status);
-						return $this->redirectToRoute("product_index");
+						$status = 'El producto se ha creado correctamente';
+						$this->session->getFlashBag()->add('success', $status);
+						return $this->redirectToRoute('product_index', array('id' => $user->getRestaurantid()));
 					} else {
-						$status = "El producto NO se ha creado correctamente";
-						$this->session->getFlashBag()->add("danger", $status);
+						$status = 'El producto NO se ha creado correctamente';
+						$this->session->getFlashBag()->add('danger', $status);
 					}
 				} else {
-					/*$errors = $form->getErrors(true);
-					foreach ($errors as $error) {
-						$this->session->getFlashBag()->add("danger", $error->getMessage());
-					}*/
-					$this->session->getFlashBag()->add("danger", "Form no válido");
+					$this->session->getFlashBag()->add('danger', 'Form no válido');
 					unset($product);
 				}
 			} else {
-				$status = "El restaurante no es válido o el usuario no está identificado";
-				$this->session->getFlashBag()->add("danger", $status);
+				$status = 'El restaurante no es válido o el usuario no está identificado';
+				$this->session->getFlashBag()->add('danger', $status);
 			}
 		}
 
-		return $this->render("add.html.twig", array(
-					"form" => $form->createView(),
-					"title" => $title
+		return $this->render('add.html.twig', array(
+					'form' => $form->createView(),
+					'title' => $title
 		));
 	}
 
-	public function removeAction($id) {
-		if (is_numeric($id) && $id > 0) {
+	public function removeAction($id, $productid) {
+		if (is_numeric($productid) && $productid > 0) {
 			$em = $this->getDoctrine()->getManager();
-			$product_repo = $em->getRepository("AppBundle:Product");
-			$product = $product_repo->find($id);
+			$product_repo = $em->getRepository('AppBundle:Product');
+			$product = $product_repo->find($productid);
 
 			if ($product) {
 				try {
 					$fs = new Filesystem();
 					$fs->remove($this->getParameter('products_images') . '/' . $product->getImage());
 				} catch (IOException $e) {
-					$status = "No se ha podido borrar el archivo de imagen" . $e->getMessage();
-					$this->session->getFlashBag()->add("danger", $status);
+					$status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+					$this->session->getFlashBag()->add('danger', $status);
 				}
 				$em->remove($product);
 				$flush = $em->flush();
 
 				if ($flush == null) {
-					$status = "El producto se ha borrado correctamente";
-					$this->session->getFlashBag()->add("success", $status);
+					$status = 'El producto se ha borrado correctamente';
+					$this->session->getFlashBag()->add('success', $status);
 				} else {
-					$status = "El producto NO se ha borrado correctamente";
-					$this->session->getFlashBag()->add("danger", $status);
+					$status = 'El producto NO se ha borrado correctamente';
+					$this->session->getFlashBag()->add('danger', $status);
 				}
 			} else {
-				$status = "No se ha encontrado el producto con id: " . $id;
-				$this->session->getFlashBag()->add("danger", $status);
+				$status = 'No se ha encontrado el producto con id: ' . $productid;
+				$this->session->getFlashBag()->add('danger', $status);
 			}
-			return $this->redirectToRoute("product_index");
+			return $this->redirectToRoute('product_index', array('id' => $id));
 		}
 	}
 

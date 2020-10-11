@@ -38,7 +38,6 @@ class Product {
 	 * @var \AppBundle\Entity\Restaurant
 	 */
 	private $restaurantid;
-	
 	protected $allergens;
 
 	public function __construct() {
@@ -163,14 +162,30 @@ class Product {
 	public function getRestaurantid() {
 		return $this->restaurantid;
 	}
-	
-	public function addProductcontains (\AppBundle\Entity\Allergen $allergen) {
-		$this->allergens [] = $allergen;
-		
+
+	/**
+	 * Add allergen
+	 *
+	 * @param \AppBundle\Entity\Allergen $allergen
+	 *
+	 * @return Allergen
+	 */
+	public function addAllergen(\AppBundle\Entity\Allergen $allergen) {
+		$this->allergens->add($allergen);
+		//$this->allergens[] = $product;
 		return $this;
 	}
-	
-	public function getProductcontains() {
+
+	/**
+	 * Remove tag
+	 *
+	 * @param \AppBundle\Entity\Allergen
+	 */
+	public function removeAllergen(Allergen $allergen) {
+		$this->allergens->removeElement($allergen);
+	}
+
+	function getAllergens() {
 		return $this->allergens;
 	}
 

@@ -45,11 +45,45 @@ product_add:
     defaults: { _controller: AppBundle:Product:add}
     
 product_remove:
-    path: /product/remove/{id}
+    path: /product/{id}/remove/{productid}
     defaults: { _controller: AppBundle:Product:remove}
     requirements:
         page: '\d+'
 
 product_index:
-    path: /product/index
+    path: /product/{id}/index
     defaults: {_controller: AppBundle:Product:index}
+    requirements:
+        page: '\d+'
+
+table_add:
+    path: /table/add
+    defaults: { _controller: AppBundle:Table:add}
+    
+table_remove:
+    path: /table/remove/{id}
+    defaults: { _controller: AppBundle:Table:remove}
+    requirements:
+        page: '\d+'
+
+table_index:
+    path: /table/index
+    defaults: {_controller: AppBundle:Table:index}
+
+order_add:
+    path: /order/add
+    defaults: { _controller: AppBundle:Order:add}
+    
+order_remove:
+    path: /order/remove/{id}
+    defaults: { _controller: AppBundle:Order:remove}
+    requirements:
+        page: '\d+'
+
+order_index:
+    path: /order/index
+    defaults: {_controller: AppBundle:Order:index}
+    
+order_add:
+    path: /order/add
+    defaults: { _controller: AppBundle:Order:add}

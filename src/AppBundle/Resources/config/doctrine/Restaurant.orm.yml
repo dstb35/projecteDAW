@@ -16,6 +16,10 @@ AppBundle\Entity\Restaurant:
             generator:
                 strategy: IDENTITY
     fields:
+        roles:
+            type: string
+            nullable: false
+            length: 60
         address:
             type: string
             nullable: false
@@ -27,6 +31,9 @@ AppBundle\Entity\Restaurant:
             nullable: false
             length: 45
             options:
+
+
+
                 fixed: false
         created:
             type: datetime

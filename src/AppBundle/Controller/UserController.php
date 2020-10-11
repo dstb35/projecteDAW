@@ -8,11 +8,6 @@ use AppBundle\Entity\Restaurant;
 use AppBundle\Form\RestaurantType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Validation;
 
 class UserController extends Controller {
 
@@ -47,6 +42,7 @@ class UserController extends Controller {
 				$restaurant->setCreated(new \DateTime());
 				$password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
 				$restaurant->setPassword($password);
+				$restaurant->setRoles('ROLE_USER');
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($restaurant);
 				$flush = $em->flush();

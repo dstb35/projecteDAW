@@ -19,6 +19,11 @@ class Restaurant implements UserInterface
     /**
      * @var string
      */
+    private $roles;
+
+    /**
+     * @var string
+     */
     private $address;
 
     /**
@@ -96,6 +101,30 @@ class Restaurant implements UserInterface
     public function getRestaurantid()
     {
         return $this->restaurantid;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param string $role
+     *
+     * @return Restaurant
+     */
+    public function setRoles($role)
+    {
+        $this->roles = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return string
+     */
+    public function getRoles()
+    {
+        return array($this->roles);
     }
 
     /**
@@ -342,10 +371,6 @@ class Restaurant implements UserInterface
 		
 	}
 
-	public function getRoles() {
-		return array('USER_ROLE');
-	}
-
 	public function getSalt() {
 		return null;
 	}
@@ -353,6 +378,4 @@ class Restaurant implements UserInterface
 	public function getUsername() {
 		return $this->email;
 	}
-
 }
-
