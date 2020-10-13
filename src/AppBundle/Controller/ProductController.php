@@ -12,128 +12,212 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 
-class ProductController extends Controller {
+class ProductController extends Controller
+{
 
-	private $session;
+    private $session;
 
-	public function __construct() {
-		$this->session = new Session();
-	}
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
 
-	public function indexAction($id) {
+    public function indexAction($id)
+    {
+        if (is_numeric($id) && $id > 0) {
+            $em = $this->getDoctrine()->getManager();
+            $product_repo = $em->getRepository('AppBundle:Product');
+            $products = $product_repo->findBy(array('restaurantid' => $id));
+            $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+            if (isset($restaurant)) {
+                $title = 'Productos para restaurante ' . $restaurant->getName();
+            } else {
+                $title = 'Restaurante no encontrado para id: ' . $id;
+            }
+
+            return $this->render('product.html.twig', array(
+                'title' => $title,
+                'products' => $products,
+                'id' => $id
+            ));
+        } else {
+            return $this->render('product.html.twig', array(
+                'title' => 'ID de restaurante incorrecto',
+                'products' => '',
+                'id' => $id
+            ));
+        }
+    }
+
+    public function addAction(Request $request, UserInterface $user = null, $id)
+    {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para crear productos');
-		if (is_numeric($id) && $id > 0) {
-			$em = $this->getDoctrine()->getManager();
-			$product_repo = $em->getRepository('AppBundle:Product');
-			$products = $product_repo->findBy(array('restaurantid' => $id));
-			$restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
-			if (isset($restaurant)) {
-				$title = 'Productos para restaurante ' . $restaurant->getName();
-			} else {
-				$title = 'Restaurante no encontrado para id: ' . $id;
-			}
+        if ($user->getRestaurantid() != $id) {
+            $status = 'No puedes añadir productos de este restaurante';
+            $this->session->getFlashBag()->add('danger', $status);
+            return $this->redirectToRoute('product_index', array('id' => $id));
+        }
 
-			return $this->render('product.html.twig', array(
-						'title' => $title,
-						'products' => $products,
-						'id' => $id
-			));
-		} else {
-			return $this->render('product.html.twig', array(
-						'title' => $title,
-						'products' => 'ID de restaurante incorrecto',
-						'id' => $id
-			));
-		}
-	}
+        $title = 'Añadir producto';
+        $em = $this->getDoctrine()->getManager();
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
 
-	public function addAction(Request $request, UserInterface $user = null) {
-		$title = 'Añadir producto';
-		$em = $this->getDoctrine()->getManager();
-		$product = new Product();
-		$form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $product = $form->getData();
+            if ($user) {
+                $product->setRestaurantid($user);
+                if ($form->isValid()) {
+                    $imageFile = $form->get('image')->getData();
+                    if ($imageFile) {
+                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                        $newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        try {
+                            $imageFile->move(
+                                $this->getParameter('products_images'),
+                                $newFilename
+                            );
+                        } catch (FileException $e) {
+                            $status = 'No se ha podido guardar la imagen' . $e->getMessage();
+                            $this->session->getFlashBag()->add('danger', $status);
+                        }
+                        $product->setImage($newFilename);
+                    }
 
-		$form->handleRequest($request);
-		if ($form->isSubmitted()) {
-			$product = $form->getData();
-			if ($user) {
-				$product->setRestaurantid($user);
-				if ($form->isValid()) {
-					$imageFile = $form->get('image')->getData();
-					if ($imageFile) {
-						$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-						// this is needed to safely include the file name as part of the URL
-						$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-						$newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
-						try {
-							$imageFile->move(
-									$this->getParameter('products_images'),
-									$newFilename
-							);
-						} catch (FileException $e) {
-							$status = 'No se ha podido guardar la imagen' . $e->getMessage();
-							$this->session->getFlashBag()->add('danger', $status);
-						}
-						$product->setImage($newFilename);
-					}
+                    $em->persist($product);
+                    $flush = $em->flush();
 
-					$em->persist($product);
-					$flush = $em->flush();
+                    if ($flush == null) {
+                        $status = 'El producto se ha creado correctamente';
+                        $this->session->getFlashBag()->add('success', $status);
+                        return $this->redirectToRoute('product_index', array('id' => $user->getRestaurantid()));
+                    } else {
+                        $status = 'El producto NO se ha creado correctamente';
+                        $this->session->getFlashBag()->add('danger', $status);
+                    }
+                } else {
+                    $this->session->getFlashBag()->add('danger', 'Form no válido');
+                    unset($product);
+                }
+            } else {
+                $status = 'El restaurante no es válido o el usuario no está identificado';
+                $this->session->getFlashBag()->add('danger', $status);
+            }
+        }
 
-					if ($flush == null) {
-						$status = 'El producto se ha creado correctamente';
-						$this->session->getFlashBag()->add('success', $status);
-						return $this->redirectToRoute('product_index', array('id' => $user->getRestaurantid()));
-					} else {
-						$status = 'El producto NO se ha creado correctamente';
-						$this->session->getFlashBag()->add('danger', $status);
-					}
-				} else {
-					$this->session->getFlashBag()->add('danger', 'Form no válido');
-					unset($product);
-				}
-			} else {
-				$status = 'El restaurante no es válido o el usuario no está identificado';
-				$this->session->getFlashBag()->add('danger', $status);
-			}
-		}
+        return $this->render('add.html.twig', array(
+            'form' => $form->createView(),
+            'title' => $title
+        ));
+    }
 
-		return $this->render('add.html.twig', array(
-					'form' => $form->createView(),
-					'title' => $title
-		));
-	}
+    public function editAction(Request $request, UserInterface $user = null, $productid, $id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para editar productos');
+        $title = 'Editar producto: ';
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('AppBundle:Product')->find($productid);
+        $form = $this->createForm(ProductType::class, $product);
 
-	public function removeAction($id, $productid) {
-		if (is_numeric($productid) && $productid > 0) {
-			$em = $this->getDoctrine()->getManager();
-			$product_repo = $em->getRepository('AppBundle:Product');
-			$product = $product_repo->find($productid);
+        if ($user->getRestaurantid() != $id) {
+            $status = 'No puedes editar productos de este restaurante';
+            $this->session->getFlashBag()->add('danger', $status);
+            return $this->redirectToRoute('product_index', array('id' => $id));
+        }
 
-			if ($product) {
-				try {
-					$fs = new Filesystem();
-					$fs->remove($this->getParameter('products_images') . '/' . $product->getImage());
-				} catch (IOException $e) {
-					$status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
-					$this->session->getFlashBag()->add('danger', $status);
-				}
-				$em->remove($product);
-				$flush = $em->flush();
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($user) {
+                if ($form->isValid()) {
+                    $imageFile = $form->get('image')->getData();
+                    if ($imageFile) {
+                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        // this is needed to safely include the file name as part of the URL
+                        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                        $newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        try {
+                            $fs = new Filesystem();
+                            $fs->remove($this->getParameter('products_images') . '/' . $product->getImage());
+                            $imageFile->move(
+                                $this->getParameter('products_images'),
+                                $newFilename
+                            );
+                        } catch (FileException $e) {
+                            $status = 'No se ha podido renombrar la imagen' . $e->getMessage();
+                            $this->session->getFlashBag()->add('danger', $status);
+                        }
+                        $product->setImage($newFilename);
+                    }
 
-				if ($flush == null) {
-					$status = 'El producto se ha borrado correctamente';
-					$this->session->getFlashBag()->add('success', $status);
-				} else {
-					$status = 'El producto NO se ha borrado correctamente';
-					$this->session->getFlashBag()->add('danger', $status);
-				}
-			} else {
-				$status = 'No se ha encontrado el producto con id: ' . $productid;
-				$this->session->getFlashBag()->add('danger', $status);
-			}
-			return $this->redirectToRoute('product_index', array('id' => $id));
-		}
-	}
+                    $em->persist($product);
+                    $flush = $em->flush();
+
+                    if ($flush == null) {
+                        $status = 'El producto se ha creado correctamente';
+                        $this->session->getFlashBag()->add('success', $status);
+                        return $this->redirectToRoute('product_index', array('id' => $id));
+                    } else {
+                        $status = 'El producto NO se ha creado correctamente';
+                        $this->session->getFlashBag()->add('danger', $status);
+                    }
+                } else {
+                    $this->session->getFlashBag()->add('danger', 'Form no válido');
+                    unset($product);
+                }
+            } else {
+                $status = 'El restaurante no es válido o el usuario no está identificado';
+                $this->session->getFlashBag()->add('danger', $status);
+            }
+        }
+
+        return $this->render('edit.html.twig', array(
+            'form' => $form->createView(),
+            'title' => $title,
+            'product' => $product,
+            'id' => $id
+        ));
+    }
+
+    public function removeAction(UserInterface $user = null, $id, $productid)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para borrar productos');
+        if ($user->getRestaurantid() != $id) {
+            $status = 'No puedes borrar productos de este restaurante';
+            $this->session->getFlashBag()->add('danger', $status);
+            return $this->redirectToRoute('product_index', array('id' => $id));
+        }
+        if (is_numeric($productid) && $productid > 0) {
+            $em = $this->getDoctrine()->getManager();
+            $product_repo = $em->getRepository('AppBundle:Product');
+            $product = $product_repo->find($productid);
+
+            if ($product) {
+                try {
+                    $fs = new Filesystem();
+                    $fs->remove($this->getParameter('products_images') . '/' . $product->getImage());
+                } catch (IOException $e) {
+                    $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+                $em->remove($product);
+                $flush = $em->flush();
+
+                if ($flush == null) {
+                    $status = 'El producto se ha borrado correctamente';
+                    $this->session->getFlashBag()->add('success', $status);
+                } else {
+                    $status = 'El producto NO se ha borrado correctamente';
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+            } else {
+                $status = 'No se ha encontrado el producto con id: ' . $productid;
+                $this->session->getFlashBag()->add('danger', $status);
+            }
+            return $this->redirectToRoute('product_index', array('id' => $id));
+        }
+    }
 
 }

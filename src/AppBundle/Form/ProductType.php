@@ -47,7 +47,7 @@ class ProductType extends AbstractType {
 					]
 				))
 				->add('price', NumberType::class, array("required" => true,
-					"data" => 0,
+					"empty_data" => 0,
 					"attr" => array(
 						"class" => "form-name form-control"
 			)))

@@ -1,5 +1,6 @@
 $(document).ready(function () {
     orderlines = [];
+    found = false;
 
     $(document).on('click', '#comprar', function () {
         orderline = {
@@ -23,26 +24,38 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#eliminar', function () {
+        productid = $(this).data('id');
         found = false;
         $.each(orderlines, function (i, val) {
-            if (val.productid == orderline.productid) {
+            if (val.productid == productid) {
+                console.log(orderline);
                 orderlines[i].quantity -= 1;
-                if (orderlines[i].quantity == 0){
-                    found = i;
-                }else{
-                    found = true;
+                if (orderlines[i].quantity == 0) {
+                    orderlines.splice(i, 1);
                 }
+                found = true;
                 return false;
             }
         })
-        console.log(found);
+
         if (found == false) {
-            $('#title').append("<div class=\".alert-dimissible\">Producto no encontrado en la cesta</div>")
-        }else if ($.isNumeric(found)){
-            orderlines.splice(found, 1);
-            console.log(borrado);
+            $('#title').append("<div class=\"alert alert-danger\">Producto no encontrado en la cesta</div>")
+            setTimeout(function () {
+                $('#title').empty()
+            }, 3000);
         }
         rellenar_cart();
+    })
+
+    $(document).on('click', '#enviar', function () {
+        id = $(this).data('id');
+        $.ajax({
+            type: "POST",
+            url: '/order/'+id+'/add',
+            data: orderlines,
+            success: success,
+            dataType: datatype
+        });
     })
 })
 
@@ -54,4 +67,9 @@ function rellenar_cart() {
         total += val.price * val.quantity;
     })
     $('#total').html(total + " €");
+    if (orderlines.length > 0) {
+        $('#enviar').show();
+    } else {
+        $('#enviar').hide();
+    }
 }

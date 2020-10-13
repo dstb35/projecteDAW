@@ -8,17 +8,19 @@
             <span>Carrito</span>
             <ul id="cart" class="list-group">
             </ul>
-            <span id="total">0</span>
+            <span id="total">0 €</span>
         </div>
 
+        <div id="enviar" type="button" class="btn btn-info" style="display: none" data-id="{{ id|json_encode() }}">Enviar pedido</div>
+
         <div id="title"></div><h1>{{ title }}</h1></div>
-        <h2><a href="{{ path('product_add') }}">Añadir producto</a>
+        <h2><a href="{{ path('product_add', {'id': id }) }}">Añadir producto</a>
             <hr/>
         </h2>
         <div class="row">
             {% for product in products %}
                 <div class="col-lg-3 text-center">
-                    <img class="img-thumbnail" src="{{ asset('uploads/products_images/' ~ product.image) }}"></img>
+                    <img class="img-thumbnail img-fluid"  src="{{ asset('uploads/products_images/' ~ product.image) }}"></img>
                     <h4>
                         <span class="label label-info">{{ product.name }}</span>
                         <span class="label label-info">{{ product.description }}</span>
@@ -32,7 +34,7 @@
                                 class="btn btn-info">Eliminar
                         </button>
                         {% if is_granted('ROLE_USER') and app.user == product.restaurantid %}
-                            <a class="btn btn-danger" href="{{ path('product_remove', {'id': id, 'productid': product.productid }) }}">Borrar</a>
+                            <a class="btn btn-danger" href="{{ path('product_edit', {'id': id, 'productid': product.productid }) }}">Editar</a>
                         {% endif %}
                     </h4>
                     <hr/>

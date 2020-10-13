@@ -94,7 +94,8 @@ class AllergenController extends Controller {
 	}
 
 	public function removeAction($id) {
-		if (is_numeric($id) && $id > 0) {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para borrar alérgenos');
+        if (is_numeric($id) && $id > 0) {
 			$em = $this->getDoctrine()->getManager();
 			$allergen_repo = $em->getRepository('AppBundle:Allergen');
 			$allergen = $allergen_repo->find($id);

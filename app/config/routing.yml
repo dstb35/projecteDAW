@@ -1,89 +1,124 @@
-pruebas_homepage:
-    path: /
-    defaults: { _controller: AppBundle:Default:index}
-    
+homepage:
+  path: /
+  defaults: { _controller: AppBundle:Default:index }
+
 login:
-    path: /login
-    defaults: { _controller: AppBundle:User:login}
-    
+  path: /login
+  defaults: { _controller: AppBundle:User:login }
+
 logout:
-    path: /logout
-    
+  path: /logout
+
 login_check:
-    path: /login_check
+  path: /login_check
 
 allergen_add:
-    path: /allergen/add
-    defaults: { _controller: AppBundle:Allergen:add}
-    
+  path: /allergen/add
+  defaults: { _controller: AppBundle:Allergen:add }
+
 allergen_remove:
-    path: /allergen/remove/{id}
-    defaults: { _controller: AppBundle:Allergen:remove}
-    requirements:
-        page: '\d+'
+  path: /allergen/remove/{id}
+  defaults: { _controller: AppBundle:Allergen:remove }
+  requirements:
+    id: '\d+'
 
 allergen_index:
-    path: /allergen/index
-    defaults: {_controller: AppBundle:Allergen:index}
-    
+  path: /allergen/index
+  defaults: { _controller: AppBundle:Allergen:index }
+
 employee_add:
-    path: /employee/add
-    defaults: { _controller: AppBundle:Employee:add}
-    
+  path: /employee/{id}/add
+  defaults: { _controller: AppBundle:Employee:add }
+  requirements:
+    id: '\d+'
+
 employee_remove:
-    path: /employee/remove/{id}
-    defaults: { _controller: AppBundle:Employee:remove}
-    requirements:
-        page: '\d+'
+  path: /employee/{id}/remove/{employeeid}
+  defaults: { _controller: AppBundle:Employee:remove }
+  requirements:
+    id: '\d+'
+    employee: '\d+'
 
 employee_index:
-    path: /employee/index
-    defaults: {_controller: AppBundle:Employee:index}
-   
+  path: /employee/{id}/index
+  defaults: { _controller: AppBundle:Employee:index }
+  requirements:
+    id: '\d+'
+
+employee_edit:
+  path: /employee/{id}/edit/{employeeid}
+  defaults: { _controller: AppBundle:Employee:edit }
+  requirements:
+    id: '\d+'
+    employeeid: '\d+'
+
 product_add:
-    path: /product/add
-    defaults: { _controller: AppBundle:Product:add}
-    
+  path: /product/{id}/add
+  defaults: { _controller: AppBundle:Product:add }
+  requirements:
+    id: '\d+'
+
+product_edit:
+  path: /product/{id}/edit/{productid}
+  defaults: { _controller: AppBundle:Product:edit }
+  requirements:
+    id: '\d+'
+    productid: '\d+'
+
 product_remove:
-    path: /product/{id}/remove/{productid}
-    defaults: { _controller: AppBundle:Product:remove}
-    requirements:
-        page: '\d+'
+  path: /product/{id}/remove/{productid}
+  defaults: { _controller: AppBundle:Product:remove }
+  requirements:
+    id: '\d+'
+    productid: '\d+'
 
 product_index:
-    path: /product/{id}/index
-    defaults: {_controller: AppBundle:Product:index}
-    requirements:
-        page: '\d+'
+  path: /product/{id}/index
+  defaults: { _controller: AppBundle:Product:index }
+  requirements:
+    id: '\d+'
 
 table_add:
-    path: /table/add
-    defaults: { _controller: AppBundle:Table:add}
-    
+  path: /table/{id}/add
+  defaults: { _controller: AppBundle:Table:add }
+  requirements:
+    id: '\d+'
+
 table_remove:
-    path: /table/remove/{id}
-    defaults: { _controller: AppBundle:Table:remove}
-    requirements:
-        page: '\d+'
+  path: /table/{id}/remove/{tableid}
+  defaults: { _controller: AppBundle:Table:remove }
+  requirements:
+    id: '\d+'
+    tableid: '\d+'
 
 table_index:
-    path: /table/index
-    defaults: {_controller: AppBundle:Table:index}
+  path: /table/{id}/index
+  defaults: { _controller: AppBundle:Table:index }
+  requirements:
+    id: '\d+'
+
+table_edit:
+  path: /table/{id}/edit/{tableid}
+  defaults: { _controller: AppBundle:Table:edit }
+  requirements:
+    id: '\d+'
+    tableid: '\d+'
 
 order_add:
-    path: /order/add
-    defaults: { _controller: AppBundle:Order:add}
-    
+  path: /order/{id}/add
+  defaults: { _controller: AppBundle:Order:add }
+  requirements:
+    id: '\id+'
+
 order_remove:
-    path: /order/remove/{id}
-    defaults: { _controller: AppBundle:Order:remove}
-    requirements:
-        page: '\d+'
+  path: /order/{id}/remove/{orderid}
+  defaults: { _controller: AppBundle:Order:remove }
+  requirements:
+    id: '\d+'
+    orderid: '\d+'
 
 order_index:
-    path: /order/index
-    defaults: {_controller: AppBundle:Order:index}
-    
-order_add:
-    path: /order/add
-    defaults: { _controller: AppBundle:Order:add}
+  path: /order/{id}/index
+  defaults: { _controller: AppBundle:Order:index }
+  requirements:
+    id: '\d+'

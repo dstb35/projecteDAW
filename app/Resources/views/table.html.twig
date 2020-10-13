@@ -2,13 +2,14 @@
 {% block content %}
 
 	<div class="container-fluid">
-		<h2><a href="{{ path('table_add') }}">Añadir mesa</a><hr/></h2>
+		<h2><a href="{{ path('table_add',  {'id' : id }) }}">Añadir mesa</a><hr/></h2>
 		<div class="row">
 			{%  for table in tables %}
 				<div class="col-lg-3 text-center">
 					<h4>
 						<span class="label label-info">{{  table.name}}</span>
-						<a class="btn btn-danger" href="{{ path('table_remove', {'id': table.tableid}) }}">Eliminar</a>						
+						<a class="btn btn-warning" href="{{ path('table_edit', {'id' : id, 'tableid': table.tableid}) }}">Modificar</a>
+						<a class="btn btn-danger" href="{{ path('table_remove', {'id' : id, 'tableid': table.tableid}) }}">Eliminar</a>
 					</h4>
 					<hr/>
 				</div>
