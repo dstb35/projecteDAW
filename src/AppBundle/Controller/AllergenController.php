@@ -14,20 +14,20 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class AllergenController extends Controller {
 
-	//private $em;
 	private $session;
 
 	public function __construct() {
 		$this->session = new Session();
-		//$this->em = $this->getDoctrine()->getManager();
 	}
 
 	public function indexAction() {
+	    $title = 'Listado de alérgenos';
 		$em = $this->getDoctrine()->getManager();
 		$allergen_repo = $em->getRepository('AppBundle:Allergen');
 		$allergens = $allergen_repo->findAll();
 
 		return $this->render('allergen.html.twig', array(
+		            'title' => $title,
 					'allergens' => $allergens
 		));
 	}

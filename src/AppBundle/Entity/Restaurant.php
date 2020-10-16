@@ -74,11 +74,13 @@ class Restaurant implements UserInterface
 	protected $employees;
 	protected $tables;
 	protected $products;
+	protected $orders;
 	
 	public function __construct() {
 		$this->employees = new ArrayCollection();
 		$this->tables = new ArrayCollection();
 		$this->products = new ArrayCollection();
+		$this->orders = new ArrayCollection();
 	}
 	
 	function getEmployees() {
@@ -92,6 +94,10 @@ class Restaurant implements UserInterface
 	function getProducts() {
 		return $this->products;
 	}
+
+	function getOrders() {
+	    return $this->orders;
+    }
 	
     /**
      * Get restaurantid

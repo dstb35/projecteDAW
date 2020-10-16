@@ -1,6 +1,16 @@
 $(document).ready(function () {
     orderlines = [];
     found = false;
+    restaurantid = $('#enviar').data('restaurantid');
+
+    $.ajax({
+        type: "GET",
+        // TODO quitar debug mode
+        url: '/app_dev.php/table/' + restaurantid + '/index',
+        data: {'restaurantid': restaurantid},
+        success: fill_tables,
+        error: error
+    });
 
     $(document).on('click', '#comprar', function () {
         orderline = {
@@ -48,14 +58,20 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#enviar', function () {
-        id = $(this).data('id');
-        $.ajax({
-            type: "POST",
-            url: '/order/'+id+'/add',
-            data: orderlines,
-            success: success,
-            dataType: datatype
-        });
+        var table = $('#tables option:selected').val();
+        if ($.isNumeric(table)) {
+            $.ajax({
+                type: "POST",
+                //url: 'order/'+restaurantid+'/add', quitar debug mode
+                url: '/app_dev.php/order/' + restaurantid + '/add',
+                data: {'orderlines': orderlines, 'tableid': table},
+                success: success,
+                //dataType: 'json',
+                error: error
+            });
+        }else{
+          alert('Selecciona una mesa');
+        }
     })
 })
 
@@ -72,4 +88,34 @@ function rellenar_cart() {
     } else {
         $('#enviar').hide();
     }
+}
+
+function success(data, statusText, jqXHR) {
+    console.log(data);
+}
+
+function error(jqXHR, statusText, error) {
+    console.log(error, statusText);
+}
+
+function fill_tables(data, statusText, jqXHR){
+    console.log(data);
+    tables = $('#tables');
+    $.each(data.tables, function(i, val){
+        tables.append($('<option></option>').val(val.tableid).html(val.name));
+    });
+    tables.val('');
+    /*var options ="";
+    for(i=0; i<data.tables.length; i++) {
+        $.each(data.results, function(i, val){
+        tables.append($('<option></option>').val(data[i].tableid).html(data[i].name));
+        tables.append($('<option value='+data[i].tableid+'>'+data[i].name+'</option>'));
+        options += '<option value='+data.tables[i].tableid+'>' + data.tables[i].name + '</option>';
+        console.log(data.tables[i].tableid + ': ' + data.tables[i].name);
+        options += `<option value=${data[i].id}>${data[i].name_rus}</option>`;//<--string
+        interpolation
+        });
+    }
+    $('#tables').append(options);
+    $(select).append(options);*/
 }

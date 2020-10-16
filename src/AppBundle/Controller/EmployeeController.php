@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Employee;
 use AppBundle\Form\EmployeeType;
@@ -19,29 +20,39 @@ class EmployeeController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction(UserInterface $user = null, $id)
+    public function indexAction(Request $request, UserInterface $user = null, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver empleados');
-        if ($user->getRestaurantid() != $id) {
-            $status = 'No puedes ver empleados de este restaurante';
-            $this->session->getFlashBag()->add('danger', $status);
-            return $this->redirectToRoute('homepage');
-        }
         $em = $this->getDoctrine()->getManager();
         $employee_repo = $em->getRepository("AppBundle:Employee");
-        $employees = $employee_repo->findBy(array('restaurantid' => $id));
-        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
-        if (isset($restaurant)) {
-            $title = 'Empleados para restaurante ' . $restaurant->getName();
+        if ($request->isXMLHttpRequest()) {
+            $employeeset = $employee_repo->findBy(array('restaurantid' => $id));
+            foreach ($employeeset as $employeeset) {
+                $employee['name'] = $employeeset->getName();
+                $employee['employeeid'] = $employeeset->getEmployeeid();
+                $employees[] = $employee;
+            }
+            return new JsonResponse(array('employees' => $employees));
         } else {
-            $title = 'Restaurante no encontrado para id: ' . $id;
-        }
+            $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver empleados');
+            if ($user->getRestaurantid() != $id) {
+                $status = 'No puedes ver empleados de este restaurante';
+                $this->session->getFlashBag()->add('danger', $status);
+                return $this->redirectToRoute('homepage');
+            }
+            $employees = $employee_repo->findBy(array('restaurantid' => $id));
+            $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+            if (isset($restaurant)) {
+                $title = 'Empleados para restaurante ' . $restaurant->getName();
+            } else {
+                $title = 'Restaurante no encontrado para id: ' . $id;
+            }
 
-        return $this->render("employee.html.twig", array(
-            'employees' => $employees,
-            'title' => $title,
-            'id' => $id
-        ));
+            return $this->render("employee.html.twig", array(
+                'employees' => $employees,
+                'title' => $title,
+                'id' => $id
+            ));
+        }
     }
 
     public function addAction(Request $request, UserInterface $user = null, $id)
@@ -165,5 +176,4 @@ class EmployeeController extends Controller
         }
         return $this->redirectToRoute("employee_index", array('id' => $id));
     }
-
 }

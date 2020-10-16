@@ -1,11 +1,35 @@
-{%  extends "layout.html.twig" %}
+{% extends "layout.html.twig" %}
 {% block content %}
+    <script src=" {{ asset('js/order.js') }}"></script>
+    <div class="container-fluid">
+        <div id="title"></div>
+        <h1>{{ title }}</h1>
+        <span class="label label-info">Empleado:
+            {% if order.employeeid.name is defined %}
+                {{ order.employeeid.name }}
+            {% endif %}
+        </span>
+        <span class="label label-info">Total: {{ order.total }} €</span>
+        {% if order.paid %}
+            <span class="label label-info">Pagado: Si</span>
+        {% else %}
+            <span class="label label-info">Pagado: No</span>
+        {% endif %}
 
-	<div class="container-fluid">
-		<h2><a href="{{ path('product_add', {'id' : id}) }}">Añadir pedido</a><hr/></h2>
-		<div class="row">
-			
-		</div>
-	</div>
-	<div class="clearfix"></div>
-{%  endblock %}
+        <div class="row">
+            {% for orderline in order.orderlines %}
+                <div class="col-lg-12 text-center">
+                    <h4>
+                        <span class="label label-info">Producto: {{ orderline.productid.name }}</span>
+                        <span class="label label-info">Cantidad: {{ orderline.quantity }}</span>
+                        <span class="label label-info">Subtotal: {{ orderline.subtotal }} €</span>
+                    </h4>
+                </div>
+            {% endfor %}
+            <a class="btn btn-info" href="{{ path('order_pay', {'id': id, 'orderid': order.orderid }) }}">Cobrar</a>
+            <a class="btn btn-danger"
+               href="{{ path('order_remove', {'id': id, 'orderid': order.orderid }) }}">Eliminar</a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

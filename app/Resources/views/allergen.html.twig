@@ -2,6 +2,7 @@
 {% block content %}
 
 	<div class="container-fluid">
+		<div id="title"></div><h1>{{ title }}</h1></div>
 		<h2><a href="{{ path('allergen_add') }}">Añadir alérgeno</a><hr/></h2>
 		<div class="row">
 			{%  for allergen in allergens %}

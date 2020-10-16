@@ -33,4 +33,9 @@ AppBundle\Entity\Table:
                 restaurantId:
                     referencedColumnName: restaurantId
             orphanRemoval: true
+    oneToMany:
+        orders:
+            targetEntity: Order
+            mappedBy: tableid
+            cascade: { }
     lifecycleCallbacks: {  }

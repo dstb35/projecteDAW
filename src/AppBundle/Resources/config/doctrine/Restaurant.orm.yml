@@ -94,4 +94,8 @@ AppBundle\Entity\Restaurant:
             targetEntity: Employee
             mappedBy: restaurantid
             cascade: { }
+        orders:
+            targetEntity: Order
+            mappedBy: restaurantid
+            cascade: {}
     lifecycleCallbacks: {  }

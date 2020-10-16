@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Table
  */
@@ -27,6 +29,17 @@ class Table
      *
      * @return integer
      */
+
+    protected $orders;
+
+    public function __construct() {
+        $this->orders = new ArrayCollection();
+    }
+
+    function getOrders() {
+        return $this->orders;
+    }
+
     public function getTableid()
     {
         return $this->tableid;

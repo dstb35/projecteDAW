@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Employee
  */
@@ -22,6 +24,15 @@ class Employee
      */
     private $restaurantid;
 
+    protected $orders;
+
+    public function __construct() {
+        $this->orders = new ArrayCollection();
+    }
+
+    function getOrders() {
+        return $this->orders;
+    }
 
     /**
      * Get employeeid

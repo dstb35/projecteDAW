@@ -8,6 +8,9 @@ AppBundle\Entity\Order:
         fk_table_order_idx:
             columns:
                 - tableId
+        fk_restaurant_order_idx:
+            columns:
+                - restaurantId
     id:
         orderid:
             type: integer
@@ -42,7 +45,7 @@ AppBundle\Entity\Order:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: orders
             joinColumns:
                 employeeId:
                     referencedColumnName: employeeId
@@ -52,9 +55,24 @@ AppBundle\Entity\Order:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: orders
             joinColumns:
                 tableId:
                     referencedColumnName: tableId
             orphanRemoval: true
+        restaurantid:
+            targetEntity: Restaurant
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: orders
+            joinColumns:
+                restaurantId:
+                    referencedColumnName: restaurantId
+            orphanRemoval: true
+    oneToMany:
+        orderlines:
+            targetEntity: Orderline
+            mappedBy: orderid
+            cascade: { }
     lifecycleCallbacks: {  }

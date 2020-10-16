@@ -1,0 +1,35 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <script src=" {{ asset('js/order.js') }}"></script>
+    <div class="container-fluid">
+        <div id="title" data-restaurantid="{{ id }}"></div>
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="row">
+        {% for order in orders %}
+            <div class="col-lg-3 text-center">
+                <h4>
+                    <span class="label label-info">Nº de pedido: {{ order.orderid }}</span>
+                    <span class="label label-info">Total: {{ order.total }} €</span>
+                    {% if order.paid %}
+                        <span class="label label-info">Pagado: Si</span>
+                    {% else %}
+                        <span class="label label-info">Pagado: No</span>
+                    {% endif %}
+                    <span id="span-{{ order.orderid }}" class="label label-info">Empleado:
+						{% if order.employeeid.name is defined %}
+                            {{ order.employeeid.name }}
+                        {% endif %}
+					</span>
+                </h4>
+                <select class="employees" id="select-{{ order.orderid }}"></select>
+                <div id="asignar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">Asignar</div>
+                <a class="btn btn-info" href="{{ path ('order_get', {'orderid': order.orderid }) }}">Ver</a>
+                <a class="btn btn-info" href="{{ path('order_pay', {'id': id, 'orderid': order.orderid }) }}">Cobrar</a>
+                <a class="btn btn-danger" href="{{ path('order_remove', {'id': id, 'orderid': order.orderid }) }}">Eliminar</a>
+                <hr/>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}

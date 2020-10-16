@@ -34,5 +34,10 @@ AppBundle\Entity\Employee:
                     referencedColumnName: restaurantId
                     nullable: false
             orphanRemoval: true
+    oneToMany:
+        orders:
+            targetEntity: Order
+            mappedBy: employeeid
+            cascade: { }
             
     lifecycleCallbacks: {  }

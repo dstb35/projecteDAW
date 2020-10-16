@@ -32,7 +32,6 @@ class Orderline
      */
     private $productid;
 
-
     /**
      * Get orderlineid
      *

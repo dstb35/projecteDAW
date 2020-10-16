@@ -108,7 +108,7 @@ order_add:
   path: /order/{id}/add
   defaults: { _controller: AppBundle:Order:add }
   requirements:
-    id: '\id+'
+    id: '\d+'
 
 order_remove:
   path: /order/{id}/remove/{orderid}
@@ -117,8 +117,29 @@ order_remove:
     id: '\d+'
     orderid: '\d+'
 
+order_pay:
+  path: /order/{id}/pay/{orderid}
+  defaults: { _controller: AppBundle:Order:pay }
+  requirements:
+    id: '\d+'
+    orderid: '\d+'
+
+order_assign:
+  path: /order/{id}/assign/{orderid}/{employeeid}
+  defaults: { _controller: AppBundle:Order:assign }
+  requirements:
+    id: '\d+'
+    orderid: '\d+'
+    employeeid: '\d+'
+
 order_index:
   path: /order/{id}/index
   defaults: { _controller: AppBundle:Order:index }
   requirements:
     id: '\d+'
+
+order_get:
+  path: /order/{orderid}/get
+  defaults: { _controller: AppBundle:Order:order }
+  requirements:
+    orderid: '\d+'

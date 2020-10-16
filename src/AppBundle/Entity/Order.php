@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Order
  */
@@ -37,6 +39,26 @@ class Order
      */
     private $tableid;
 
+    /**
+     * @var \AppBundle\Entity\Restaurant
+     */
+    private $restaurantid;
+
+    /*public function __construct($restaurantid, $tableid){
+        $this->restaurantid = $restaurantid;
+        $this->tableid = $tableid;
+    }*/
+
+    protected $orderlines;
+
+    public function __consrtuct(){
+        $this->created(new \DateTime());
+        $this->orderlines = new ArrayCollection();
+    }
+
+    public function getOrderlines(){
+        return $this->orderlines;
+    }
 
     /**
      * Get orderid
@@ -166,6 +188,30 @@ class Order
     public function getTableid()
     {
         return $this->tableid;
+    }
+
+    /**
+     * Set restaurantid
+     *
+     * @param \AppBundle\Entity\Restaurant $restaurantid
+     *
+     * @return Table
+     */
+    public function setRestaurantid(\AppBundle\Entity\Restaurant $restaurantid = null)
+    {
+        $this->restaurantid = $restaurantid;
+
+        return $this;
+    }
+
+    /**
+     * Get restaurantid
+     *
+     * @return \AppBundle\Entity\Restaurant
+     */
+    public function getRestaurantid()
+    {
+        return $this->restaurantid;
     }
 }
 

@@ -35,7 +35,7 @@ AppBundle\Entity\Orderline:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: orderlines
             joinColumns:
                 orderId:
                     referencedColumnName: orderId

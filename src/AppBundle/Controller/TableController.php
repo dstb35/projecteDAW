@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Table;
 use AppBundle\Form\TableType;
@@ -20,29 +21,40 @@ class TableController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction(UserInterface $user = null, $id)
+    public function indexAction(UserInterface $user = null, $id, Request $request)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver mesas');
-        if ($user->getRestaurantid() != $id) {
-            $status = 'No puedes ver mesas de este restaurante';
-            $this->session->getFlashBag()->add('danger', $status);
-            return $this->redirectToRoute('homepage');
-        }
         $em = $this->getDoctrine()->getManager();
         $table_repo = $em->getRepository("AppBundle:Table");
-        $tables = $table_repo->findAll();
-        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
-        if (isset($restaurant)) {
-            $title = 'Mesas para restaurante ' . $restaurant->getName();
-        } else {
-            $title = 'Restaurante no encontrado para id: ' . $id;
-        }
+        if ($request->isXMLHttpRequest()) {
+            $restaurantid = $request->query->get('restaurantid');
+            $tablesset = $table_repo->findBy(array('restaurantid' => $restaurantid));
+            foreach ($tablesset as $tableset){
+                $table['name'] = $tableset->getName();
+                $table['tableid'] = $tableset->getTableid();
+                $tables[] = $table;
+            }
+            return new JsonResponse(array('tables' => $tables));
+        }else{
+            $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver mesas');
+            if ($user->getRestaurantid() != $id) {
+                $status = 'No puedes ver mesas de este restaurante';
+                $this->session->getFlashBag()->add('danger', $status);
+                return $this->redirectToRoute('homepage');
+            }
+            $tables = $table_repo->findAll();
+            $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+            if (isset($restaurant)) {
+                $title = 'Mesas para restaurante ' . $restaurant->getName();
+            } else {
+                $title = 'Restaurante no encontrado para id: ' . $id;
+            }
 
-        return $this->render("table.html.twig", array(
-            "tables" => $tables,
-            'title' => $title,
-            'id' => $id
-        ));
+            return $this->render("table.html.twig", array(
+                "tables" => $tables,
+                'title' => $title,
+                'id' => $id
+            ));
+        }
     }
 
     public function addAction(Request $request, UserInterface $user = null, $id)
