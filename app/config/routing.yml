@@ -143,3 +143,13 @@ order_get:
   defaults: { _controller: AppBundle:Order:order }
   requirements:
     orderid: '\d+'
+
+restaurant_index:
+  path: /restaurants/index
+  defaults: { _controller: AppBundle:User:index }
+
+restaurant_edit:
+  path: /restaurant/{id}/edit
+  defaults: { _controller: AppBundle:User:edit }
+  requirements:
+    id: '\d+'

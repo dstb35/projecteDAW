@@ -19,31 +19,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/orders.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/js/order.js" afterDir="false" />
+    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 16-10-2020">
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/restaurants.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/casa_dani-5f8d836888aed.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/allergen.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/allergen.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/order.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/order.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/product.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AllergenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AllergenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/EmployeeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/TableController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/TableController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Orderline.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Orderline.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Employee.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Employee.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Order.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Order.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Orderline.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Orderline.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Restaurant.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Restaurant.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Table.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Table.orm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uploads/products_images/1-carbonara-5f85bac6e0c9b.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/web/uploads/products_images/1-carbonara-5f85bac6e0c9b.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uploads/products_images/1-fanta-5f85be7dbbf2f.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/web/uploads/products_images/1-fanta-5f85be7dbbf2f.jpeg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,8 +146,19 @@
       <workItem from="1602581696381" duration="20852000" />
       <workItem from="1602760491676" duration="21343000" />
       <workItem from="1602864319560" duration="91000" />
-      <workItem from="1602864417045" duration="9825000" />
+      <workItem from="1602864417045" duration="10189000" />
+      <workItem from="1602948595657" duration="662000" />
+      <workItem from="1603020528953" duration="721000" />
+      <workItem from="1603103959612" duration="8773000" />
     </task>
+    <task id="LOCAL-00001" summary="Commit 16-10-2020">
+      <created>1602874546781</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602874546781</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +178,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Commit 16-10-2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 16-10-2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="140" width="700" height="759" key="#PHP" timestamp="1602064794075">
@@ -188,15 +194,27 @@
       <screen x="0" y="20" width="1920" height="992" />
     </state>
     <state x="418" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602065016218" />
-    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602866309313">
+    <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603104123849">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1602866309313" />
+    <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603104123849" />
+    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603108978735">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603108978735" />
     <state x="2613" y="264" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602602884377" />
+    <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603020872849">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603020872849" />
     <state x="449" y="151" width="1022" height="737" key="SettingsEditor" timestamp="1602064877505">
       <screen x="0" y="20" width="1920" height="992" />
     </state>
     <state x="449" y="151" width="1022" height="737" key="SettingsEditor/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602064877505" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1602874552399">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1602874552399" />
     <state x="624" y="233" key="run.anything.popup" timestamp="1602073430427">
       <screen x="0" y="20" width="1920" height="992" />
     </state>
@@ -207,7 +225,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php</url>
-          <line>183</line>
+          <line>184</line>
           <properties>
             <option name="className" value="\AppBundle\Controller\ProductController" />
             <option name="methodName" value="removeAction" />
@@ -216,7 +234,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php</url>
-          <line>51</line>
+          <line>52</line>
           <properties>
             <option name="className" value="\AppBundle\Controller\ProductController" />
             <option name="methodName" value="addAction" />

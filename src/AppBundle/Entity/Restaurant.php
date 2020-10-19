@@ -52,6 +52,11 @@ class Restaurant implements UserInterface
     private $name;
 
     /**
+     * @var string
+     */
+    private $image;
+
+    /**
      * @var boolean
      */
     private $paid = '0';
@@ -227,6 +232,30 @@ class Restaurant implements UserInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Product
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

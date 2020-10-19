@@ -31,9 +31,6 @@ AppBundle\Entity\Restaurant:
             nullable: false
             length: 45
             options:
-
-
-
                 fixed: false
         created:
             type: datetime
@@ -44,6 +41,12 @@ AppBundle\Entity\Restaurant:
             type: string
             nullable: false
             length: 255
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 60
             options:
                 fixed: false
         manager:

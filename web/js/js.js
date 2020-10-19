@@ -79,10 +79,10 @@ function rellenar_cart() {
     var total = 0;
     $('#cart').empty();
     $.each(orderlines, function (i, val) {
-        $('#cart').append("<li>" + val.title + "Cantidad: " + val.quantity + "</li>")
+        $('#cart').append("<li class='list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0'>" + val.title + ". Cantidad: " + val.quantity + "</li>")
         total += val.price * val.quantity;
     })
-    $('#total').html(total + " €");
+    $('#total').text(total + " €");
     if (orderlines.length > 0) {
         $('#enviar').show();
     } else {
@@ -105,17 +105,4 @@ function fill_tables(data, statusText, jqXHR){
         tables.append($('<option></option>').val(val.tableid).html(val.name));
     });
     tables.val('');
-    /*var options ="";
-    for(i=0; i<data.tables.length; i++) {
-        $.each(data.results, function(i, val){
-        tables.append($('<option></option>').val(data[i].tableid).html(data[i].name));
-        tables.append($('<option value='+data[i].tableid+'>'+data[i].name+'</option>'));
-        options += '<option value='+data.tables[i].tableid+'>' + data.tables[i].name + '</option>';
-        console.log(data.tables[i].tableid + ': ' + data.tables[i].name);
-        options += `<option value=${data[i].id}>${data[i].name_rus}</option>`;//<--string
-        interpolation
-        });
-    }
-    $('#tables').append(options);
-    $(select).append(options);*/
 }

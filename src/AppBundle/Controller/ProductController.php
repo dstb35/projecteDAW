@@ -38,7 +38,8 @@ class ProductController extends Controller
             return $this->render('product.html.twig', array(
                 'title' => $title,
                 'products' => $products,
-                'id' => $id
+                'id' => $id,
+                'restaurant' => $restaurant
             ));
         } else {
             return $this->render('product.html.twig', array(

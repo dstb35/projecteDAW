@@ -4,6 +4,7 @@ parameters:
     #parameter_name: value
     allergens_images: 'uploads/allergens_images'
     products_images: 'uploads/products_images'
+    restaurants_images: 'uploads/restaurants_images'
 
 services:
     # default configuration for services in *this* file
