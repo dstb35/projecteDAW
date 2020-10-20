@@ -2,25 +2,27 @@
 {% block content %}
     <script src=" {{ asset('js/js.js') }}"></script>
     <div class="container-fluid">
-        <div id="title">
-            <h1>{{ title }}</h1>
-        </div>
-        {% if restaurant.image is defined %}
-            <img class="img-thumbnail img-fluid" src="{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}"></img>
-        {% endif %}
-        <h2><a href="{{ path('product_add', {'id': id }) }}">Añadir producto</a>
-            <hr/>
-        </h2>
-
-        <span>Mesas disponibles: </span>
-        <select id="tables"></select>
         <div class="row">
+            <div class="col-lg-12">
+                <div id="title">
+                    <h1>{{ title }}</h1>
+                </div>
+                {% if restaurant.image is defined %}
+                    <img class="restaurant img-fluid"
+                         src="{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}"></img>
+                {% endif %}
+                <h2><a href="{{ path('product_add', {'id': id }) }}">Añadir producto</a>
+                    <hr/>
+                </h2>
+                <span>Mesas disponibles: </span>
+                <select id="tables"></select>
+            </div>
             <div class="col-lg-8">
                 {% for product in products %}
                     <div class="row mb-8">
                         <div class="col-md-5 col-lg-3 col-xl-3">
                             <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                                <img class="img-thumbnail img-fluid"
+                                <img class="productos img-fluid"
                                      src="{{ asset('uploads/products_images/' ~ product.image) }}"></img>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -59,7 +61,8 @@
                             <ul id="cart" class="list-group list-group-flush">
                             </ul>
                         </div>
-                        <div id="enviar" type="button" class="btn btn-primary btn-block" style="display: none" data-restaurantid="{{ id }}">Enviar
+                        <div id="enviar" type="button" class="btn btn-primary btn-block" style="display: none"
+                             data-restaurantid="{{ id }}">Enviar
                             pedido
                         </div>
                     </div>

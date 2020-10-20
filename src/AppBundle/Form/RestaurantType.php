@@ -29,7 +29,8 @@ class RestaurantType extends AbstractType
             ->add('name', TextType::class, array("required" => "required", "attr" => array(
                 "class" => "form-name form-control",
             )))
-            ->add('password', PasswordType::class, array("required" => "required", "attr" => array(
+            ->add('password', PasswordType::class, array("required" => "required", "always_empty" => false,
+                "attr" => array(
                 "class" => "form-name form-control",
             )))
             ->add('address', TextType::class, array("required" => "required", "attr" => array(
@@ -64,7 +65,7 @@ class RestaurantType extends AbstractType
                     ])
                 ]
             ))
-            ->add('Registrar', SubmitType::class, array("attr" => array(
+            ->add('Guardar', SubmitType::class, array("attr" => array(
                 "class" => "form-submit btn btn-success",
             )));
     }

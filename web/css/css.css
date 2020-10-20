@@ -1,0 +1,26 @@
+.restaurants {
+    height:250px;
+    width:100%;
+    padding: .25rem;
+    background-color: #FFF;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}
+
+.restaurant {
+    height:250px;
+    max-width:100%;
+    padding: .25rem;
+    background-color: #FFF;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}
+
+.productos {
+    height:200px;
+    max-width:100%;
+    padding: .25rem;
+    background-color: #FFF;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}

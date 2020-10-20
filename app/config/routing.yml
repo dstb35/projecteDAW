@@ -153,3 +153,13 @@ restaurant_edit:
   defaults: { _controller: AppBundle:User:edit }
   requirements:
     id: '\d+'
+
+clients_index:
+  path: /clients/index
+  defaults: { _controller: AppBundle:Admin:indexClients }
+
+clients_edit:
+  path: /client/{id}/edit
+  defaults: { _controller: AppBundle:Admin:editClients }
+  requirements:
+    id: '\d+'

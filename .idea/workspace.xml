@@ -20,23 +20,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 16-10-2020">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/restaurants.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/casa_dani-5f8d836888aed.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/clients.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/css/css.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ebf91a5586.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ebfde7d4e6.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec0b36a9cd.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec0e18c429.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec10d42fb5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec141e4e53.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec163edbba.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec1ab0644f.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec1d282eab.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec1f38aecb.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec32b1d6da.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ecc8bc3924.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/product.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/restaurants.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/restaurants.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Restaurant.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Restaurant.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/uploads/restaurants_images/casa_dani-5f8d836888aed.jpeg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +62,7 @@
       <list>
         <option value="composer.json" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -118,18 +129,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Resources/views" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Resources/views" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Form" />
       <recent name="$PROJECT_DIR$/web/js" />
     </key>
   </component>
@@ -150,6 +164,7 @@
       <workItem from="1602948595657" duration="662000" />
       <workItem from="1603020528953" duration="721000" />
       <workItem from="1603103959612" duration="8773000" />
+      <workItem from="1603184941601" duration="14341000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -203,6 +218,10 @@
     </state>
     <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603108978735" />
     <state x="2613" y="264" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602602884377" />
+    <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603195231573">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603195231573" />
     <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603020872849">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
@@ -219,6 +238,10 @@
       <screen x="0" y="20" width="1920" height="992" />
     </state>
     <state x="624" y="233" key="run.anything.popup/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602073430427" />
+    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup" timestamp="1603194880707">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603194880707" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -249,6 +272,11 @@
             <option name="methodName" value="indexAction" />
           </properties>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -2,11 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\ProductType;
+use AppBundle\Form\ClientType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Restaurant;
 use AppBundle\Form\RestaurantType;
@@ -35,7 +34,6 @@ class UserController extends Controller
             ->orderBy('r.name', 'ASC');
         $query = $qb->getQuery();
         $restaurants = $query->getResult();
-        //$restaurants = $em->getRepository("AppBundle:Restaurant")->findByPaid(1);
         return $this->render("restaurants.html.twig", array(
             "restaurants" => $restaurants,
             'title' => $title,
@@ -44,7 +42,6 @@ class UserController extends Controller
 
     public function loginAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -58,10 +55,12 @@ class UserController extends Controller
             if ($form->isValid()) {
                 $imageFile = $form->get('image')->getData();
                 if ($imageFile) {
-                    $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    /*$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $originalFilename = substr($originalFilename, 0, 6);
                     // this is needed to safely include the file name as part of the URL
                     $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();*/
+                    $newFilename = uniqid() . '.' . $imageFile->guessExtension();
                     try {
                         $imageFile->move(
                             $this->getParameter('restaurants_images'),
@@ -83,6 +82,7 @@ class UserController extends Controller
                 if ($flush == null) {
                     $status = "El usuario se ha creado correctamente";
                     $this->session->getFlashBag()->add("success", $status);
+                    return $this->redirectToRoute('product_index', array('id' => $restaurant->getRestaurantid()));
                 } else {
                     $status = "El usuario NO se ha creado correctamente";
                     $this->session->getFlashBag()->add("danger", $status);
@@ -108,7 +108,7 @@ class UserController extends Controller
         ));
     }
 
-    public function editAction(Request $request, UserInterface $user = null, $id)
+    public function editAction(Request $request, UserInterface $user = null, $id, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para editar restaurantes');
         if ($user->getRestaurantid() != $id) {
@@ -119,7 +119,8 @@ class UserController extends Controller
         $title = 'Editar Restaurante: ';
         $em = $this->getDoctrine()->getManager();
         $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
-        $form = $this->createForm(RestaurantType::class, $restaurant);
+        $form = $this->createForm(RestaurantType::class, $restaurant)
+                ->remove('password');
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -127,13 +128,17 @@ class UserController extends Controller
                 if ($form->isValid()) {
                     $imageFile = $form->get('image')->getData();
                     if ($imageFile) {
-                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        /*$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        $originalFilename = substr($originalFilename, 0, 6);*/
                         // this is needed to safely include the file name as part of the URL
-                        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                        $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        //$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                        //$newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        $newFilename = uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $fs = new Filesystem();
-                            $fs->remove($this->getParameter('restaurants_images') . '/' . $restaurant->getImage());
+                            if ($restaurant->getImage() != NULL ){
+                                $fs->remove($this->getParameter('restaurants_images') . '/' . $restaurant->getImage());
+                            }
                             $imageFile->move(
                                 $this->getParameter('restaurants_images'),
                                 $newFilename
@@ -144,14 +149,15 @@ class UserController extends Controller
                         }
                         $restaurant->setImage($newFilename);
                     }
-
+                    $password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
+                    $restaurant->setPassword($password);
                     $em->persist($restaurant);
                     $flush = $em->flush();
 
                     if ($flush == null) {
                         $status = 'El restaurante se ha modificado correctamente';
                         $this->session->getFlashBag()->add('success', $status);
-                        return $this->redirectToRoute('restaurant_index', array('id' => $id));
+                        return $this->redirectToRoute('product_index', array('id' => $id));
                     } else {
                         $status = 'El restaurante NO se ha modificado correctamente';
                         $this->session->getFlashBag()->add('danger', $status);
@@ -173,6 +179,4 @@ class UserController extends Controller
             'id' => $id
         ));
     }
-
-
 }

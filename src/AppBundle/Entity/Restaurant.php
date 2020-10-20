@@ -59,7 +59,7 @@ class Restaurant implements UserInterface
     /**
      * @var boolean
      */
-    private $paid = '0';
+    private $paid = FALSE;
 
     /**
      * @var string

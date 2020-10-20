@@ -51,11 +51,6 @@ AppBundle\Entity\Product:
                 restaurantId:
                     referencedColumnName: restaurantId
             orphanRemoval: true
-    #oneToMany:
-    #    allergens:
-    #       targetEntity: Productcontains
-    #      mappedBy: productid
-    #     cascade: { }
     manyToMany:
         allergens:
             targetEntity: Allergen

@@ -1,12 +1,14 @@
 {% extends "layout.html.twig" %}
-
 {% block content %}
-        <div id="title">
+    <div id="title">
             <h1>{{ title }}</h1>
         </div>
     <div class="row">
         {% for restaurant in restaurants %}
             <div class="col-lg-3 text-center">
+                {% if restaurant.image is defined %}
+                    <img class="restaurants" src="{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}"></img>
+                {% endif %}
                 <h4>
                     <a href="{{ path('product_index', {'id': restaurant.restaurantid }) }}">{{ restaurant.name }}</a>
                 </h4>
