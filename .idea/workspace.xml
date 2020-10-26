@@ -20,11 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 26-10-2020">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/order.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/order.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/orders.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/orders.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Orderline.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Orderline.orm.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/order.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,7 +142,7 @@
       <workItem from="1603214364891" duration="232000" />
       <workItem from="1603214999169" duration="4279000" />
       <workItem from="1603357422982" duration="7463000" />
-      <workItem from="1603706464351" duration="11350000" />
+      <workItem from="1603706464351" duration="11554000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -170,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603716819192</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Commit 26-10-2020">
+      <created>1603720991343</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1603720991343</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,10 +231,10 @@
       <screen x="0" y="20" width="1920" height="992" />
     </state>
     <state x="449" y="151" width="1022" height="737" key="SettingsEditor/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602064877505" />
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603716826592">
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603720995322">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603716826592" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603720995322" />
     <state x="624" y="233" key="run.anything.popup" timestamp="1602073430427">
       <screen x="0" y="20" width="1920" height="992" />
     </state>
