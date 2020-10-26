@@ -1,5 +1,11 @@
 $(document).ready(function () {
     restaurantid = $('#title').data('restaurantid');
+    console.log("document.URL : "+document.URL);
+    console.log("document.location.href : "+document.location.href);
+    console.log("document.location.origin : "+document.location.origin);
+    console.log("document.location.hostname : "+document.location.hostname);
+    console.log("document.location.host : "+document.location.host);
+    console.log("document.location.pathname : "+document.location.pathname);
 
     $.ajax({
         type: "GET",
@@ -50,6 +56,18 @@ $(document).ready(function () {
             error: error
         });
     })
+
+    $(document).on('click', '#borrar', function () {
+        orderid = $(this).data('orderid');
+        console.log('Order para borrar ' + orderid);
+        $.ajax({
+            type: "POST",
+            //url: 'order/'+restaurantid+'/add', quitar debug mode
+            url: '/app_dev.php/order/' + restaurantid + '/remove/' + orderid,
+            success: removeSuccess,
+            error: error
+        });
+    })
 })
 
 function error(jqXHR, statusText, error) {
@@ -78,4 +96,16 @@ function serveSuccess(data, statusText, jqXHR) {
     console.log(data.served.message);
     console.log(data.served.orderid);
     $('#served-' + data.served.orderid).text('Servido: ' + data.served.message);
+}
+
+function removeSuccess(data, statusText, jqXHR) {
+    console.log(data.removed.orderid);
+    var url = $(location).attr("href");
+    var patt = new RegExp('get$');
+    if (patt.test(url)){
+        //TODO Cambiar a url sin dev
+        window.location.href = document.location.origin+"/app_dev.php/order/"+restaurantid+"/index";
+    }else{
+        $('#order-'+data.removed.orderid).remove();
+    }
 }

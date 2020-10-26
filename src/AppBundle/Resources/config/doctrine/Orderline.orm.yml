@@ -39,6 +39,7 @@ AppBundle\Entity\Orderline:
             joinColumns:
                 orderId:
                     referencedColumnName: orderId
+                    onDelete: CASCADE
             orphanRemoval: true
         productid:
             targetEntity: Product

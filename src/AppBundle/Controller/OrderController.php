@@ -177,29 +177,29 @@ class OrderController extends Controller
         }
     }
 
-    public function removeAction($id)
+    public function removeAction(Request $request, UserInterface $user, $id, $orderid)
     {
-        if (is_numeric($id) && $id > 0) {
+        if ($request->isXMLHttpRequest()) {
+            $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para borrar pedidos');
+            if ($user->getRestaurantid() != $id) {
+                $status = 'No puedes borrar pedidos de este restaurante';
+                $this->session->getFlashBag()->add('danger', $status);
+                return $this->redirectToRoute('homepage');
+            }
             $em = $this->getDoctrine()->getManager();
-            $order_repo = $em->getRepository("AppBundle:Order");
-            $order = $order_repo->find($id);
-
+            $order = $em->getRepository('AppBundle:Order')->find($orderid);
             if ($order) {
                 $em->remove($order);
-                $flush = $em->flush();
-
-                if ($flush == null) {
-                    $status = "El pedido se ha borrado correctamente";
-                    $this->session->getFlashBag()->add("success", $status);
-                } else {
-                    $status = "El pedido NO se ha borrado correctamente";
-                    $this->session->getFlashBag()->add("danger", $status);
-                }
-            } else {
-                $status = "No se ha encontrado el pedido con id: " . $id;
-                $this->session->getFlashBag()->add("danger", $status);
             }
-            return $this->redirect($this->generateUrl('order_index', array('id' => $id)));
+            $flush = $em->flush();
+            if ($flush == null) {
+                $removed['orderid'] = $orderid;
+                return new JsonResponse(array('removed' => $removed));
+            } else {
+                return new Response('El pedido no se ha borrado correctamente', 400);
+            }
+        } else {
+            return new Response('This is not ajax!', 400);
         }
     }
 

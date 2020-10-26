@@ -24,13 +24,13 @@
         </div>
 
         <div class="row">
-            {% for orderline in order.orderlines %}
             <div class="col-lg-12 text-center">
-                <h4>
-                    <span class="label label-info">Producto: {{ orderline.productid.name }}</span>
-                    <span class="label label-info">Cantidad: {{ orderline.quantity }}</span>
-                    <span class="label label-info">Subtotal: {{ orderline.subtotal }} €</span>
-                </h4>
+                {% for orderline in order.orderlines %}
+                    <h4>
+                        <span class="label label-info">Producto: {{ orderline.productid.name }}</span>
+                        <span class="label label-info">Cantidad: {{ orderline.quantity }}</span>
+                        <span class="label label-info">Subtotal: {{ orderline.subtotal }} €</span>
+                    </h4>
                 {% endfor %}
                 <select class="employees" id="select-{{ order.orderid }}"></select>
                 <div id="asignar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">Reasignar</div>
@@ -38,8 +38,9 @@
                     {% if order.paid %} Descobrar {% else %} Cobrar {% endif %}</div>
                 <div id="servir" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">
                     {% if order.served %} Deservir {% else %} Servir {% endif %}</div>
-                <a class="btn btn-danger"
-                   href="{{ path('order_remove', {'id': id, 'orderid': order.orderid }) }}">Eliminar</a>
+                <div id="borrar" type="button" class="btn btn-danger" data-orderid="{{ order.orderid }}">
+                    Eliminar
+                </div>
             </div>
         </div>
     </div>

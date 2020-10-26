@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         {% for order in orders %}
-            <div class="col-lg-3 text-center">
+            <div class="col-lg-3 text-center" id="order-{{ order.orderid }}">
                 <h4>
                     <span class="label label-info">Nº de pedido: {{ order.orderid }}</span>
                     <span class="label label-info">Total: {{ order.total }} €</span>
@@ -34,7 +34,8 @@
                     {% if order.paid %} Descobrar {% else %} Cobrar {% endif %}</div>
                 <div id="servir" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">
                     {% if order.served %} Deservir {% else %} Servir {% endif %}</div>
-                <a class="btn btn-danger" href="{{ path('order_remove', {'id': id, 'orderid': order.orderid }) }}">Eliminar</a>
+                <div id="borrar" type="button" class="btn btn-danger" data-orderid="{{ order.orderid }}">
+                    Eliminar</div>
                 <hr/>
             </div>
         {% endfor %}
