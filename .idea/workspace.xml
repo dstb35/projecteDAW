@@ -19,34 +19,46 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 16-10-2020">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/clients.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/css.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ebf91a5586.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ebfde7d4e6.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec0b36a9cd.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec0e18c429.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec10d42fb5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec141e4e53.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec163edbba.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec1ab0644f.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec1d282eab.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec1f38aecb.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ec32b1d6da.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f8ecc8bc3924.jpeg" afterDir="false" />
+    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 20-10-2020">
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/allergensEdit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f91670c8affa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916712ca47b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f91671c4c9df.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916740f324c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b259444d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b31559d6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b3ad8b15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b4915db7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b6131d3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b6b564b1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916b87b9113.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916bf4b8b71.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/allergens_images/5f916c319c590.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/allergen.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/allergen.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/product.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/order.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/order.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/orders.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/orders.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/products.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/rest_edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/restaurantEdit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/restaurants.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/restaurants.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AllergenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AllergenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/uploads/restaurants_images/casa_dani-5f8d836888aed.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Order.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Order.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/css.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/uploads/allergens_images/gluten.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/uploads/allergens_images/lacteos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/uploads/allergens_images/pescado.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/uploads/allergens_images/soja.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +176,11 @@
       <workItem from="1602948595657" duration="662000" />
       <workItem from="1603020528953" duration="721000" />
       <workItem from="1603103959612" duration="8773000" />
-      <workItem from="1603184941601" duration="14341000" />
+      <workItem from="1603184941601" duration="14399000" />
+      <workItem from="1603214364891" duration="232000" />
+      <workItem from="1603214999169" duration="4279000" />
+      <workItem from="1603357422982" duration="7463000" />
+      <workItem from="1603706464351" duration="7065000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -173,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602874546781</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Commit 20-10-2020">
+      <created>1603204536273</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1603204536273</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +217,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Commit 16-10-2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 16-10-2020" />
+    <MESSAGE value="Commit 20-10-2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 20-10-2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="140" width="700" height="759" key="#PHP" timestamp="1602064794075">
@@ -230,10 +254,10 @@
       <screen x="0" y="20" width="1920" height="992" />
     </state>
     <state x="449" y="151" width="1022" height="737" key="SettingsEditor/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602064877505" />
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1602874552399">
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603220757925">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1602874552399" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603220757925" />
     <state x="624" y="233" key="run.anything.popup" timestamp="1602073430427">
       <screen x="0" y="20" width="1920" height="992" />
     </state>
@@ -248,7 +272,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php</url>
-          <line>184</line>
+          <line>186</line>
           <properties>
             <option name="className" value="\AppBundle\Controller\ProductController" />
             <option name="methodName" value="removeAction" />
@@ -277,6 +301,11 @@
           <url>file://$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php</url>
           <line>4</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Resources/views/orders.html.twig</url>
+          <line>4</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

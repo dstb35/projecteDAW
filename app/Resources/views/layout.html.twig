@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <span class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Usuarios
                     </span>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -33,14 +33,19 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"
                                href="{{ path('restaurant_edit', {'id': app.user.restaurantid }) }}">Mi Restaurante</a>
-                            <a class="dropdown-item" href="#">Productos</a>
-                            <a class="dropdown-item" href="#">Empleados</a>
-                            <a class="dropdown-item" href="#">Pedidos</a>
+                            <a class="dropdown-item" href="{{ path('product_index', {'id': app.user.restaurantid }) }}">Mis Productos</a>
+                            <a class="dropdown-item" href="{{ path('employee_index', {'id': app.user.restaurantid }) }}">Mis Empleados</a>
+                            <a class="dropdown-item" href="{{ path('order_index', {'id': app.user.restaurantid }) }}">Mis Pedidos</a>
                         {% else %}
                             <a class="dropdown-item" href="{{ path("login") }}">Entrar</a>
                         {% endif %}
                     </div>
                 </li>
+                {% if id is defined %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path("allergen_index", {'id' : id }) }}">Alérgenos</a>
+                    </li>
+                {% endif %}
                 {% if app.user != null %}
                     <li class="nav-link"> Welcome, {{ app.user.name }}</li>
                 {% endif %}
@@ -48,10 +53,11 @@
                     <li class="nav-item dropdown">
                         <span class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Clientes
+                            Administración
                         </span>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('clients_index') }}">Listado</a>
+                            <a class="dropdown-item" href="{{ path('clients_index') }}">Clientes</a>
+                            <a class="dropdown-item" href="{{ path('allergen_admin') }}">Alérgenos</a>
                         </div>
                     </li>
                 {% endif %}

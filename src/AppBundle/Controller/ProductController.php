@@ -35,14 +35,14 @@ class ProductController extends Controller
                 $title = 'Restaurante no encontrado para id: ' . $id;
             }
 
-            return $this->render('product.html.twig', array(
+            return $this->render('products.html.twig', array(
                 'title' => $title,
                 'products' => $products,
                 'id' => $id,
                 'restaurant' => $restaurant
             ));
         } else {
-            return $this->render('product.html.twig', array(
+            return $this->render('products.html.twig', array(
                 'title' => 'ID de restaurante incorrecto',
                 'products' => '',
                 'id' => $id
@@ -72,10 +72,11 @@ class ProductController extends Controller
                 if ($form->isValid()) {
                     $imageFile = $form->get('image')->getData();
                     if ($imageFile) {
-                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        //$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                         // this is needed to safely include the file name as part of the URL
-                        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                        $newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        //$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                        //$newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        $newFilename = $user->getRestaurantid() . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $imageFile->move(
                                 $this->getParameter('products_images'),
@@ -135,10 +136,11 @@ class ProductController extends Controller
                 if ($form->isValid()) {
                     $imageFile = $form->get('image')->getData();
                     if ($imageFile) {
-                        $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                        //$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                         // this is needed to safely include the file name as part of the URL
-                        $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                        $newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        //$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                        //$newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+                        $newFilename = $user->getRestaurantid() . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $fs = new Filesystem();
                             $fs->remove($this->getParameter('products_images') . '/' . $product->getImage());

@@ -1,6 +1,6 @@
 homepage:
   path: /
-  defaults: { _controller: AppBundle:Default:index }
+  defaults: { _controller: AppBundle:User:index }
 
 login:
   path: /login
@@ -17,14 +17,26 @@ allergen_add:
   defaults: { _controller: AppBundle:Allergen:add }
 
 allergen_remove:
-  path: /allergen/remove/{id}
+  path: /allergen/remove/{allergenid}
   defaults: { _controller: AppBundle:Allergen:remove }
+  requirements:
+    allergenid: '\d+'
+
+allergen_index:
+  path: /allergen/{id}/index
+  defaults: { _controller: AppBundle:Allergen:index }
   requirements:
     id: '\d+'
 
-allergen_index:
-  path: /allergen/index
-  defaults: { _controller: AppBundle:Allergen:index }
+allergen_admin:
+  path: /allergen/admin
+  defaults: { _controller: AppBundle:Allergen:admin }
+
+allergen_edit:
+  path: /allergen/{allergenid}/edit
+  defaults: { _controller: AppBundle:Allergen:edit }
+  requirements:
+    allergenid: '\d+'
 
 employee_add:
   path: /employee/{id}/add
@@ -78,6 +90,13 @@ product_index:
   requirements:
     id: '\d+'
 
+product_byallergen:
+  path: /product/{id}/{allergenid}/index
+  defaults: { _controller: AppBundle:Allergen:productsByAllergen }
+  requirements:
+    id: '\d+'
+    allergenid: '\d+'
+
 table_add:
   path: /table/{id}/add
   defaults: { _controller: AppBundle:Table:add }
@@ -120,6 +139,13 @@ order_remove:
 order_pay:
   path: /order/{id}/pay/{orderid}
   defaults: { _controller: AppBundle:Order:pay }
+  requirements:
+    id: '\d+'
+    orderid: '\d+'
+
+order_serve:
+  path: /order/{id}/serve/{orderid}
+  defaults: { _controller: AppBundle:Order:serve }
   requirements:
     id: '\d+'
     orderid: '\d+'

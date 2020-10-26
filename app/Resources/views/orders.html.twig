@@ -12,9 +12,14 @@
                     <span class="label label-info">Nº de pedido: {{ order.orderid }}</span>
                     <span class="label label-info">Total: {{ order.total }} €</span>
                     {% if order.paid %}
-                        <span class="label label-info">Pagado: Si</span>
+                        <span id="paid-{{ order.orderid }}" class="label label-info">Pagado: Si</span>
                     {% else %}
-                        <span class="label label-info">Pagado: No</span>
+                        <span id="paid-{{ order.orderid }}" class="label label-info">Pagado: No</span>
+                    {% endif %}
+                    {% if order.served %}
+                        <span id="served-{{ order.orderid }}" class="label label-info">Servida: Si</span>
+                    {% else %}
+                        <span id="served-{{ order.orderid }}" class="label label-info">Servida: No</span>
                     {% endif %}
                     <span id="span-{{ order.orderid }}" class="label label-info">Empleado:
 						{% if order.employeeid.name is defined %}
@@ -23,9 +28,12 @@
 					</span>
                 </h4>
                 <select class="employees" id="select-{{ order.orderid }}"></select>
-                <div id="asignar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">Asignar</div>
+                <div id="asignar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">Reasignar</div>
                 <a class="btn btn-info" href="{{ path ('order_get', {'orderid': order.orderid }) }}">Ver</a>
-                <a class="btn btn-info" href="{{ path('order_pay', {'id': id, 'orderid': order.orderid }) }}">Cobrar</a>
+                <div id="cobrar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">
+                    {% if order.paid %} Descobrar {% else %} Cobrar {% endif %}</div>
+                <div id="servir" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">
+                    {% if order.served %} Deservir {% else %} Servir {% endif %}</div>
                 <a class="btn btn-danger" href="{{ path('order_remove', {'id': id, 'orderid': order.orderid }) }}">Eliminar</a>
                 <hr/>
             </div>

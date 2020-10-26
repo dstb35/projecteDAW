@@ -99,7 +99,7 @@ class AdminController extends Controller
             }
         }
 
-        return $this->render('rest_edit.html.twig', array(
+        return $this->render('restaurantEdit.html.twig', array(
             'form' => $form->createView(),
             'title' => $title,
             'restaurant' => $restaurant,

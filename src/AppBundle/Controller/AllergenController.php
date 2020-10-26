@@ -8,121 +8,207 @@ use AppBundle\Entity\Allergen;
 use AppBundle\Form\AllergenType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 //use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class AllergenController extends Controller {
+class AllergenController extends Controller
+{
 
-	private $session;
+    private $session;
 
-	public function __construct() {
-		$this->session = new Session();
-	}
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
 
-	public function indexAction() {
-	    $title = 'Listado de alérgenos';
-		$em = $this->getDoctrine()->getManager();
-		$allergen_repo = $em->getRepository('AppBundle:Allergen');
-		$allergens = $allergen_repo->findAll();
+    public function indexAction($id)
+    {
+        $title = 'Listado de alérgenos';
+        $em = $this->getDoctrine()->getManager();
+        $allergen_repo = $em->getRepository('AppBundle:Allergen');
+        $allergens = $allergen_repo->findAll();
 
-		return $this->render('allergen.html.twig', array(
-		            'title' => $title,
-					'allergens' => $allergens
-		));
-	}
+        return $this->render('allergen.html.twig', array(
+            'title' => $title,
+            'allergens' => $allergens,
+            'id' => $id
+        ));
+    }
 
-	public function addAction(Request $request) {
+    public function adminAction()
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar alérgenos');
+        $title = 'Listado de alérgenos';
+        $em = $this->getDoctrine()->getManager();
+        $allergen_repo = $em->getRepository('AppBundle:Allergen');
+        $allergens = $allergen_repo->findAll();
+
+        return $this->render('allergensEdit.html.twig', array(
+            'title' => $title,
+            'allergens' => $allergens,
+        ));
+    }
+
+    public function addAction(Request $request)
+    {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para crear alérgenos');
-		$title = 'Añadir alérgeno';
-		$allergen = new Allergen();
-		$form = $this->createForm(AllergenType::class, $allergen);
+        $title = 'Añadir alérgeno';
+        $allergen = new Allergen();
+        $form = $this->createForm(AllergenType::class, $allergen);
 
-		$form->handleRequest($request);
-		if ($form->isSubmitted()) {
-			$allergen = $form->getData();
-			if ($form->isValid()) {
-				$imageFile = $form->get('image')->getData();
-				if ($imageFile) {
-					/* Copiado de la documentación, nombre seguro pero para alérgenos no hace falta
-					 * $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-					  // this is needed to safely include the file name as part of the URL
-					  $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-					  $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension(); */
-					$filename = $imageFile->getClientOriginalName();
-					try {
-						/* $imageFile->move(
-						  $this->getParameter('allergens_images'),
-						  $newFilename
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $allergen = $form->getData();
+            if ($form->isValid()) {
+                $imageFile = $form->get('image')->getData();
+                if ($imageFile) {
+                    $filename = uniqid() . '.' . $imageFile->guessExtension();
+                    try {
+                        $imageFile->move(
+                            $this->getParameter('allergens_images'),
+                            $filename
+                        );
+                    } catch (FileException $e) {
+                        $status = 'No se ha podido guardar la imagen' . $e->getMessage();
+                        $this->session->getFlashBag()->add('danger', $status);
+                    }
+                    $allergen->setImage($filename);
+                }
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($allergen);
+                $flush = $em->flush();
+                if ($flush == null) {
+                    $status = 'El alérgeno se ha creado correctamente';
+                    $this->session->getFlashBag()->add('success', $status);
+                    return $this->redirectToRoute('allergen_admin');
+                } else {
+                    $status = 'El alérgeno NO se ha creado correctamente';
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+            } else {
+                $errors = $form->getErrors(true);
+                foreach ($errors as $error) {
+                    $this->session->getFlashBag()->add('danger', $error->getMessage());
+                }
+            }
+        }
 
-						  ); */
-						$imageFile->move(
-								$this->getParameter('allergens_images'),
-								$filename
-						);
-					} catch (FileException $e) {
-						$status = 'No se ha podido guardar la imagen' . $e->getMessage();
-						$this->session->getFlashBag()->add('danger', $status);
-						// ... handle exception if something happens during file upload
-					}
-					//$allergen->setImage($newFilename);
-					$allergen->setImage($filename);
-				}
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($allergen);
-				$flush = $em->flush();
-				if ($flush == null) {
-					$status = 'El alérgeno se ha creado correctamente';
-					$this->session->getFlashBag()->add('success', $status);
-					return $this->redirectToRoute('allergen_index');
-				} else {
-					$status = 'El alérgeno NO se ha creado correctamente';
-					$this->session->getFlashBag()->add('danger', $status);
-				}
-			} else {
-				$errors = $form->getErrors(true);
-				foreach ($errors as $error) {
-					$this->session->getFlashBag()->add('danger', $error->getMessage());
-				}
-			}
-		}
+        return $this->render('add.html.twig', array(
+            'form' => $form->createView(),
+            'title' => $title
+        ));
+    }
 
-		return $this->render('add.html.twig', array(
-					'form' => $form->createView(),
-					'title' => $title
-		));
-	}
-
-	public function removeAction($id) {
+    public function removeAction($allergenid)
+    {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para borrar alérgenos');
-        if (is_numeric($id) && $id > 0) {
-			$em = $this->getDoctrine()->getManager();
-			$allergen_repo = $em->getRepository('AppBundle:Allergen');
-			$allergen = $allergen_repo->find($id);
+        if (is_numeric($allergenid) && $allergenid > 0) {
+            $em = $this->getDoctrine()->getManager();
+            $allergen_repo = $em->getRepository('AppBundle:Allergen');
+            $allergen = $allergen_repo->find($allergenid);
 
-			if ($allergen) {
-				try {
-					$fs = new Filesystem();
-					$fs->remove($this->getParameter('allergens_images') . '/' . $allergen->getImage());
-				} catch (IOException $e) {
-					$status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
-					$this->session->getFlashBag()->add('danger', $status);
-				}
-				$em->remove($allergen);
-				$flush = $em->flush();
+            if ($allergen) {
+                try {
+                    $fs = new Filesystem();
+                    $fs->remove($this->getParameter('allergens_images') . '/' . $allergen->getImage());
+                } catch (IOException $e) {
+                    $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+                $em->remove($allergen);
+                $flush = $em->flush();
 
-				if ($flush == null) {
-					$status = 'El alérgeno se ha borrado correctamente';
-					$this->session->getFlashBag()->add('success', $status);
-				} else {
-					$status = 'El alérgeno NO se ha borrado correctamente';
-					$this->session->getFlashBag()->add('danger', $status);
-				}
-			} else {
-				$status = 'No se ha encontrado el alérgeno con id: '.$id;
-				$this->session->getFlashBag()->add('danger', $status);
-			}
-			return $this->redirectToRoute('allergen_index');
-		}
-	}
+                if ($flush == null) {
+                    $status = 'El alérgeno se ha borrado correctamente';
+                    $this->session->getFlashBag()->add('success', $status);
+                } else {
+                    $status = 'El alérgeno NO se ha borrado correctamente';
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+            } else {
+                $status = 'No se ha encontrado el alérgeno con id: ' . $allergenid;
+                $this->session->getFlashBag()->add('danger', $status);
+            }
+            return $this->redirectToRoute('allergen_admin');
+        }
+    }
+
+    public function productsByAllergenAction($id, $allergenid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $allergen = $em->getRepository('AppBundle:Allergen')->find(($allergenid));
+        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+        $title = 'Productos con ' . $allergen->getname() . ' para restaurante ' . $restaurant->getName();
+
+        $product_repo = $em->getRepository('AppBundle:Product');
+        $products = $product_repo->findBy(array('restaurantid' => $id));
+        $productsbyallergen = array();
+        foreach ($products as $product){
+            if ($product->getAllergens()->contains($allergen)){
+                $productsbyallergen[] = $product;
+            }
+        }
+
+        return $this->render('products.html.twig', array(
+            'title' => $title,
+            'products' => $productsbyallergen,
+            'restaurant' => $restaurant,
+            'id' => $id
+        ));
+    }
+
+    public function editAction(Request $request, $allergenid){
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar alérgenos');
+        $em = $this->getDoctrine()->getManager();
+        $allergen = $em->getRepository('AppBundle:Allergen')->find($allergenid);
+        $title = 'Editar alérgeno';
+        $form = $this->createForm(AllergenType::class, $allergen);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $allergen = $form->getData();
+            if ($form->isValid()) {
+                $imageFile = $form->get('image')->getData();
+                if ($imageFile){
+                    $filename = uniqid() . '.' . $imageFile->guessExtension();
+                try {
+                    $fs = new Filesystem();
+                    $fs->remove($this->getParameter('allergens_images') . '/' . $allergen->getImage());
+                    $imageFile->move(
+                        $this->getParameter('allergen_images'),
+                        $filename
+                    );
+                } catch (FileException $e) {
+                    $status = 'No se ha podido renombrar la imagen' . $e->getMessage();
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+                    $allergen->setImage($filename);
+                }
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($allergen);
+                $flush = $em->flush();
+                if ($flush == null) {
+                    $status = 'El alérgeno se ha creado correctamente';
+                    $this->session->getFlashBag()->add('success', $status);
+                    return $this->redirectToRoute('allergen_admin');
+                } else {
+                    $status = 'El alérgeno NO se ha creado correctamente';
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+            } else {
+                $errors = $form->getErrors(true);
+                foreach ($errors as $error) {
+                    $this->session->getFlashBag()->add('danger', $error->getMessage());
+                }
+            }
+        }
+
+        return $this->render('add.html.twig', array(
+            'form' => $form->createView(),
+            'title' => $title
+        ));
+    }
 }

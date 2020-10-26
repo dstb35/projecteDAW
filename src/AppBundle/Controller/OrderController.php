@@ -86,27 +86,68 @@ class OrderController extends Controller
         }
     }
 
-    public function payAction(UserInterface $user, $id, $orderid)
+    public function payAction(Request $request, UserInterface $user, $id, $orderid)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver pedidos');
-        if ($user->getRestaurantid() != $id) {
-            $status = 'No puedes ver pedidos de este restaurante';
-            $this->session->getFlashBag()->add('danger', $status);
-            return $this->redirectToRoute('homepage');
-        }
-        $em = $this->getDoctrine()->getManager();
-        $order = $em->getRepository('AppBundle:Order')->find($orderid);
-        $order->setPaid(true);
-        $em->persist($order);
-        $flush = $em->flush();
-        if ($flush == null) {
-            $status = "Pedido cobrado";
-            $this->session->getFlashBag()->add("success", $status);
+        if ($request->isXMLHttpRequest()) {
+            $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver pedidos');
+            if ($user->getRestaurantid() != $id) {
+                $status = 'No puedes ver pedidos de este restaurante';
+                $this->session->getFlashBag()->add('danger', $status);
+                return $this->redirectToRoute('homepage');
+            }
+            $em = $this->getDoctrine()->getManager();
+            $order = $em->getRepository('AppBundle:Order')->find($orderid);
+            if ($order->getPaid()) {
+                $order->setPaid(false);
+                $paid['message'] = "No";
+            } else {
+                $order->setPaid(true);
+                $paid['message'] = "Si";
+            }
+
+            $em->persist($order);
+            $flush = $em->flush();
+            if ($flush == null) {
+                $paid['orderid'] = $orderid;
+                return new JsonResponse(array('paid' => $paid));
+            } else {
+                return new Response('El pedido no se ha modificado correctamente', 400);
+            }
         } else {
-            $status = "Pedido NO cobrado";
-            $this->session->getFlashBag()->add("danger", $status);
+            return new Response('This is not ajax!', 400);
         }
-        return $this->redirect($this->generateUrl('order_index', array('id' => $id)));
+    }
+
+    public function serveAction(Request $request, UserInterface $user, $id, $orderid)
+    {
+        if ($request->isXMLHttpRequest()) {
+            $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver pedidos');
+            if ($user->getRestaurantid() != $id) {
+                $status = 'No puedes ver pedidos de este restaurante';
+                $this->session->getFlashBag()->add('danger', $status);
+                return $this->redirectToRoute('homepage');
+            }
+            $em = $this->getDoctrine()->getManager();
+            $order = $em->getRepository('AppBundle:Order')->find($orderid);
+            if ($order->getServed()) {
+                $order->setServed(false);
+                $served['message'] = "No";
+            } else {
+                $order->setServed(true);
+                $served['message'] = "Si";
+            }
+
+            $em->persist($order);
+            $flush = $em->flush();
+            if ($flush == null) {
+                $served['orderid'] = $orderid;
+                return new JsonResponse(array('served' => $served));
+            } else {
+                return new Response('El pedido no se ha modificado correctamente', 400);
+            }
+        } else {
+            return new Response('This is not ajax!', 400);
+        }
     }
 
     public function assignAction(Request $request, UserInterface $user, $id, $orderid, $employeeid)
@@ -127,7 +168,7 @@ class OrderController extends Controller
             if ($flush == null) {
                 $assigned['orderid'] = $orderid;
                 $assigned['employee'] = $employee->getName();
-                 return new JsonResponse(array('assigned' => $assigned));
+                return new JsonResponse(array('assigned' => $assigned));
             } else {
                 return new Response('El pedido no se ha creado correctamente', 400);
             }
@@ -162,19 +203,19 @@ class OrderController extends Controller
         }
     }
 
-    public function orderAction(UserInterface  $user= null, $orderid){
-
+    public function orderAction(UserInterface $user = null, $orderid)
+    {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver pedidos');
         $em = $this->getDoctrine()->getManager();
         $order = $em->getRepository("AppBundle:Order")->find($orderid);
-        if (isset($order)){
+        if (isset($order)) {
             if ($user->getRestaurantid() != $order->getRestaurantid()->getRestaurantid()) {
                 $status = 'No puedes ver pedidos de este restaurante';
                 $this->session->getFlashBag()->add('danger', $status);
                 return $this->redirectToRoute('homepage');
             }
             $title = 'Pedido número ' . $order->getOrderid();
-        }else{
+        } else {
             $title = 'Pedido no encontrado con id: ' . $orderid;
         }
         return $this->render("order.html.twig", array(

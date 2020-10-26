@@ -24,3 +24,12 @@
     border: 1px solid #dee2e6;
     border-radius: .25rem;
 }
+
+.allergen {
+    height: 400px;
+    max-width: 100%;
+    padding: .25rem;
+    background-color: #FFF;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+}

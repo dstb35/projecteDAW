@@ -25,6 +25,11 @@ class Order
     private $paid = '0';
 
     /**
+     * @var boolean
+     */
+    private $served = '0';
+
+    /**
      * @var float
      */
     private $total = '0';
@@ -116,6 +121,30 @@ class Order
     public function getPaid()
     {
         return $this->paid;
+    }
+
+    /**
+     * Set served
+     *
+     * @param boolean $served
+     *
+     * @return Order
+     */
+    public function setServed($served)
+    {
+        $this->served = $served;
+
+        return $this;
+    }
+
+    /**
+     * Get served
+     *
+     * @return boolean
+     */
+    public function getServed()
+    {
+        return $this->served;
     }
 
     /**

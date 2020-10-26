@@ -32,6 +32,11 @@ AppBundle\Entity\Order:
             nullable: false
             options:
                 default: '0'
+        served:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
         total:
             type: float
             nullable: false

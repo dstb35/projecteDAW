@@ -49,9 +49,9 @@ $(document).ready(function () {
         })
 
         if (found == false) {
-            $('#title').append("<div class=\"alert alert-danger\">Producto no encontrado en la cesta</div>")
+            $('#content').prepend("<div id='found' class=\"alert alert-danger\">Producto no encontrado en la cesta</div>")
             setTimeout(function () {
-                $('#title').empty()
+                $('#found').remove();
             }, 3000);
         }
         rellenar_cart();
