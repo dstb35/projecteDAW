@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -53,6 +54,11 @@ class ProductType extends AbstractType
                 "attr" => array(
                     "class" => "form-name form-control"
                 )))
+            ->add('published', CheckboxType::class, array(
+                'required' => false,
+                "attr" => array(
+                    "class" => "form-check",
+                )))
             ->add('allergens', EntityType::class, array(
                 "class" => "AppBundle:Allergen",
                 "choice_label" => "name",
@@ -60,7 +66,7 @@ class ProductType extends AbstractType
                 "expanded" => true,
                 "required" => false,
                 "attr" => array(
-                    "class" => "form-name form-control form-check"
+                    "class" => "form-check"
                 )))
             ->add('Guardar', SubmitType::class, array("attr" => array(
                 "class" => "form-submit btn btn-success",

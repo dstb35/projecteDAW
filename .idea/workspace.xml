@@ -20,7 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 26-10-2020">
-      <change beforePath="$PROJECT_DIR$/web/js/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5f97f5dc872cf.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/products.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/products.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/css.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +54,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/sensio/distribution-bundle" />
@@ -143,6 +155,7 @@
       <workItem from="1603214999169" duration="4279000" />
       <workItem from="1603357422982" duration="7463000" />
       <workItem from="1603706464351" duration="11554000" />
+      <workItem from="1603792557880" duration="5511000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -214,10 +227,10 @@
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603104123849" />
-    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603108978735">
+    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603796125684">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603108978735" />
+    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603796125684" />
     <state x="2613" y="264" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602602884377" />
     <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603195231573">
       <screen x="0" y="27" width="1920" height="985" />
@@ -239,17 +252,17 @@
       <screen x="0" y="20" width="1920" height="992" />
     </state>
     <state x="624" y="233" key="run.anything.popup/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602073430427" />
-    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup" timestamp="1603194880707">
+    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup" timestamp="1603794526285">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603194880707" />
+    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603794526285" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php</url>
-          <line>186</line>
+          <line>184</line>
           <properties>
             <option name="className" value="\AppBundle\Controller\ProductController" />
             <option name="methodName" value="removeAction" />
@@ -258,7 +271,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php</url>
-          <line>52</line>
+          <line>50</line>
           <properties>
             <option name="className" value="\AppBundle\Controller\ProductController" />
             <option name="methodName" value="addAction" />

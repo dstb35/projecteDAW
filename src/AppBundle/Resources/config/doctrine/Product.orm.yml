@@ -39,6 +39,11 @@ AppBundle\Entity\Product:
             length: 60
             options:
                 fixed: false
+        published:
+            type: boolean
+            nullable: false
+            options:
+                default: '1'
     manyToOne:
         restaurantid:
             targetEntity: Restaurant

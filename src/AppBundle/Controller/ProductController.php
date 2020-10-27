@@ -22,32 +22,30 @@ class ProductController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction($id)
+    public function indexAction(UserInterface $user = null, $id)
     {
-        if (is_numeric($id) && $id > 0) {
-            $em = $this->getDoctrine()->getManager();
-            $product_repo = $em->getRepository('AppBundle:Product');
+        $em = $this->getDoctrine()->getManager();
+        $product_repo = $em->getRepository('AppBundle:Product');
+        if ($user != null && $user->getRestaurantid() == $id) {
             $products = $product_repo->findBy(array('restaurantid' => $id));
-            $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
-            if (isset($restaurant)) {
-                $title = 'Productos para restaurante ' . $restaurant->getName();
-            } else {
-                $title = 'Restaurante no encontrado para id: ' . $id;
-            }
-
-            return $this->render('products.html.twig', array(
-                'title' => $title,
-                'products' => $products,
-                'id' => $id,
-                'restaurant' => $restaurant
-            ));
-        } else {
-            return $this->render('products.html.twig', array(
-                'title' => 'ID de restaurante incorrecto',
-                'products' => '',
-                'id' => $id
-            ));
+        }else{
+            $products = $product_repo->findBy(array('restaurantid' => $id, 'published' => 1));
         }
+
+        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+        if (isset($restaurant)) {
+            $title = 'Productos para restaurante ' . $restaurant->getName();
+        } else {
+            $title = 'Restaurante no encontrado para id: ' . $id;
+        }
+
+        return $this->render('products.html.twig', array(
+            'title' => $title,
+            'products' => $products,
+            'id' => $id,
+            'restaurant' => $restaurant
+        ));
+
     }
 
     public function addAction(Request $request, UserInterface $user = null, $id)

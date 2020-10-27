@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Form\ClientType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Restaurant;
@@ -12,6 +13,8 @@ use AppBundle\Form\RestaurantType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+
 
 class UserController extends Controller
 {
@@ -34,8 +37,8 @@ class UserController extends Controller
             ->orderBy('r.name', 'ASC');
         $query = $qb->getQuery();
         $restaurants = $query->getResult();
-        return $this->render("restaurants.html.twig", array(
-            "restaurants" => $restaurants,
+        return $this->render('restaurants.html.twig', array(
+            'restaurants' => $restaurants,
             'title' => $title,
         ));
     }
@@ -80,22 +83,22 @@ class UserController extends Controller
                 $em->persist($restaurant);
                 $flush = $em->flush();
                 if ($flush == null) {
-                    $status = "El usuario se ha creado correctamente";
-                    $this->session->getFlashBag()->add("success", $status);
+                    $status = 'El usuario se ha creado correctamente';
+                    $this->session->getFlashBag()->add('success', $status);
                     return $this->redirectToRoute('product_index', array('id' => $restaurant->getRestaurantid()));
                 } else {
-                    $status = "El usuario NO se ha creado correctamente";
-                    $this->session->getFlashBag()->add("danger", $status);
+                    $status = 'El usuario NO se ha creado correctamente';
+                    $this->session->getFlashBag()->add('danger', $status);
                 }
             } else {
-                $status = "Registro no válido.";
-                $this->session->getFlashBag()->add("danger", $status);
+                $status = 'Registro no válido.';
+                $this->session->getFlashBag()->add('danger', $status);
                 $validator = $this->get('validator');
                 $errors = $validator->validate($restaurant);
                 if (count($errors) > 0) {
                     foreach ($errors as $violation) {
                         $error .= $violation->getMessage();
-                        $this->session->getFlashBag()->add("warning", $error);
+                        $this->session->getFlashBag()->add('warning', $error);
                     }
                 }
             }
@@ -120,7 +123,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
         $form = $this->createForm(RestaurantType::class, $restaurant)
-                ->remove('password');
+            ->remove('password');
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -136,7 +139,7 @@ class UserController extends Controller
                         $newFilename = uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $fs = new Filesystem();
-                            if ($restaurant->getImage() != NULL ){
+                            if ($restaurant->getImage() != NULL) {
                                 $fs->remove($this->getParameter('restaurants_images') . '/' . $restaurant->getImage());
                             }
                             $imageFile->move(
@@ -149,11 +152,66 @@ class UserController extends Controller
                         }
                         $restaurant->setImage($newFilename);
                     }
-                    $password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
-                    $restaurant->setPassword($password);
+                    //$password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
+                    //$restaurant->setPassword($password);
                     $em->persist($restaurant);
                     $flush = $em->flush();
 
+                    if ($flush == null) {
+                        $status = 'El restaurante se ha modificado correctamente';
+                        $this->session->getFlashBag()->add('success', $status);
+                        return $this->redirectToRoute('product_index', array('id' => $id));
+                    } else {
+                        $status = 'El restaurante NO se ha modificado correctamente';
+                        $this->session->getFlashBag()->add('danger', $status);
+                    }
+                } else {
+                    $this->session->getFlashBag()->add('danger', 'Form no válido');
+                    unset($restaurant);
+                }
+            } else {
+                $status = 'El restaurante no es válido o el usuario no está identificado';
+                $this->session->getFlashBag()->add('danger', $status);
+            }
+        }
+
+        return $this->render('restaurantEdit.html.twig', array(
+            'form' => $form->createView(),
+            'title' => $title,
+            'restaurant' => $restaurant,
+            'id' => $id
+        ));
+    }
+
+    public function passwordAction(Request $request, UserInterface $user = null, $id, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para editar restaurantes');
+        if ($user->getRestaurantid() != $id) {
+            $status = 'No puedes editar este restaurante';
+            $this->session->getFlashBag()->add('danger', $status);
+            return $this->redirectToRoute('restaurant_index');
+        }
+        $title = 'Cambiar contraseña: ';
+        $em = $this->getDoctrine()->getManager();
+        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+        $form = $this->createFormBuilder($restaurant)
+            ->add('password', PasswordType::class, array('attr' => array(
+                'class' => 'form-name form-control',
+            )))
+            ->add('Guardar', SubmitType::class, array('attr' => array(
+                'class' => 'form-submit btn btn-success',
+            )))
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($user) {
+                if ($form->isValid()) {
+                    $newpassword = $form->get('password')->getData();
+                    $password = $passwordEncoder->encodePassword($restaurant, $newpassword);
+                    $restaurant->setPassword($password);
+                    $em->persist($restaurant);
+                    $flush = $em->flush();
                     if ($flush == null) {
                         $status = 'El restaurante se ha modificado correctamente';
                         $this->session->getFlashBag()->add('success', $status);

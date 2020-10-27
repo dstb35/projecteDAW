@@ -36,6 +36,11 @@ class Product
     private $name;
 
     /**
+     * @var boolean
+     */
+    private $published = TRUE;
+
+    /**
      * @var \AppBundle\Entity\Restaurant
      */
     private $restaurantid;
@@ -174,6 +179,30 @@ class Product
     public function getRestaurantid()
     {
         return $this->restaurantid;
+    }
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Product
+     */
+    public function setpublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getpublished()
+    {
+        return $this->published;
     }
 
     /**

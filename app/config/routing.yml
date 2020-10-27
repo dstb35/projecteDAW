@@ -180,6 +180,12 @@ restaurant_edit:
   requirements:
     id: '\d+'
 
+restaurant_password:
+  path: /restaurant/{id}/password
+  defaults: { _controller: AppBundle:User:password }
+  requirements:
+    id: '\d+'
+
 clients_index:
   path: /clients/index
   defaults: { _controller: AppBundle:Admin:indexClients }

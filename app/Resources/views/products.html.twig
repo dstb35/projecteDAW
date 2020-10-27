@@ -36,7 +36,11 @@
         </div>
         <div class="row">
             {% for product in products %}
+            {% if not product.published %}
+            <div class="col-md-5 col-lg-3 col-xl-3 despublicado">
+                {% else %}
                 <div class="col-md-5 col-lg-3 col-xl-3">
+                    {% endif %}
                     <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
                         <img class="productos img-fluid"
                              src="{{ asset('uploads/products_images/' ~ product.image) }}"></img>
@@ -47,14 +51,19 @@
                             <p class="mb-3 text-muted text-uppercase small">{{ product.description }}</p>
                         </div>
                     </div>
-                    <button id="comprar" type="button" data-name="{{ product.name|json_encode() }}"
-                            data-id="{{ product.productid|json_encode() }}"
-                            data-price="{{ product.price|json_encode() }}"
-                            class="btn btn-info">Comprar
-                    </button>
-                    <button id="eliminar" type="button" data-id="{{ product.productid|json_encode() }}"
-                            class="btn btn-info">Eliminar
-                    </button>
+                    {% if not product.published %}
+                        <button type="button" class="btn btn-info">Despublicado</button>
+                    {% else %}
+                        <button id="comprar" type="button" data-name="{{ product.name|json_encode() }}"
+                                data-id="{{ product.productid|json_encode() }}"
+                                data-price="{{ product.price|json_encode() }}"
+                                class="btn btn-info">Comprar
+                        </button>
+                        <button id="eliminar" type="button" data-id="{{ product.productid|json_encode() }}"
+                                class="btn btn-info">Eliminar
+                        </button>
+                    {% endif %}
+
                     {% if is_granted('ROLE_USER') and app.user == product.restaurantid %}
                         <a class="btn btn-danger"
                            href="{{ path('product_edit', {'id': id, 'productid': product.productid }) }}">Editar</a>
@@ -63,24 +72,24 @@
                         <p class="mb-0"><span><strong id="summary">{{ product.price }} €</strong></span></p>
                     </div>
                 </div>
-            {% else %}
-                <div class="col-md-5 col-lg-3 col-xl-3">
-                    <span> No ha productos para este restaurante.</span>
-                </div>
-            {% endfor %}
-        </div>
-        <!--Grid column-->
-        <div class="col-lg-4">
-            <!-- Card -->
-            <div class="mb-3">
-                <div class="pt-4">
-
-                </div>
+                {% else %}
+                    <div class="col-md-5 col-lg-3 col-xl-3">
+                        <span> No ha productos para este restaurante.</span>
+                    </div>
+                {% endfor %}
             </div>
-            <!-- Card -->
+            <!--Grid column-->
+            <div class="col-lg-4">
+                <!-- Card -->
+                <div class="mb-3">
+                    <div class="pt-4">
+
+                    </div>
+                </div>
+                <!-- Card -->
+            </div>
+            <!--Grid column-->
         </div>
-        <!--Grid column-->
-    </div>
     </div>
     <!-- Grid row -->
 {% endblock %}
