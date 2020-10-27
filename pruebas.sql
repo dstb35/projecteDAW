@@ -130,7 +130,7 @@ CREATE TABLE `Orders` (
 
 LOCK TABLES `Orders` WRITE;
 /*!40000 ALTER TABLE `Orders` DISABLE KEYS */;
-INSERT INTO `Orders` VALUES (4,0,1,'2020-10-15 16:49:49',5,4,5,0),(7,2,1,'2020-10-15 17:36:25',5,3,5,0),(12,108,0,'2020-10-19 13:21:54',2,NULL,5,0),(13,108,0,'2020-10-19 13:21:54',2,NULL,5,0),(14,108,0,'2020-10-19 13:21:55',2,NULL,5,0);
+INSERT INTO `Orders` VALUES (4,0,1,'2020-10-15 16:49:49',5,4,5,1),(7,2,1,'2020-10-15 17:36:25',5,3,5,0),(12,108,0,'2020-10-19 13:21:54',2,NULL,5,0),(13,108,0,'2020-10-19 13:21:54',2,NULL,5,0),(14,108,0,'2020-10-19 13:21:55',2,NULL,5,0);
 /*!40000 ALTER TABLE `Orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,10 +148,11 @@ CREATE TABLE `Products` (
   `image` varchar(60) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `restaurantId` int DEFAULT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`productId`),
   KEY `fk_restaurantId_product_idx` (`restaurantId`),
   CONSTRAINT `FK_4ACC380C81DAF313` FOREIGN KEY (`restaurantId`) REFERENCES `Restaurants` (`restaurantId`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +161,7 @@ CREATE TABLE `Products` (
 
 LOCK TABLES `Products` WRITE;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
-INSERT INTO `Products` VALUES (37,'Macarrones Carbonara',12,'carbonara-5f7d84fc506d2.jpeg',NULL,37),(45,'Coca cola',2,'cocacola-5f7dd91813587.jpeg',NULL,5),(47,'Macarrones Carbonara',15,'1-carbonara-5f85bac6e0c9b.jpeg',NULL,5),(48,'Fanta',2,'1-fanta-5f85be7dbbf2f.jpeg',NULL,5);
+INSERT INTO `Products` VALUES (37,'Macarrones Carbonara',12,'carbonara-5f7d84fc506d2.jpeg',NULL,37,1),(45,'Coca cola',2,'cocacola-5f7dd91813587.jpeg',NULL,5,1),(47,'Macarrones Carbonara',15,'1-carbonara-5f85bac6e0c9b.jpeg',NULL,5,1),(48,'Fanta',2,'1-fanta-5f85be7dbbf2f.jpeg',NULL,5,1),(50,'Nestea',2,'5-5f97f5dc872cf.jpeg','Nestea de Limón',5,0);
 /*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +197,7 @@ CREATE TABLE `Restaurants` (
 
 LOCK TABLES `Restaurants` WRITE;
 /*!40000 ALTER TABLE `Restaurants` DISABLE KEYS */;
-INSERT INTO `Restaurants` VALUES (1,'0000000000','Admin','$2y$04$vG8ehI1.a8BOVP9p/Vf/EOgfVOc8dk96Pk1nJzSdUl8fAECD8Oa1G','----','2020-09-05 16:34:08','admin@gmail.com',0,'Daniel',1,NULL,'ROLE_ADMIN',NULL),(2,'123789','Restaurante Pepe','$2y$04$LqWsyvOfRJxMv70.xIt0IuM9HIP1AU5rJFTUVdkR1I2SwIKc/ivg2','BBB','2020-09-05 16:34:48','pepe@gmail.com',23123,'ASDQ',1,NULL,'ROLE_USER','5f8ec1f38aecb.jpeg'),(4,'7898','Casa Tarraco','$2y$04$.Jnqo4plwZ2AJOgmDZkKt.PkRgPlJReFbxEqQTsLb5bxpSu.nfY9O','C/ Tarragona S/N','2020-09-11 10:35:30','antonio@gmail.com',124,'Antonio',1,NULL,'ROLE_USER','5f8ec0e18c429.jpeg'),(5,'71823123','Casa Dani','$2y$04$6o2.TAUmH3UTynlKHKzMZOpjVIhHxhEp20OMQ34xce26LF5VWbhxm','C/ BarcelonaS/N','2020-09-11 10:38:03','dani@gmail.com',124,'Dani',1,NULL,'ROLE_USER','5f8ebfde7d4e6.jpeg'),(7,'71823123','Casa Zhana','$2y$04$G1Xnm7QCHcVtV7xs6BIAPOiHxT5OtJmmtlqugJ2fXN.6fnvcoKa.e','C/ Vilafranca S/N','2020-09-11 10:39:03','zhana@gmail.com',123123,'Zhana',1,NULL,'ROLE_USER','5f8ec1ab0644f.jpeg'),(8,'71823123','Casa Jordi','$2y$04$jlq1WNGkt/aaM5kv9u332.F6nrTTfGgJIW/..MMcV04Y.mTpyddCC','C/ hospitalet S/N','2020-09-11 10:42:34','jordi@gmail.com',123123,'Jordi',1,NULL,'ROLE_USER','5f8ebf91a5586.jpeg'),(11,'8908905','Casa Luís','$2y$04$CQOTw.ZbyBtxq.7g.gsE5eu/4y8FMD2Jfi.N.8BYl7uopoFudJwP.','C/ Terrassa S/N','2020-09-11 11:15:43','luis@gmail.com',89079,'Luis',1,NULL,'ROLE_USER','5f8ec1d282eab.jpeg'),(31,'123123','Casa Juan','$2y$04$buOot9Ix712swH.MLHEBC.xiI2sXr6XcC2ztNf7brjeLwgDE75jSq','Recogida en aeropuerto, por favor.','2020-09-15 10:39:13','juan2@hotmail.com',605076485,'123132',1,NULL,'ROLE_USER','5f8ec0b36a9cd.jpeg'),(34,'123123','Casa Juan','$2a$04$OluW4cvrSPpiliTrn7njx.9AU466hhF8gCzQbVECsfp5ZBO.qLkaG','Recogida en aeropuerto, por favor.','2020-09-15 10:39:45','juan@hotmail.com',605076485,'123132',1,NULL,'ROLE_USER','5f8ec10d42fb5.jpeg'),(35,'7898','Casa Tarraco','$2y$04$1zLv1I6N8FsFWwuEjTvv/euI175bxqlq7bnn6s8rb07aaZPmoczc6','Recogida en aeropuerto, por favor.','2020-09-15 10:54:15','juan3@gmail.com',605076485,'123',1,NULL,'ROLE_USER','5f8ec141e4e53.jpeg'),(36,'7898','Casa Tarraco','$2y$04$bflqU4s0gsyLQC3vqGqG2eVegoyq73IHSJnXdff0FIBYm84HJ9khK','Recogida en aeropuerto, por favor.','2020-09-15 10:54:31','juan4@gmail.com',605076485,'123',1,NULL,'ROLE_USER','5f8ec163edbba.jpeg'),(37,'12145464','Casa Tyrion','$2y$04$VnbSCkqMcjFhYBsHfv9Kv.aiiZPIwJPLREgD4EhC1OVe531sbwdrG','C/ Lannister','2020-10-07 14:20:33','tyrion@gmail.com',123123,'Tyrion',1,NULL,'ROLE_USER','5f8ec32b1d6da.jpeg'),(38,'3478293472834','Casa Jana','$2y$04$4pa8jQjBKWD/arMkQgTwdOpaQfywlXjxTkv61eKYGH1OwXfQoVHhy','c/ Sabadell S/N','2020-10-20 11:39:55','jana@gmail.com',12345,'Jana',1,NULL,'ROLE_USER','5f8ecc8bc3924.jpeg');
+INSERT INTO `Restaurants` VALUES (1,'0000000000','Admin','$2y$04$uAuOPRPg6WHPtwVtliOc/uVDWZzqTCzEKxSG0emhkAZZzuvzHnsUa','----','2020-09-05 16:34:08','admin@gmail.com',0,'Daniel',1,NULL,'ROLE_ADMIN',NULL),(2,'123789','Restaurante Pepe','$2y$04$LqWsyvOfRJxMv70.xIt0IuM9HIP1AU5rJFTUVdkR1I2SwIKc/ivg2','BBB','2020-09-05 16:34:48','pepe@gmail.com',23123,'ASDQ',1,NULL,'ROLE_USER','5f8ec1f38aecb.jpeg'),(4,'7898','Casa Tarraco','$2y$04$.Jnqo4plwZ2AJOgmDZkKt.PkRgPlJReFbxEqQTsLb5bxpSu.nfY9O','C/ Tarragona S/N','2020-09-11 10:35:30','antonio@gmail.com',124,'Antonio',1,NULL,'ROLE_USER','5f8ec0e18c429.jpeg'),(5,'71823123','Casa Dani','$2y$04$oDO6pQYuZob8KSpd9yPWcu9y69JEOAjcS70rY5WUly5xTSBqtCYNu','C/ BarcelonaS/N','2020-09-11 10:38:03','dani@gmail.com',124,'Dani',1,NULL,'ROLE_USER','5f8ebfde7d4e6.jpeg'),(7,'71823123','Casa Zhana','$2y$04$G1Xnm7QCHcVtV7xs6BIAPOiHxT5OtJmmtlqugJ2fXN.6fnvcoKa.e','C/ Vilafranca S/N','2020-09-11 10:39:03','zhana@gmail.com',123123,'Zhana',1,NULL,'ROLE_USER','5f8ec1ab0644f.jpeg'),(8,'71823123','Casa Jordi','$2y$04$jlq1WNGkt/aaM5kv9u332.F6nrTTfGgJIW/..MMcV04Y.mTpyddCC','C/ hospitalet S/N','2020-09-11 10:42:34','jordi@gmail.com',123123,'Jordi',1,NULL,'ROLE_USER','5f8ebf91a5586.jpeg'),(11,'8908905','Casa Luís','$2y$04$CQOTw.ZbyBtxq.7g.gsE5eu/4y8FMD2Jfi.N.8BYl7uopoFudJwP.','C/ Terrassa S/N','2020-09-11 11:15:43','luis@gmail.com',89079,'Luis',1,NULL,'ROLE_USER','5f8ec1d282eab.jpeg'),(31,'123123','Casa Juan','$2y$04$buOot9Ix712swH.MLHEBC.xiI2sXr6XcC2ztNf7brjeLwgDE75jSq','Recogida en aeropuerto, por favor.','2020-09-15 10:39:13','juan2@hotmail.com',605076485,'123132',1,NULL,'ROLE_USER','5f8ec0b36a9cd.jpeg'),(34,'123123','Casa Juan','$2a$04$OluW4cvrSPpiliTrn7njx.9AU466hhF8gCzQbVECsfp5ZBO.qLkaG','Recogida en aeropuerto, por favor.','2020-09-15 10:39:45','juan@hotmail.com',605076485,'123132',1,NULL,'ROLE_USER','5f8ec10d42fb5.jpeg'),(35,'7898','Casa Tarraco','$2y$04$1zLv1I6N8FsFWwuEjTvv/euI175bxqlq7bnn6s8rb07aaZPmoczc6','Recogida en aeropuerto, por favor.','2020-09-15 10:54:15','juan3@gmail.com',605076485,'123',1,NULL,'ROLE_USER','5f8ec141e4e53.jpeg'),(36,'7898','Casa Tarraco','$2y$04$bflqU4s0gsyLQC3vqGqG2eVegoyq73IHSJnXdff0FIBYm84HJ9khK','Recogida en aeropuerto, por favor.','2020-09-15 10:54:31','juan4@gmail.com',605076485,'123',1,NULL,'ROLE_USER','5f8ec163edbba.jpeg'),(37,'12145464','Casa Tyrion','$2y$04$VnbSCkqMcjFhYBsHfv9Kv.aiiZPIwJPLREgD4EhC1OVe531sbwdrG','C/ Lannister','2020-10-07 14:20:33','tyrion@gmail.com',123123,'Tyrion',1,NULL,'ROLE_USER','5f8ec32b1d6da.jpeg'),(38,'3478293472834','Casa Jana','$2y$04$4pa8jQjBKWD/arMkQgTwdOpaQfywlXjxTkv61eKYGH1OwXfQoVHhy','c/ Sabadell S/N','2020-10-20 11:39:55','jana@gmail.com',12345,'Jana',1,NULL,'ROLE_USER','5f8ecc8bc3924.jpeg');
 /*!40000 ALTER TABLE `Restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,6 +252,7 @@ CREATE TABLE `productcontains` (
 
 LOCK TABLES `productcontains` WRITE;
 /*!40000 ALTER TABLE `productcontains` DISABLE KEYS */;
+INSERT INTO `productcontains` VALUES (50,45),(50,54);
 /*!40000 ALTER TABLE `productcontains` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -263,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-26 15:03:51
+-- Dump completed on 2020-10-27 12:29:17
