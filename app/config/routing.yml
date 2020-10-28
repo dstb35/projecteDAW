@@ -9,8 +9,9 @@ login:
 logout:
   path: /logout
 
-login_check:
-  path: /login_check
+register:
+  path: /registro
+  defaults: { _controller: AppBundle:User:registrer }
 
 allergen_add:
   path: /allergen/add

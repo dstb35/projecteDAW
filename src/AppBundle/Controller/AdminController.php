@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Restaurant;
@@ -34,13 +35,13 @@ class AdminController extends Controller
             ->orderBy('r.created', 'ASC');
         $query = $qb->getQuery();
         $restaurants = $query->getResult();
-        return $this->render("clients.html.twig", array(
-            "restaurants" => $restaurants,
+        return $this->render('clients.html.twig', array(
+            'restaurants' => $restaurants,
             'title' => $title,
         ));
     }
 
-    public function editClientsAction(Request $request, UserInterface $user = null, $id, UserPasswordEncoderInterface $passwordEncoder)
+    public function editClientsAction(Request $request, UserInterface $user = null, $id)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar restaurantes');
         $title = 'Editar Cliente: ';
@@ -49,9 +50,17 @@ class AdminController extends Controller
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->add('paid', CheckboxType::class,
             array(
-                "required" => "required",
-                "attr" => array(
-                    "class" => "form-check-input",
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-check-input',
+                )));
+        $form->add('paiddate', DateType::class,
+            array(
+                'required' => false,
+                'widget' => 'single_text',
+                'label' => 'Fecha del pago',
+                'input' => 'datetime',
+                'attr' => array(
                 )));
         $form->remove('password');
         $form->handleRequest($request);
@@ -76,15 +85,13 @@ class AdminController extends Controller
                         }
                         $restaurant->setImage($newFilename);
                     }
-                    $password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
-                    $restaurant->setPassword($password);
                     $em->persist($restaurant);
                     $flush = $em->flush();
 
                     if ($flush == null) {
                         $status = 'El cliente se ha modificado correctamente';
                         $this->session->getFlashBag()->add('success', $status);
-                        return $this->redirectToRoute('restaurant_index');
+                        return $this->redirectToRoute('clients_index');
                     } else {
                         $status = 'El cliente NO se ha modificado correctamente';
                         $this->session->getFlashBag()->add('danger', $status);

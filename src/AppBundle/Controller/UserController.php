@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class UserController extends Controller
@@ -43,13 +44,12 @@ class UserController extends Controller
         ));
     }
 
-    public function loginAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function loginAction(AuthenticationUtils $authenticationUtils)
     {
-        $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        $restaurant = new Restaurant();
+        /*$restaurant = new Restaurant();
         $form = $this->createForm(RestaurantType::class, $restaurant);
         $form->handleRequest($request);
 
@@ -58,11 +58,6 @@ class UserController extends Controller
             if ($form->isValid()) {
                 $imageFile = $form->get('image')->getData();
                 if ($imageFile) {
-                    /*$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                    $originalFilename = substr($originalFilename, 0, 6);
-                    // this is needed to safely include the file name as part of the URL
-                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();*/
                     $newFilename = uniqid() . '.' . $imageFile->guessExtension();
                     try {
                         $imageFile->move(
@@ -102,11 +97,67 @@ class UserController extends Controller
                     }
                 }
             }
-        }
+        }*/
 
         return $this->render('login.html.twig', array(
-            'error' => $error,
             'last_username' => $lastUsername,
+            'error' => $error,
+            //'form' => $form->createView()
+        ));
+    }
+
+    public function registrerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $restaurant = new Restaurant();
+        $form = $this->createForm(RestaurantType::class, $restaurant);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $restaurant = $form->getData();
+            if ($form->isValid()) {
+                $imageFile = $form->get('image')->getData();
+                if ($imageFile) {
+                    $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+                    try {
+                        $imageFile->move(
+                            $this->getParameter('restaurants_images'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        $status = 'No se ha podido guardar la imagen' . $e->getMessage();
+                        $this->session->getFlashBag()->add('danger', $status);
+                    }
+                    $restaurant->setImage($newFilename);
+                }
+                $restaurant->setCreated(new \DateTime());
+                $password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
+                $restaurant->setPassword($password);
+                $restaurant->setRoles('ROLE_USER');
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($restaurant);
+                $flush = $em->flush();
+                if ($flush == null) {
+                    $status = 'El usuario se ha creado correctamente';
+                    $this->session->getFlashBag()->add('success', $status);
+                    return $this->redirectToRoute('product_index', array('id' => $restaurant->getRestaurantid()));
+                } else {
+                    $status = 'El usuario NO se ha creado correctamente';
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
+            } else {
+                $status = 'Registro no válido.';
+                $this->session->getFlashBag()->add('danger', $status);
+                $validator = $this->get('validator');
+                $violations = $validator->validate($restaurant);
+                if (count($violations) > 0) {
+                    foreach ($violations as $violation) {
+                        $this->session->getFlashBag()->add('warning', $violation->getMessage());
+                    }
+                }
+            }
+        }
+
+        return $this->render('register.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -131,11 +182,6 @@ class UserController extends Controller
                 if ($form->isValid()) {
                     $imageFile = $form->get('image')->getData();
                     if ($imageFile) {
-                        /*$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                        $originalFilename = substr($originalFilename, 0, 6);*/
-                        // this is needed to safely include the file name as part of the URL
-                        //$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                        //$newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         $newFilename = uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $fs = new Filesystem();

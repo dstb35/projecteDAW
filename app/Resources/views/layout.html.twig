@@ -1,66 +1,67 @@
 <!DOCTYPE HTML>
-<html lang="es">
+<html lang='es'>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset='utf-8'/>
     <title>
         {% block title %} Restaurantes {% endblock %}
     </title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/css.css') }}">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='{{ asset('css/css.css') }}'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js'></script>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+        <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent'
+                aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon'></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('restaurant_index') }}">Restaurantes</a>
+        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+            <ul class='navbar-nav mr-auto'>
+                <li class='nav-item'>
+                    <a class='nav-link' href='{{ path('restaurant_index') }}'>Restaurantes</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <span class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class='nav-item dropdown'>
+                    <span class='nav-link dropdown-toggle' id='navbarDropdown' role='button'
+                          data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                         Usuarios
                     </span>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
                         {% if app.user != null %}
-                            <a class="dropdown-item" href="{{ path("logout") }}">Salir</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item"
-                               href="{{ path('restaurant_edit', {'id': app.user.restaurantid }) }}">Mi Restaurante</a>
-                            <a class="dropdown-item"
-                               href="{{ path('restaurant_password', {'id': app.user.restaurantid }) }}">Mi Contraseña</a>
-                            <a class="dropdown-item" href="{{ path('product_index', {'id': app.user.restaurantid }) }}">Mis Productos</a>
-                            <a class="dropdown-item" href="{{ path('employee_index', {'id': app.user.restaurantid }) }}">Mis Empleados</a>
-                            <a class="dropdown-item" href="{{ path('table_index', {'id': app.user.restaurantid }) }}">Mis Mesas</a>
-                            <a class="dropdown-item" href="{{ path('order_index', {'id': app.user.restaurantid }) }}">Mis Pedidos</a>
+                            <a class='dropdown-item' href='{{ path('logout') }}'>Salir</a>
+                            <div class='dropdown-divider'></div>
+                            <a class='dropdown-item'
+                               href='{{ path('restaurant_edit', {'id': app.user.restaurantid }) }}'>Mi Restaurante</a>
+                            <a class='dropdown-item'
+                               href='{{ path('restaurant_password', {'id': app.user.restaurantid }) }}'>Mi Contraseña</a>
+                            <a class='dropdown-item' href='{{ path('product_index', {'id': app.user.restaurantid }) }}'>Mis Productos</a>
+                            <a class='dropdown-item' href='{{ path('employee_index', {'id': app.user.restaurantid }) }}'>Mis Empleados</a>
+                            <a class='dropdown-item' href='{{ path('table_index', {'id': app.user.restaurantid }) }}'>Mis Mesas</a>
+                            <a class='dropdown-item' href='{{ path('order_index', {'id': app.user.restaurantid }) }}'>Mis Pedidos</a>
                         {% else %}
-                            <a class="dropdown-item" href="{{ path("login") }}">Entrar</a>
+                            <a class='dropdown-item' href='{{ path('login') }}'>Entrar</a>
+                            <a class='dropdown-item' href='{{ path('register') }}'>Registro</a>
                         {% endif %}
                     </div>
                 </li>
                 {% if id is defined %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path("allergen_index", {'id' : id }) }}">Alérgenos</a>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='{{ path('allergen_index', {'id' : id }) }}'>Alérgenos</a>
                     </li>
                 {% endif %}
                 {% if app.user != null %}
-                    <li class="nav-link"> Welcome, {{ app.user.name }}</li>
+                    <li class='nav-link'> Welcome, {{ app.user.name }}</li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item dropdown">
-                        <span class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <li class='nav-item dropdown'>
+                        <span class='nav-link dropdown-toggle' id='navbarDropdown' role='button'
+                              data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
                             Administración
                         </span>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('clients_index') }}">Clientes</a>
-                            <a class="dropdown-item" href="{{ path('allergen_admin') }}">Alérgenos</a>
+                        <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                            <a class='dropdown-item' href='{{ path('clients_index') }}'>Clientes</a>
+                            <a class='dropdown-item' href='{{ path('allergen_admin') }}'>Alérgenos</a>
                         </div>
                     </li>
                 {% endif %}
@@ -68,10 +69,10 @@
         </div>
     </nav>
 </header>
-<section id="content">
+<section id='content'>
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="alert alert-{{ label }}">
+            <div class='alert alert-{{ label }}'>
                 {{ message }}
             </div>
         {% endfor %}

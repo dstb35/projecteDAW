@@ -67,12 +67,8 @@ AppBundle\Entity\Restaurant:
             options:
                 default: '0'
         paiddate:
-            type: string
+            type: datetime
             nullable: true
-            length: 45
-            options:
-                fixed: false
-            column: paidDate
         password:
             type: string
             nullable: false

@@ -19,16 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 27-10-2020">
-      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f99556b302d1.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony3.iml" afterDir="false" />
+    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 28-10-2020">
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/register.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/restaurants_images/5f995e6c94da4.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/AllergenType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/AllergenType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/EmployeeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/EmployeeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/RestaurantType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/restaurantEdit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/restaurantEdit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Restaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Restaurant.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Restaurant.orm.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +127,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -158,7 +162,7 @@
       <workItem from="1603357422982" duration="7463000" />
       <workItem from="1603706464351" duration="11554000" />
       <workItem from="1603792557880" duration="7385000" />
-      <workItem from="1603882064069" duration="2530000" />
+      <workItem from="1603882064069" duration="7362000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -202,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603798249904</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Commit 28-10-2020">
+      <created>1603884809266</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603884809266</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +237,8 @@
     <MESSAGE value="Commit 20-10-2020" />
     <MESSAGE value="Commit 26-10-2020" />
     <MESSAGE value="Commit 27-10-2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 27-10-2020" />
+    <MESSAGE value="Commit 28-10-2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 28-10-2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="140" width="700" height="759" key="#PHP" timestamp="1602064794075">
@@ -245,6 +257,10 @@
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state x="693" y="308" width="524" height="441" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603799402536" />
+    <state x="749" y="200" width="411" height="645" key="#com.intellij.ide.util.MemberChooser" timestamp="1603887235081">
+      <screen x="0" y="27" width="1920" height="985" />
+    </state>
+    <state x="749" y="200" width="411" height="645" key="#com.intellij.ide.util.MemberChooser/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603887235081" />
     <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603104123849">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
@@ -271,10 +287,10 @@
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603882238613" />
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603798869716">
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603884813462">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603798869716" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603884813462" />
     <state x="624" y="238" key="run.anything.popup" timestamp="1603883702151">
       <screen x="0" y="27" width="1920" height="985" />
     </state>

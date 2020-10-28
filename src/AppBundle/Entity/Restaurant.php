@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -9,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Restaurant
  */
-class Restaurant implements UserInterface
+class Restaurant implements AdvancedUserInterface
 {
     /**
      * @var integer
@@ -413,4 +414,24 @@ class Restaurant implements UserInterface
 	public function getUsername() {
 		return $this->email;
 	}
+
+    public function isAccountNonExpired()
+    {
+        return $this->paid;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return $this->paid;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return $this->paid;
+    }
+
+    public function isEnabled()
+    {
+        return $this->paid;
+    }
 }
