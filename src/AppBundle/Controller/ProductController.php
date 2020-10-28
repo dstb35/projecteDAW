@@ -174,7 +174,7 @@ class ProductController extends Controller
             }
         }
 
-        return $this->render('edit.html.twig', array(
+        return $this->render('productEdit.twig', array(
             'form' => $form->createView(),
             'title' => $title,
             'product' => $product,

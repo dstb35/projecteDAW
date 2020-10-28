@@ -196,3 +196,9 @@ clients_edit:
   defaults: { _controller: AppBundle:Admin:editClients }
   requirements:
     id: '\d+'
+
+clients_remove:
+  path: /client/{id}/remove
+  defaults: { _controller: AppBundle:Admin:removeClients}
+  requirements:
+    id: '\d+'

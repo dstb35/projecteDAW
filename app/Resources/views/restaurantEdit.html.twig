@@ -1,20 +1,26 @@
-{%  extends "layout.html.twig" %}
+{% extends "layout.html.twig" %}
 {% block content %}
-	<div class="container-fluid">
-		<h2>{{ title }} {{ restaurant.name }}</h2>
-		<div class="row">
-			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-				<img class="img-thumbnail" src="{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}"></img>
-				{{ form_start(form) }}
-				{% if is_granted('ROLE_ADMIN') and form.paid is defined %}
-					<div class="form-check">
-						{{ form_widget(form.paid) }}
-						<label class="form-check-label">EL cliente ha pagado.</label>
-						{{ form_widget(form.paiddate) }}
-					</div>
-				{% endif %}
-				{{  form_end(form) }}
-			</div>
-		</div>
-	</div>
-{%  endblock %}
+    <div class="container-fluid">
+        <h2>{{ title }} {{ restaurant.name }}</h2>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img class="img-thumbnail" src="{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}"></img>
+                {{ form_start(form) }}
+                {% if is_granted('ROLE_ADMIN') and form.paid is defined %}
+                    <div class="form-check">
+                        {{ form_widget(form.paid) }}
+                        <label class="form-check-label">EL cliente ha pagado.</label>
+                        {{ form_widget(form.paiddate) }}
+                    </div>
+                {% endif %}
+                {{ form_end(form) }}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                    <hr>
+                        <a class="btn btn-danger" href="{{ path('clients_remove', {'id': id }) }}">Eliminar Cliente</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

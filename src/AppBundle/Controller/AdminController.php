@@ -113,4 +113,28 @@ class AdminController extends Controller
             'id' => $id
         ));
     }
+
+    public function removeClientsAction(Request $request, UserInterface $user = null, $id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para borrar restaurantes');
+        $em = $this->getDoctrine()->getManager();
+        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+
+        if ($restaurant) {
+            $em->remove($restaurant);
+            $flush = $em->flush();
+
+            if ($flush == null) {
+                $status = 'El restaurante se ha borrado correctamente';
+                $this->session->getFlashBag()->add('success', $status);
+            } else {
+                $status = 'El restaurante NO se ha borrado correctamente';
+                $this->session->getFlashBag()->add('danger', $status);
+            }
+        } else {
+            $status = 'No se ha encontrado el restaurante con id: ' . $id;
+            $this->session->getFlashBag()->add('danger', $status);
+        }
+        return $this->redirectToRoute('restaurant_index');
+    }
 }
