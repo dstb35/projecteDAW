@@ -17,13 +17,17 @@ class AllergenType extends AbstractType {
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-				->add('name', TextType::class, array("required" => true, "attr" => array(
-						"class" => "form-name form-control"
+				->add('name', TextType::class, array(
+                    'label' => 'Nombre',
+                    'required' => true, 'attr' => array(
+						'class' => 'form-name form-control'
 			)))
-				->add('image', FileType::class, array("required" => false,
-					"attr" => array(
-						"class" => "form-name form-control"
-					),
+				->add('image', FileType::class, array(
+                    'label' => 'Imagen',
+                    'required' => false,
+					'attr' => array(
+						'class' => 'form-name form-control',
+                    ),
 					// unmapped means that this field is not associated to any entity property
 					'mapped' => false,
 					// unmapped fields can't define their validation using annotations
@@ -40,8 +44,8 @@ class AllergenType extends AbstractType {
 								])
 					]
 				))
-				->add('Guardar', SubmitType::class, array("attr" => array(
-						"class" => "form-submit btn btn-success",
+				->add('Guardar', SubmitType::class, array('attr' => array(
+						'class' => 'form-submit btn btn-success',
 		)));
 	}
 

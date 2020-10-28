@@ -23,31 +23,31 @@ class RestaurantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cif', TextType::class, array("required" => true, "attr" => array(
-                "class" => "form-name form-control",
+            ->add('cif', TextType::class, array('label' => 'CIF', 'required' => true, 'attr' => array(
+                'class' => 'form-name form-control',
             )))
-            ->add('name', TextType::class, array("required" => "required", "attr" => array(
-                "class" => "form-name form-control",
+            ->add('name', TextType::class, array('label' => 'Nombre', 'required' => 'required', 'attr' => array(
+                'class' => 'form-name form-control',
             )))
-            ->add('password', PasswordType::class, array("required" => "required", "always_empty" => false,
-                "attr" => array(
-                "class" => "form-name form-control",
+            ->add('password', PasswordType::class, array('label' => 'Contraseña', 'required' => 'required', 'always_empty' => false,
+                'attr' => array(
+                'class' => 'form-name form-control',
             )))
-            ->add('address', TextType::class, array("required" => "required", "attr" => array(
-                "class" => "form-name form-control",
+            ->add('address', TextType::class, array('label' => 'Dirección', 'required' => 'required', 'attr' => array(
+                'class' => 'form-name form-control',
             )))
-            ->add('email', EmailType::class, array("required" => "required", "attr" => array(
-                "class" => "form-email form-control",
+            ->add('email', EmailType::class, array('label' => 'Correo electrónico', 'required' => 'required', 'attr' => array(
+                'class' => 'form-email form-control',
             )))
-            ->add('phone', TelType::class, array("required" => "required", "attr" => array(
-                "class" => "form-name form-control",
+            ->add('phone', TelType::class, array('label' => 'Teléfono', 'required' => 'required', 'attr' => array(
+                'class' => 'form-name form-control',
             )))
-            ->add('manager', TextType::class, array("required" => "required", "attr" => array(
-                "class" => "form-name form-control",
+            ->add('manager', TextType::class, array('label' => 'Persona de contacto', 'required' => 'required', 'attr' => array(
+                'class' => 'form-name form-control',
             )))
-            ->add('image', FileType::class, array("required" => false,
-                "attr" => array(
-                    "class" => "form-name form-control"
+            ->add('image', FileType::class, array('label' => 'Imagen', 'required' => false,
+                'attr' => array(
+                    'class' => 'form-name form-control'
                 ),
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -65,8 +65,8 @@ class RestaurantType extends AbstractType
                     ])
                 ]
             ))
-            ->add('Guardar', SubmitType::class, array("attr" => array(
-                "class" => "form-submit btn btn-success",
+            ->add('Guardar', SubmitType::class, array('attr' => array(
+                'class' => 'form-submit btn btn-success',
             )));
     }
 

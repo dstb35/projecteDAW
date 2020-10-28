@@ -16,11 +16,13 @@ class EmployeeType extends AbstractType {
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
-				->add('name', TextType::class, array("required" => true, "attr" => array(
-						"class" => "form-name form-control"
+				->add('name', TextType::class, array(
+                    'label' => 'Nombre',
+                    'required' => true, 'attr' => array(
+						'class' => 'form-name form-control'
 			)))
-				->add('Guardar', SubmitType::class, array("attr" => array(
-						"class" => "form-submit btn btn-success",
+				->add('Guardar', SubmitType::class, array('attr' => array(
+						'class' => 'form-submit btn btn-success',
 		)));
 	}
 

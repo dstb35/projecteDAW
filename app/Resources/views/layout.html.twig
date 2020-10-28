@@ -37,6 +37,7 @@
                                href="{{ path('restaurant_password', {'id': app.user.restaurantid }) }}">Mi Contraseña</a>
                             <a class="dropdown-item" href="{{ path('product_index', {'id': app.user.restaurantid }) }}">Mis Productos</a>
                             <a class="dropdown-item" href="{{ path('employee_index', {'id': app.user.restaurantid }) }}">Mis Empleados</a>
+                            <a class="dropdown-item" href="{{ path('table_index', {'id': app.user.restaurantid }) }}">Mis Mesas</a>
                             <a class="dropdown-item" href="{{ path('order_index', {'id': app.user.restaurantid }) }}">Mis Pedidos</a>
                         {% else %}
                             <a class="dropdown-item" href="{{ path("login") }}">Entrar</a>

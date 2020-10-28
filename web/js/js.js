@@ -91,7 +91,12 @@ function rellenar_cart() {
 }
 
 function success(data, statusText, jqXHR) {
-    console.log(data);
+    console.log(data.data.orderid);
+    $('#cart').empty();
+    $('#enviar').hide();
+    orderlines = [];
+    alert('Pedido realizado con nº: '+data.data.orderid);
+    $('#total').text('Pedido realizado con nº: '+data.data.orderid);
 }
 
 function error(jqXHR, statusText, error) {

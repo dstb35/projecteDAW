@@ -23,15 +23,15 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array("required" => true, "attr" => array(
-                "class" => "form-name form-control"
+            ->add('name', TextType::class, array('label' => 'Nombre', 'required' => true, 'attr' => array(
+                'class' => 'form-name form-control'
             )))
-            ->add('description', TextareaType::class, array("required" => false, "attr" => array(
-                "class" => "form-name form-control"
+            ->add('description', TextareaType::class, array('label' => 'Descripción', 'required' => false, 'attr' => array(
+                'class' => 'form-name form-control'
             )))
-            ->add('image', FileType::class, array("required" => false,
-                "attr" => array(
-                    "class" => "form-name form-control"
+            ->add('image', FileType::class, array('label' => 'Imagen', 'required' => false,
+                'attr' => array(
+                    'class' => 'form-name form-control'
                 ),
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -49,27 +49,29 @@ class ProductType extends AbstractType
                     ])
                 ]
             ))
-            ->add('price', NumberType::class, array("required" => true,
-                "empty_data" => 0,
-                "attr" => array(
-                    "class" => "form-name form-control"
+            ->add('price', NumberType::class, array('label' => 'Precio', 'required' => true,
+                'empty_data' => 0,
+                'attr' => array(
+                    'class' => 'form-name form-control'
                 )))
             ->add('published', CheckboxType::class, array(
+                'label' => 'Publicado',
                 'required' => false,
-                "attr" => array(
-                    "class" => "form-check",
+                'attr' => array(
+                    'class' => 'form-check',
                 )))
             ->add('allergens', EntityType::class, array(
-                "class" => "AppBundle:Allergen",
-                "choice_label" => "name",
-                "multiple" => true,
-                "expanded" => true,
-                "required" => false,
-                "attr" => array(
-                    "class" => "form-check"
+                'label' => 'Alérgenos',
+                'class' => 'AppBundle:Allergen',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-check'
                 )))
-            ->add('Guardar', SubmitType::class, array("attr" => array(
-                "class" => "form-submit btn btn-success",
+            ->add('Guardar', SubmitType::class, array('attr' => array(
+                'class' => 'form-submit btn btn-success',
             )));
     }
 
