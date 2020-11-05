@@ -98,6 +98,13 @@ product_byallergen:
     id: '\d+'
     allergenid: '\d+'
 
+product_bycategory:
+  path: /product/{id}/{categoryid}/index
+  defaults: { _controller: AppBundle:Category:productsByCategory }
+  requirements:
+    id: '\d+'
+    categoryid: '\d+'
+
 table_add:
   path: /table/{id}/add
   defaults: { _controller: AppBundle:Table:add }
@@ -202,3 +209,29 @@ clients_remove:
   defaults: { _controller: AppBundle:Admin:removeClients}
   requirements:
     id: '\d+'
+
+category_add:
+  path: /category/add
+  defaults: { _controller: AppBundle:Category:add }
+
+category_remove:
+  path: /category/remove/{categoryid}
+  defaults: { _controller: AppBundle:Category:remove }
+  requirements:
+    categoryid: '\d+'
+
+category_index:
+  path: /category/index
+  defaults: { _controller: AppBundle:Category:index }
+  requirements:
+    id: '\d+'
+
+category_edit:
+  path: /category/{categoryid}/edit
+  defaults: { _controller: AppBundle:Category:edit }
+  requirements:
+    categoryid: '\d+'
+
+category_admin:
+  path: /category/admin
+  defaults: { _controller: AppBundle:Category:admin }

@@ -20,12 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 28-10-2020">
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/categoriesEdit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/views/category.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CategoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/CategoryType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Category.orm.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5fa3e636ac431.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5fa3e779775d7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5fa3e793810c4.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/productEdit.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/restaurantEdit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/restaurantEdit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/products.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/products.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +141,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/Resources/views" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Form" />
-      <recent name="$PROJECT_DIR$/web/js" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Controller" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Entity" />
+      <recent name="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -157,6 +170,8 @@
       <workItem from="1603706464351" duration="11554000" />
       <workItem from="1603792557880" duration="7385000" />
       <workItem from="1603882064069" duration="8028000" />
+      <workItem from="1604502824218" duration="4527000" />
+      <workItem from="1604571362401" duration="5565000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -288,10 +303,10 @@
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603882238613" />
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1603889437933">
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1604577212751">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603889437933" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1604577212751" />
     <state x="624" y="238" key="run.anything.popup" timestamp="1603883702151">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
@@ -307,7 +322,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php</url>
-          <line>184</line>
+          <line>201</line>
           <properties>
             <option name="className" value="\AppBundle\Controller\ProductController" />
             <option name="methodName" value="removeAction" />

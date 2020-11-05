@@ -60,6 +60,14 @@ class ProductType extends AbstractType
                 'attr' => array(
                     'class' => 'form-check',
                 )))
+            ->add('category', EntityType::class, array(
+                'label' => 'Categoría',
+                'class' => 'AppBundle:Category',
+                'multiple' => false,
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-check',
+                )))
             ->add('allergens', EntityType::class, array(
                 'label' => 'Alérgenos',
                 'class' => 'AppBundle:Allergen',

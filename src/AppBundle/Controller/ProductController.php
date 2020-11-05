@@ -32,6 +32,23 @@ class ProductController extends Controller
             $products = $product_repo->findBy(array('restaurantid' => $id, 'published' => 1));
         }
 
+        $categoriesSet = $em->getRepository('AppBundle:Category')->findAll();
+        foreach ($products as $product){
+            foreach ($categoriesSet as $category){
+                if ($category == $product->getCategory()){
+                    $categories[$category->getName()][] = $product;
+                    unset($product);
+                    break;
+                }
+            }
+            if (isset($product)){
+                $uncategorized[] = $product;
+            }
+        }
+
+        if (isset($uncategorized)){
+            $categories ['Sin categoría'] = $uncategorized;
+        }
         $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
         if (isset($restaurant)) {
             $title = 'Productos para restaurante ' . $restaurant->getName();
@@ -41,7 +58,7 @@ class ProductController extends Controller
 
         return $this->render('products.html.twig', array(
             'title' => $title,
-            'products' => $products,
+            'categories' => $categories,
             'id' => $id,
             'restaurant' => $restaurant
         ));
