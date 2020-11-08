@@ -1,0 +1,26 @@
+AppBundle\Entity\Category:
+    type: entity
+    table: Categories
+    id:
+        categoryid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: categoryId
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    oneToMany:
+        products:
+            targetEntity: Product
+            mappedBy: categoryid
+            cascade: { }
+    lifecycleCallbacks: {  }

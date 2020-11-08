@@ -44,6 +44,15 @@ class Product
      * @var \AppBundle\Entity\Restaurant
      */
     private $restaurantid;
+
+    /**
+     * @var \AppBundle\Entity\Category
+     */
+    private $categoryid;
+
+    /**
+     * @var ArrayCollection
+     */
     protected $allergens;
 
     public function __construct()
@@ -230,5 +239,29 @@ class Product
     function getAllergens()
     {
         return $this->allergens;
+    }
+
+    /**
+     * Set categoryid
+     *
+     * @param \AppBundle\Entity\Category $categoryid
+     *
+     * @return Product
+     */
+    public function setCategory(\AppBundle\Entity\Category $categoryid = null)
+    {
+        $this->categoryid = $categoryid;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryid
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->categoryid;
     }
 }

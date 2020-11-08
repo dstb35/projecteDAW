@@ -1,0 +1,20 @@
+{% extends "layout.html.twig" %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div id="title">
+                <h1>{{ title }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-lg-3 text-center">
+                    <h4>
+                        <span class="label label-info">{{ category.name }}</span>
+                    </h4>
+                    <hr/>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

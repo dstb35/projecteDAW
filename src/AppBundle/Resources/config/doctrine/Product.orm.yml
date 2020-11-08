@@ -5,6 +5,9 @@ AppBundle\Entity\Product:
         fk_restaurantId_product_idx:
             columns:
                 - restaurantId
+        fk_categoryId_product_idx:
+            columns:
+                - categoryId
     id:
         productid:
             type: integer
@@ -55,6 +58,17 @@ AppBundle\Entity\Product:
             joinColumns:
                 restaurantId:
                     referencedColumnName: restaurantId
+            orphanRemoval: true
+        categoryid:
+            targetEntity: Category
+            cascade: { }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: products
+            ondelete: "CASCADE"
+            joinColumns:
+                categoryid:
+                    referencedColumnName: categoryId
             orphanRemoval: true
     manyToMany:
         allergens:
