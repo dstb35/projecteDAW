@@ -19,24 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 28-10-2020">
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/categoriesEdit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/views/category.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CategoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Form/CategoryType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Category.orm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5fa3e636ac431.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5fa3e779775d7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/uploads/products_images/5-5fa3e793810c4.jpeg" afterDir="false" />
+    <list default="true" id="5f4fa13a-6c88-4f09-9213-b6d4f7b2d552" name="Default Changelist" comment="Commit 5-11-2020">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/products.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/products.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ProductType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine/Product.orm.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AllergenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AllergenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +110,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -171,7 +157,29 @@
       <workItem from="1603792557880" duration="7385000" />
       <workItem from="1603882064069" duration="8028000" />
       <workItem from="1604502824218" duration="4527000" />
-      <workItem from="1604571362401" duration="5565000" />
+      <workItem from="1604571362401" duration="5844000" />
+      <workItem from="1604861951775" duration="309000" />
+      <workItem from="1604862473056" duration="438000" />
+      <workItem from="1604863232700" duration="637000" />
+      <workItem from="1604863882666" duration="16000" />
+      <workItem from="1604867806494" duration="82000" />
+      <workItem from="1604868083718" duration="20000" />
+      <workItem from="1604868113253" duration="53000" />
+      <workItem from="1604868172993" duration="275000" />
+      <workItem from="1604868508737" duration="30000" />
+      <workItem from="1604868688577" duration="57000" />
+      <workItem from="1604868921209" duration="39000" />
+      <workItem from="1604869018249" duration="92000" />
+      <workItem from="1604869121015" duration="206000" />
+      <workItem from="1604869408351" duration="308000" />
+      <workItem from="1604934467498" duration="687000" />
+      <workItem from="1605610151528" duration="48000" />
+      <workItem from="1605610799540" duration="34000" />
+      <workItem from="1605610840486" duration="39000" />
+      <workItem from="1605692708412" duration="37000" />
+      <workItem from="1605693220520" duration="60000" />
+      <workItem from="1605693396411" duration="1034000" />
+      <workItem from="1605695156127" duration="3761000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -229,7 +237,21 @@
       <option name="project" value="LOCAL" />
       <updated>1603889433422</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Commit 5-11-2020">
+      <created>1604577596888</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1604577596888</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Commit 5-11-2020">
+      <created>1604577607724</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1604577607724</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,7 +276,8 @@
     <MESSAGE value="Commit 26-10-2020" />
     <MESSAGE value="Commit 27-10-2020" />
     <MESSAGE value="Commit 28-10-2020" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit 28-10-2020" />
+    <MESSAGE value="Commit 5-11-2020" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit 5-11-2020" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="140" width="700" height="759" key="#PHP" timestamp="1602064794075">
@@ -303,10 +326,10 @@
       <screen x="0" y="27" width="1920" height="985" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603882238613" />
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1604577212751">
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1604577613904">
       <screen x="0" y="27" width="1920" height="985" />
     </state>
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1604577212751" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1604577613904" />
     <state x="624" y="238" key="run.anything.popup" timestamp="1603883702151">
       <screen x="0" y="27" width="1920" height="985" />
     </state>

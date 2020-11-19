@@ -136,7 +136,7 @@ class AllergenController extends Controller
         }
     }
 
-    public function productsByAllergenAction($id, $allergenid)
+    public function productsByAllergenAction(UserInterface $user = null, $id, $allergenid)
     {
         $em = $this->getDoctrine()->getManager();
         $allergen = $em->getRepository('AppBundle:Allergen')->find(($allergenid));
@@ -144,7 +144,11 @@ class AllergenController extends Controller
         $title = 'Productos con ' . $allergen->getname() . ' para restaurante ' . $restaurant->getName();
 
         $product_repo = $em->getRepository('AppBundle:Product');
-        $products = $product_repo->findBy(array('restaurantid' => $id));
+        if ($user != null && $user->getRestaurantid() == $id) {
+            $products = $product_repo->findBy(array('restaurantid' => $id));
+        }else{
+            $products = $product_repo->findBy(array('restaurantid' => $id, 'published' => 1));
+        }
         $productsbyallergen = array();
         foreach ($products as $product){
             if ($product->getAllergens()->contains($allergen)){
@@ -152,13 +156,35 @@ class AllergenController extends Controller
             }
         }
 
+        $categoriesSet = $em->getRepository('AppBundle:Category')->findAll();
+
+        $categories = array();
+        foreach ($productsbyallergen as $product){
+            foreach ($categoriesSet as $category){
+                if ($category == $product->getCategory()){
+                    $categories[$category->getName()][] = $product;
+                    unset($product);
+                    break;
+                }
+            }
+            if (isset($product)){
+                $uncategorized[] = $product;
+            }
+        }
+
+        if (isset($uncategorized)){
+            $categories ['Sin categoría'] = $uncategorized;
+        }
+
         return $this->render('products.html.twig', array(
             'title' => $title,
-            'products' => $productsbyallergen,
-            'restaurant' => $restaurant,
-            'id' => $id
+            'categories' => $categories,
+            'id' => $id,
+            'restaurant' => $restaurant
         ));
     }
+
+
 
     public function editAction(Request $request, $allergenid){
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar alérgenos');
