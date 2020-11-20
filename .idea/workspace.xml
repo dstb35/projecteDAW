@@ -20,8 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdb8c3ef-f36f-46aa-9ef5-ebe77c0f6f67" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/symfony3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/js.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -111,8 +112,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="60" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="60" />
+            <state relative-caret-position="221">
+              <caret line="16" column="88" selection-start-line="16" selection-start-column="88" selection-end-line="16" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -124,7 +125,20 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/js.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pruebas.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="134" column="32" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -160,6 +174,7 @@
     <findStrings>
       <find>.js</find>
       <find>order.js</find>
+      <find>rellenar_cart</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Xevi.DESKTOP-DE4MTRB\PhpstormProjects\IOC\projecteDAW\app\Resources\views</dir>
@@ -167,6 +182,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/web/js/js.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/layout.html.twig" />
+      </list>
+    </option>
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -282,7 +305,19 @@
               <item name="projecteDAW" type="b2602c69:ProjectViewProjectNode" />
               <item name="projecteDAW" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecteDAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecteDAW" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="projecteDAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="projecteDAW" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="uploads" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -300,7 +335,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -315,11 +350,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Xevi.DESKTOP-DE4MTRB\PhpstormProjects\IOC\projecteDAW\web\img" />
       <recent name="$PROJECT_DIR$/app/Resources/views" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Form" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Controller" />
       <recent name="$PROJECT_DIR$/src/AppBundle/Entity" />
-      <recent name="$PROJECT_DIR$/src/AppBundle/Resources/config/doctrine" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -364,7 +399,7 @@
       <workItem from="1604502824218" duration="4527000" />
       <workItem from="1604571362401" duration="5565000" />
       <workItem from="1604852876291" duration="1360000" />
-      <workItem from="1605735688163" duration="562000" />
+      <workItem from="1605735688163" duration="4492000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 16-10-2020">
       <created>1602874546781</created>
@@ -426,7 +461,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1998000" />
+    <option name="totallyTimeSpent" value="5928000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -443,8 +478,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.3290461" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3290461" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3290461" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info active="true" anchor="bottom" id="Database Console" order="12" visible="true" weight="0.2165059" />
       <window_info anchor="bottom" id="SQL Generator" order="13" weight="0.3290461" />
@@ -507,65 +542,37 @@
     <option name="LAST_COMMIT_MESSAGE" value="Commit 28-10-2020" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="605" y="140" width="700" height="759" key="#PHP" timestamp="1602064794075">
-      <screen x="0" y="20" width="1920" height="992" />
-    </state>
-    <state x="605" y="140" width="700" height="759" key="#PHP/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602064794075" />
-    <state x="555" y="163" width="800" height="719" key="#Plugins" timestamp="1602864498884">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="555" y="163" width="800" height="719" key="#Plugins/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1602864498884" />
-    <state x="418" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602065016218">
-      <screen x="0" y="20" width="1920" height="992" />
-    </state>
-    <state x="418" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602065016218" />
-    <state x="693" y="308" width="524" height="441" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper" timestamp="1603799402536">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="693" y="308" width="524" height="441" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603799402536" />
-    <state x="749" y="200" width="411" height="645" key="#com.intellij.ide.util.MemberChooser" timestamp="1603887235081">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="749" y="200" width="411" height="645" key="#com.intellij.ide.util.MemberChooser/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603887235081" />
-    <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603104123849">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603104123849" />
-    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603889729796">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603889729796" />
-    <state x="2613" y="264" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602602884377" />
-    <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1603195231573">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603195231573" />
-    <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl" timestamp="1603799429168">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603799429168" />
-    <state x="449" y="157" width="1022" height="737" key="SettingsEditor" timestamp="1603799560066">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="449" y="151" width="1022" height="737" key="SettingsEditor/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602064877505" />
-    <state x="449" y="157" width="1022" height="737" key="SettingsEditor/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603799560066" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1603882238613">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state width="498" height="446" key="SwitcherDM/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603882238613" />
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1604577212751">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1604577212751" />
-    <state x="624" y="238" key="run.anything.popup" timestamp="1603883702151">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="624" y="233" key="run.anything.popup/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" timestamp="1602073430427" />
-    <state x="624" y="238" key="run.anything.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603883702151" />
-    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup" timestamp="1603794526285">
-      <screen x="0" y="27" width="1920" height="985" />
-    </state>
-    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" timestamp="1603794526285" />
+    <state x="605" y="140" width="700" height="759" key="#PHP" />
+    <state x="605" y="140" width="700" height="759" key="#PHP/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" />
+    <state x="555" y="163" width="800" height="719" key="#Plugins" />
+    <state x="555" y="163" width="800" height="719" key="#Plugins/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="418" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="418" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" />
+    <state x="693" y="308" width="524" height="441" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper" />
+    <state x="693" y="308" width="524" height="441" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="749" y="200" width="411" height="645" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="749" y="200" width="411" height="645" key="#com.intellij.ide.util.MemberChooser/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
+    <state x="693" y="268" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" />
+    <state x="693" y="268" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="2613" y="264" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.1920.985/1920.0.1920.1080@1920.0.1920.1080" />
+    <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" />
+    <state x="695" y="361" width="519" height="324" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl" />
+    <state x="743" y="277" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="449" y="157" width="1022" height="737" key="SettingsEditor" />
+    <state x="449" y="151" width="1022" height="737" key="SettingsEditor/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" />
+    <state x="449" y="157" width="1022" height="737" key="SettingsEditor/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state width="498" height="446" key="SwitcherDM" />
+    <state width="498" height="446" key="SwitcherDM/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2" />
+    <state x="555" y="255" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="624" y="238" key="run.anything.popup" />
+    <state x="624" y="233" key="run.anything.popup/0.20.1920.992/1920.0.1920.1080@0.20.1920.992" />
+    <state x="624" y="238" key="run.anything.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
+    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup" />
+    <state x="623" y="242" width="672" height="678" key="search.everywhere.popup/0.27.1920.985/1920.0.1920.1080@0.27.1920.985" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -626,17 +633,7 @@
     <entry file="file://$PROJECT_DIR$/web/app.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="60" selection-start-line="7" selection-start-column="57" selection-end-line="7" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/css/css.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/js.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/UserController.php">
@@ -650,6 +647,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
           <caret line="72" column="1" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pruebas.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="134" column="32" selection-start-line="134" selection-start-column="32" selection-end-line="134" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="88" selection-start-line="16" selection-start-column="88" selection-end-line="16" selection-end-column="88" />
         </state>
       </provider>
     </entry>
