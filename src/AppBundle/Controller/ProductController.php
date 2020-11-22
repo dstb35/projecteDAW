@@ -33,6 +33,8 @@ class ProductController extends Controller
         }
 
         $categoriesSet = $em->getRepository('AppBundle:Category')->findAll();
+        $uncategorized = [];
+        $categories = [];
         foreach ($products as $product){
             foreach ($categoriesSet as $category){
                 if ($category == $product->getCategory()){
@@ -47,11 +49,11 @@ class ProductController extends Controller
         }
 
         if (isset($uncategorized)){
-            $categories ['Sin categoría'] = $uncategorized;
+            $categories['Sin categoría'] = $uncategorized;
         }
         $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
         if (isset($restaurant)) {
-            $title = 'Productos para restaurante ' . $restaurant->getName();
+            $title = 'Productos para ' . $restaurant->getName();
         } else {
             $title = 'Restaurante no encontrado para id: ' . $id;
         }
@@ -127,6 +129,7 @@ class ProductController extends Controller
 
         return $this->render('add.html.twig', array(
             'form' => $form->createView(),
+            'productAdd' => true,
             'title' => $title
         ));
     }

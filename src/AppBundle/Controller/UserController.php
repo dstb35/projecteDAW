@@ -222,6 +222,7 @@ class UserController extends Controller {
 					'form' => $form->createView(),
 					'title' => $title,
 					'restaurant' => $restaurant,
+					'pwdView' => true,
 					'id' => $id
 		));
 	}

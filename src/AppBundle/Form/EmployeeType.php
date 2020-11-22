@@ -19,7 +19,7 @@ class EmployeeType extends AbstractType {
 				->add('name', TextType::class, array(
                     'label' => 'Nombre',
                     'required' => true, 'attr' => array(
-						'class' => 'form-name form-control'
+						'class' => 'form-control'
 			)))
 				->add('Guardar', SubmitType::class, array('attr' => array(
 						'class' => 'form-submit btn btn-success',

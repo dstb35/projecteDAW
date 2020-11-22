@@ -1,21 +1,28 @@
-{%  extends "layout.html.twig" %}
+{% extends "layout.html.twig" %}
 {% block content %}
-
 	<div class="container-fluid">
-		<div id="title"></div><h1>{{ title }}</h1></div>
-		<h2><a href="{{ path('employee_add', {'id' : id }) }}">Añadir empleado</a><hr/></h2>
-	<div class="row">
+		<div class="row">
+			<div class="col-lg-12 title">
+				<h1>{{ title }}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-5">
+		<div class="row">
+			<div class="col-12 add-products">
+				<h2><a href="{{ path('employee_add', {'id' : id }) }}">Añadir empleado</a></h2>
+			</div>
+		</div>
+
+		<div class="row">
 			{%  for employee in employees %}
-				<div class="col-lg-3 text-center">
-					<h4>
-						<span class="label label-info">{{  employee.name }}</span>
-						<a class="btn btn-warning" href="{{ path('employee_edit', {'id' : id, 'employeeid': employee.employeeid}) }}">Modificar</a>
-						<a class="btn btn-danger" href="{{ path('employee_remove', {'id' : id, 'employeeid': employee.employeeid}) }}">Eliminar</a>
-					</h4>
-					<hr/>
+				<div class="col-12 col-lg-4 text-center py-3 separator bs-qrder">
+					<h4 class="label label-qrder mb-4">{{ employee.name }}</h4>
+					<a class="btn btn-warning" href="{{ path('employee_edit', {'id' : id, 'employeeid': employee.employeeid}) }}">Modificar</a>
+					<a class="btn btn-danger" href="{{ path('employee_remove', {'id' : id, 'employeeid': employee.employeeid}) }}">Eliminar</a>
 				</div>
 			{%  endfor %}
 		</div>
 	</div>
-	<div class=""clearfix"></div>
+	<div class="clearfix"></div>
 {%  endblock %}

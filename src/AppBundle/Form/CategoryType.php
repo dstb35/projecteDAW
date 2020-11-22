@@ -20,7 +20,7 @@ class CategoryType extends AbstractType
 					"required" => true, 
 					"label" => "Nombre de la categoría",
 					"attr" => array(
-						"class" => "form-name form-control",
+						"class" => "form-control",
 						
 			)))
 				->add('Guardar', SubmitType::class, array("attr" => array(

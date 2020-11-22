@@ -1,17 +1,25 @@
 {%  extends "layout.html.twig" %}
 {% block content %}
-
 	<div class="container-fluid">
-		<h2><a href="{{ path('table_add',  {'id' : id }) }}">Añadir mesa</a><hr/></h2>
+		<div class="row">
+			<div class="col-lg-12 title">
+				<h1>{{ title }}</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container mb-5">
+		<div class="row">
+			<div class="col-12 add-products">
+				<h2><a href="{{ path('table_add',  {'id' : id }) }}">Añadir mesa</a></h2>
+			</div>
+		</div>
+
 		<div class="row">
 			{%  for table in tables %}
-				<div class="col-lg-3 text-center">
-					<h4>
-						<span class="label label-info">{{  table.name}}</span>
-						<a class="btn btn-warning" href="{{ path('table_edit', {'id' : id, 'tableid': table.tableid}) }}">Modificar</a>
-						<a class="btn btn-danger" href="{{ path('table_remove', {'id' : id, 'tableid': table.tableid}) }}">Eliminar</a>
-					</h4>
-					<hr/>
+				<div class="col-12 col-lg-4 text-center py-3 separator bs-qrder">
+					<h4 class="label label-qrder mb-4">{{ table.name}}</h4>
+					<a class="btn btn-warning" href="{{ path('table_edit', {'id' : id, 'tableid': table.tableid}) }}">Modificar</a>
+					<a class="btn btn-danger" href="{{ path('table_remove', {'id' : id, 'tableid': table.tableid}) }}">Eliminar</a>
 				</div>
 			{%  endfor %}
 		</div>

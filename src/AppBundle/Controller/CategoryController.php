@@ -74,6 +74,7 @@ class CategoryController extends Controller
 
         return $this->render("add.html.twig", array(
             "form" => $form->createView(),
+            "categoryAdd" => true,
             "title" => $title
         ));
     }
@@ -160,6 +161,7 @@ class CategoryController extends Controller
 
         return $this->render('add.html.twig', array(
             'form' => $form->createView(),
+            "categoryAdd" => true,
             'title' => $title
         ));
     }

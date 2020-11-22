@@ -24,14 +24,14 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array('label' => 'Nombre', 'required' => true, 'attr' => array(
-                'class' => 'form-name form-control'
+                'class' => 'form-control'
             )))
             ->add('description', TextareaType::class, array('label' => 'Descripción', 'required' => false, 'attr' => array(
-                'class' => 'form-name form-control'
+                'class' => 'form-control'
             )))
-            ->add('image', FileType::class, array('label' => 'Imagen', 'required' => false,
+            ->add('image', FileType::class, array('label' => false, 'required' => false,
                 'attr' => array(
-                    'class' => 'form-name form-control'
+                    'class' => 'custom-file-input'
                 ),
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -52,13 +52,13 @@ class ProductType extends AbstractType
             ->add('price', NumberType::class, array('label' => 'Precio', 'required' => true,
                 'empty_data' => 0,
                 'attr' => array(
-                    'class' => 'form-name form-control'
+                    'class' => 'form-control'
                 )))
             ->add('published', CheckboxType::class, array(
-                'label' => 'Publicado',
+                'label' => false,
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-check',
+                    'class' => 'form-check-input',
                 )))
             ->add('category', EntityType::class, array(
                 'label' => 'Categoría',
@@ -66,7 +66,7 @@ class ProductType extends AbstractType
                 'multiple' => false,
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-check',
+                    'class' => 'custom-select',
                 )))
             ->add('allergens', EntityType::class, array(
                 'label' => 'Alérgenos',
@@ -76,10 +76,10 @@ class ProductType extends AbstractType
                 'expanded' => true,
                 'required' => false,
                 'attr' => array(
-                    'class' => 'form-check'
+                    'class' => 'form-group'
                 )))
             ->add('Guardar', SubmitType::class, array('attr' => array(
-                'class' => 'form-submit btn btn-success',
+                'class' => 'form-submit btn btn-success mr-3',
             )));
     }
 
