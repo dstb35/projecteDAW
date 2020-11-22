@@ -20,7 +20,7 @@ class TableType extends AbstractType
 					"required" => true, 
 					"label" => "Número o nombre de mesa", 
 					"attr" => array(
-						"class" => "form-name form-control",
+						"class" => "form-control",
 						
 			)))
 				->add('Guardar', SubmitType::class, array("attr" => array(

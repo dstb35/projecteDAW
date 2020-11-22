@@ -73,16 +73,29 @@ $(document).ready(function () {
           alert('Selecciona una mesa');
         }
     })
-})
+
+    $('#order-preview').on('click', function (e) {
+        e.preventDefault();
+        var carrito = $('.carrito')[0];
+
+        $(carrito).hasClass('d-none') && $(carrito).removeClass('d-none');
+    })
+
+    $('#carrito-close').on('click', function (e) {
+        $(this).parent().parent().addClass('d-none');
+    })
+});
 
 function rellenar_cart() {
     var total = 0;
     $('#cart').empty();
     $.each(orderlines, function (i, val) {
-        $('#cart').append("<li class='list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0'>" + val.title + ". Cantidad: " + val.quantity + "</li>")
+        $('#cart').append(`<li class='list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0'>${val.quantity} x ${val.title}</li>`);
         total += val.price * val.quantity;
-    })
-    $('#total').text(total + " €");
+    });
+
+    $('#total').text(total.toFixed(2) + " €");
+    $('#total-sum').text(total.toFixed(2) + " €");
     if (orderlines.length > 0) {
         $('#enviar').show();
     } else {
@@ -96,7 +109,7 @@ function success(data, statusText, jqXHR) {
     $('#enviar').hide();
     orderlines = [];
     alert('Pedido realizado con nº: '+data.data.orderid);
-    $('#total').text('Pedido realizado con nº: '+data.data.orderid);
+    $('#response').text('Pedido realizado con nº: '+data.data.orderid);
 }
 
 function error(jqXHR, statusText, error) {

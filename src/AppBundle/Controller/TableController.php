@@ -99,6 +99,7 @@ class TableController extends Controller
 
         return $this->render("add.html.twig", array(
             "form" => $form->createView(),
+            'tableAdd' => true,
             "title" => $title
         ));
     }
@@ -142,6 +143,7 @@ class TableController extends Controller
         return $this->render('add.html.twig', array(
             'form' => $form->createView(),
             'title' => $title,
+            'tableAdd' => true,
             'id' => $id
         ));
     }

@@ -1,48 +1,53 @@
 {% extends "layout.html.twig" %}
 {% block content %}
-    <script src=" {{ asset('js/order.js') }}"></script>
     <div class="container-fluid">
-        <div id="title" data-restaurantid="{{ id }}"></div>
-        <h1>{{ title }}</h1>
         <div class="row">
-            <div class="col">
-                <h4 id="span-{{ order.orderid }}" class="label label-info">Empleado:
-                    {% if order.employeeid.name is defined %} {{ order.employeeid.name }} {% endif %}
-                </h4>
-                <h4 class="label label-info">Total: {{ order.total }} €</h4>
-                {% if order.paid %}
-                    <h4 id="paid-{{ order.orderid }}" class="label label-info">Pagado: Si</h4>
-                {% else %}
-                    <h4 id="paid-{{ order.orderid }}" class="label label-info">Pagado: No</h4>
-                {% endif %}
-                {% if order.served %}
-                    <h4 id="served-{{ order.orderid }}" class="label label-info">Servido: Si</h4>
-                {% else %}
-                    <h4 id="served-{{ order.orderid }}" class="label label-info">Servido: No</h4>
-                {% endif %}
+            <div id="title" class="col-12 title" data-restaurantid="{{ id }}">
+                <h1>{{ title }}</h1>
             </div>
         </div>
-
+    </div>
+    <div class="container my-3">
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-12 col-md-6 col-lg-3 offset-lg-3 mb-3">
+                <h3>Estado del pedido</h3>
+                <p id="span-{{ order.orderid }}" class="label label-info mb-0">Empleado:
+                    {% if order.employeeid.name is defined %} {{ order.employeeid.name }} {% endif %}
+                </p>
+                <p class="label label-info mb-0">Total: {{ order.total }} €</p>
+                {% if order.paid %}
+                    <p id="paid-{{ order.orderid }}" class="label label-info mb-0">Pagado: Si</p>
+                {% else %}
+                    <p id="paid-{{ order.orderid }}" class="label label-info mb-0">Pagado: No</p>
+                {% endif %}
+                {% if order.served %}
+                    <p id="served-{{ order.orderid }}" class="label label-info mb-0">Servido: Si</p>
+                {% else %}
+                    <p id="served-{{ order.orderid }}" class="label label-info mb-0">Servido: No</p>
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <h3>Detalles del pedido</h3>
                 {% for orderline in order.orderlines %}
-                    <h4>
-                        <span class="label label-info">Producto: {{ orderline.productid.name }}</span>
-                        <span class="label label-info">Cantidad: {{ orderline.quantity }}</span>
-                        <span class="label label-info">Subtotal: {{ orderline.subtotal }} €</span>
-                    </h4>
+                    <p class="label label-info mb-0">{{ orderline.quantity }} x {{ orderline.productid.name }}: {{ orderline.subtotal }} €</p>
                 {% endfor %}
-                <select class="employees" id="select-{{ order.orderid }}"></select>
-                <div id="asignar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">Reasignar</div>
-                <div id="cobrar" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">
-                    {% if order.paid %} Descobrar {% else %} Cobrar {% endif %}</div>
-                <div id="servir" type="button" class="btn btn-info" data-orderid="{{ order.orderid }}">
-                    {% if order.served %} Deservir {% else %} Servir {% endif %}</div>
-                <div id="borrar" type="button" class="btn btn-danger" data-orderid="{{ order.orderid }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <label for="select-{{ order.orderid }}" class="d-inline-block">Empleado:</label>
+                <select class="employees custom-select" id="select-{{ order.orderid }}"></select>
+                <button id="asignar" type="button" class="btn btn-info buttons" data-orderid="{{ order.orderid }}">Reasignar</button>
+                <button id="cobrar" type="button" class="btn btn-info buttons" data-orderid="{{ order.orderid }}">
+                    {% if order.paid %} Descobrar {% else %} Cobrar {% endif %}</button>
+                <button id="servir" type="button" class="btn btn-info buttons" data-orderid="{{ order.orderid }}">
+                    {% if order.served %} Deservir {% else %} Servir {% endif %}</button>
+                <button id="borrar" type="button" class="btn btn-danger buttons" data-orderid="{{ order.orderid }}">
                     Eliminar
-                </div>
+                </button>
             </div>
         </div>
     </div>
     <div class="clearfix"></div>
+    <script src=" {{ asset('js/order.js') }}"></script>
 {% endblock %}

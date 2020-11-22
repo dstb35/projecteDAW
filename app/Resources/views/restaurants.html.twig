@@ -2,21 +2,22 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div id="title" class="col-lg-12">
+            <div class="col-lg-12 title">
                 <h1>{{ title }}</h1>
             </div>
+        </div>
+        <div class="row">
             {% for restaurant in restaurants %}
-                <div class="col-lg-3 text-center">
-                    {% if restaurant.image is defined %}
-                        <a href="{{ path('product_index', {'id': restaurant.restaurantid }) }}">
-                            <img class="restaurants"
-                                 src="{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}"></img>
-                        </a>
-                    {% endif %}
-                    <h4>
-                        <a href="{{ path('product_index', {'id': restaurant.restaurantid }) }}">{{ restaurant.name }}</a>
-                    </h4>
-                    <hr/>
+                <div class="restaurants col-lg-4 mb-4" style="background-image: url('{{ asset('uploads/restaurants_images/' ~ restaurant.image) }}');">
+                    <div class="container">
+                        <div class="row">
+                            <a class="clickable-div" href="{{ path('product_index', {'id': restaurant.restaurantid }) }}">
+                            <div class="col-lg-12 text-center restaurant-name">
+                                <h4>{{ restaurant.name }}</h4>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>

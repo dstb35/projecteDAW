@@ -20,13 +20,13 @@ class AllergenType extends AbstractType {
 				->add('name', TextType::class, array(
                     'label' => 'Nombre',
                     'required' => true, 'attr' => array(
-						'class' => 'form-name form-control'
+						'class' => 'form-control'
 			)))
 				->add('image', FileType::class, array(
-                    'label' => 'Imagen',
+                    'label' => false,
                     'required' => false,
 					'attr' => array(
-						'class' => 'form-name form-control',
+						'class' => 'custom-file-input',
                     ),
 					// unmapped means that this field is not associated to any entity property
 					'mapped' => false,

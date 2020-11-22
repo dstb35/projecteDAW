@@ -42,7 +42,7 @@ class EmployeeController extends Controller
             $employees = $employee_repo->findBy(array('restaurantid' => $id));
             $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
             if (isset($restaurant)) {
-                $title = 'Empleados para restaurante ' . $restaurant->getName();
+                $title = 'Empleados de ' . $restaurant->getName();
             } else {
                 $title = 'Restaurante no encontrado para id: ' . $id;
             }
@@ -98,6 +98,7 @@ class EmployeeController extends Controller
 
         return $this->render("add.html.twig", array(
             "form" => $form->createView(),
+            'employeeAdd' => true,
             "title" => $title
         ));
     }
@@ -141,6 +142,7 @@ class EmployeeController extends Controller
         return $this->render('add.html.twig', array(
             'form' => $form->createView(),
             'title' => $title,
+            'employeeAdd' => true,
             'id' => $id
         ));
     }

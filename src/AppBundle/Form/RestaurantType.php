@@ -24,30 +24,30 @@ class RestaurantType extends AbstractType
     {
         $builder
             ->add('cif', TextType::class, array('label' => 'CIF', 'required' => true, 'attr' => array(
-                'class' => 'form-name form-control',
+                'class' => 'form-control',
             )))
             ->add('name', TextType::class, array('label' => 'Nombre', 'required' => 'required', 'attr' => array(
-                'class' => 'form-name form-control',
+                'class' => 'form-control',
             )))
             ->add('password', PasswordType::class, array('label' => 'Contraseña', 'required' => 'required', 'always_empty' => false,
                 'attr' => array(
-                'class' => 'form-name form-control',
+                'class' => 'form-control',
             )))
             ->add('address', TextType::class, array('label' => 'Dirección', 'required' => 'required', 'attr' => array(
-                'class' => 'form-name form-control',
+                'class' => 'form-control',
             )))
             ->add('email', EmailType::class, array('label' => 'Correo electrónico', 'required' => 'required', 'attr' => array(
-                'class' => 'form-email form-control',
+                'class' => 'form-control',
             )))
             ->add('phone', TelType::class, array('label' => 'Teléfono', 'required' => 'required', 'attr' => array(
-                'class' => 'form-name form-control',
+                'class' => 'form-control',
             )))
             ->add('manager', TextType::class, array('label' => 'Persona de contacto', 'required' => 'required', 'attr' => array(
-                'class' => 'form-name form-control',
+                'class' => 'form-control',
             )))
-            ->add('image', FileType::class, array('label' => 'Imagen', 'required' => false,
+            ->add('image', FileType::class, array('label' => false, 'required' => false,
                 'attr' => array(
-                    'class' => 'form-name form-control'
+                    'class' => 'custom-file-input'
                 ),
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,

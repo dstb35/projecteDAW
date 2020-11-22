@@ -98,6 +98,7 @@ class AllergenController extends Controller
 
         return $this->render('add.html.twig', array(
             'form' => $form->createView(),
+            'allergenAdd' => true,
             'title' => $title
         ));
     }
@@ -234,6 +235,7 @@ class AllergenController extends Controller
 
         return $this->render('add.html.twig', array(
             'form' => $form->createView(),
+            'allergenAdd' => true,
             'title' => $title
         ));
     }
