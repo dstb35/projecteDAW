@@ -14,7 +14,11 @@
                         <img src="{{ asset('uploads/allergens_images/' ~ allergen.image) }}">
                     </a>
                     <h4 class="label label-qrder">
-                        <a href="{{ path('product_byallergen', {'id' : id, 'allergenid' : allergen.allergenid }) }}">{{ allergen.name }}</a>
+                        {% if tableid is defined %}
+                            <a href="{{ path('product_byallergen', {'id' : id, 'tableid' : tableid, 'allergenid' : allergen.allergenid }) }}">{{ allergen.name }}</a>
+                        {% else %}
+                            <a href="{{ path('product_byallergen', {'id' : id, 'allergenid' : allergen.allergenid }) }}">{{ allergen.name }}</a>
+                        {% endif %}
                     </h4>
                 </div>
             {% endfor %}

@@ -1,101 +1,105 @@
 {% extends "layout.html.twig" %}
 {% block content %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12 title">
-                <h1>{{ title }}</h1>
-            </div>
+    <div class="row">
+        <div class="col-lg-12 title">
+            <h1>{{ title }}</h1>
         </div>
-        <div class="row">
-            <div class="col-lg-9">
-                <div class="row px-md-5">
-                    {% if is_granted('ROLE_USER') and app.user.restaurantid == id %}
+    </div>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="row px-md-5">
+                {% if is_granted('ROLE_USER') and app.user.restaurantid == id %}
                     <div class="col-lg-4 add-products">
                         <a href="{{ path('product_add', {'id': id }) }}">Añadir productos a la carta</a>
                     </div>
-                    {% endif %}
+                {% endif %}
+                {% if tableid == 0 %}
                     <div class="col-lg-4 mt-3">
                         <div class="form-group">
                             <label for="tables">Mesas disponibles: </label>
                             <select id="tables" class="form-control"></select>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        {% for key, category in categories %}
-                        <div class="row">
-                            <div class="col-lg-12 category">{{ key }}</div>
-                            {% for product in category %}
-                            {% if not product.published %}
-                            <div class="col-md-4 col-xs-12 despublicado">
-                                {% else %}
-                                <div class="col-md-4 col-xs-12">
-                                    {% endif %}
-                                    <div class="product row">
-                                        <div class="col-6 col-md-12 text-center product-container">
-                                            <img class="productos" src="{{ asset('uploads/products_images/' ~ product.image) }}">
+                {% endif %}
+                <div class="col-lg-12">
+                    {% for key, category in categories %}
+                    <div class="row">
+                        <div class="col-lg-12 category">{{ key }}</div>
+                        {% for product in category %}
+                        {% if not product.published %}
+                        <div class="col-md-4 col-xs-12 despublicado">
+                            {% else %}
+                            <div class="col-md-4 col-xs-12">
+                                {% endif %}
+                                <div class="product row">
+                                    <div class="col-6 col-md-12 text-center product-container">
+                                        <img class="productos"
+                                             src="{{ asset('uploads/products_images/' ~ product.image) }}">
 
-                                            <p>{{ product.name }} {{ product.price }} €</p>
-                                            <p class="mb-3 text-muted text-uppercase small">{{ product.description }} &nbsp;</p>
-                                        </div>
-                                        <div class="col-6 col-md-12 text-center product-options">
-                                            {% if not product.published %}
-                                                <button type="button" class="btn btn-info buttons">Despublicado</button>
-                                            {% else %}
-                                                <button id="comprar" type="button" data-name="{{ product.name }}"
-                                                        data-id="{{ product.productid|json_encode() }}"
-                                                        data-price="{{ product.price|json_encode() }}"
-                                                        class="btn btn-info buttons">Comprar
-                                                </button>
-                                                <button id="eliminar" type="button"
-                                                        data-id="{{ product.productid|json_encode() }}"
-                                                        class="btn btn-danger buttons">Eliminar
-                                                </button>
-                                            {% endif %}
+                                        <p>{{ product.name }} {{ product.price }} €</p>
+                                        <p class="mb-3 text-muted text-uppercase small">{{ product.description }}
+                                            &nbsp;</p>
+                                    </div>
+                                    <div class="col-6 col-md-12 text-center product-options">
+                                        {% if not product.published %}
+                                            <button type="button" class="btn btn-info buttons">Despublicado</button>
+                                        {% else %}
+                                            <button id="comprar" type="button" data-name="{{ product.name }}"
+                                                    data-id="{{ product.productid|json_encode() }}"
+                                                    data-price="{{ product.price|json_encode() }}"
+                                                    class="btn btn-info buttons">Comprar
+                                            </button>
+                                            <button id="eliminar" type="button"
+                                                    data-id="{{ product.productid|json_encode() }}"
+                                                    class="btn btn-danger buttons">Eliminar
+                                            </button>
+                                        {% endif %}
 
-                                            {% if is_granted('ROLE_USER') and app.user == product.restaurantid %}
-                                                <a class="btn btn-warning buttons"
-                                                   href="{{ path('product_edit', {'id': id, 'productid': product.productid }) }}">Editar</a>
-                                            {% endif %}
-                                        </div>
+                                        {% if is_granted('ROLE_USER') and app.user == product.restaurantid %}
+                                            <a class="btn btn-warning buttons"
+                                               href="{{ path('product_edit', {'id': id, 'productid': product.productid }) }}">Editar</a>
+                                        {% endif %}
                                     </div>
                                 </div>
-                                {% endfor %}
                             </div>
                             {% endfor %}
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 px-0 carrito-container">
-                    <div class="carrito d-none">
-                        <div class="text-right">
-                            <p id="carrito-close">X</p>
-                        </div>
-                        <div class="oy-s">
-                            <h2>Tu pedido</h2>
-                            <ul id="cart" class="list-group list-group-flush">
-                            </ul>
-                        </div>
-                        <div>
-                            <h5 class="mt-5 mb-3">Total pedido: <span id="total">0.00 €</span></h5>
-                            <button id="enviar" type="submit" class="btn btn-qrder btn-block" style="display: none;"
-                                    data-restaurantid="{{ id }}">
-                                Confirmar pedido
-                            </button>
-                            <p id="response" class="text-success"></p>
-                        </div>
-                    </div>
-                    <div class="carrito-sub">
-                        <p class="mb-0">Total pedido: <span id="total-sum">0.00 €</span></p>
-                        <a href="#" id="order-preview">Ver pedido</a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 my-5">
 
+            <div class="col-lg-3 px-0 carrito-container">
+                <div class="carrito d-none">
+                    <div class="text-right">
+                        <p id="carrito-close">X</p>
+                    </div>
+                    <div class="oy-s">
+                        <h2>Tu pedido</h2>
+                        <ul id="cart" class="list-group list-group-flush">
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="mt-5 mb-3">Total pedido: <span id="total">0.00 €</span></h5>
+                        <button id="enviar" type="submit" class="btn btn-qrder btn-block" style="display: none;"
+                                data-restaurantid="{{ id }}" data-tableid="{{ tableid }}">
+                            Confirmar pedido
+                        </button>
+                        <p id="response" class="text-success"></p>
+                    </div>
+                </div>
+                <div class="carrito-sub">
+                    <p class="mb-0">Total pedido: <span id="total-sum">0.00 €</span></p>
+                    <a href="#" id="order-preview">Ver pedido</a>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12 my-5">
+
+            </div>
+        </div>
+    </div>
     <script src=" {{ asset('js/js.js') }}"></script>
 {% endblock %}

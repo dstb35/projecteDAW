@@ -47,7 +47,6 @@ class UserController extends Controller {
 		return $this->render('login.html.twig', array(
 					'last_username' => $lastUsername,
 					'error' => $error,
-						//'form' => $form->createView()
 		));
 	}
 
@@ -83,7 +82,7 @@ class UserController extends Controller {
 				if ($flush == null) {
 					$status = 'El usuario se ha creado correctamente';
 					$this->session->getFlashBag()->add('success', $status);
-					return $this->redirectToRoute('product_index', array('id' => $restaurant->getRestaurantid()));
+					return $this->redirectToRoute('homepage');
 				} else {
 					$status = 'El usuario NO se ha creado correctamente';
 					$this->session->getFlashBag()->add('danger', $status);
@@ -141,8 +140,6 @@ class UserController extends Controller {
 						}
 						$restaurant->setImage($newFilename);
 					}
-					//$password = $passwordEncoder->encodePassword($restaurant, $restaurant->getPassword());
-					//$restaurant->setPassword($password);
 					$em->persist($restaurant);
 					$flush = $em->flush();
 

@@ -8,6 +8,7 @@ use AppBundle\Entity\Order;
 use AppBundle\Entity\Orderline;
 use AppBundle\Form\OrderType;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -25,7 +26,6 @@ class OrderController extends Controller
 
     public function indexAction(UserInterface $user = null, $id)
     {
-        $title = 'Listado de pedidos para restaurante ' . $id;
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para ver pedidos');
         if ($user->getRestaurantid() != $id) {
             $status = 'No puedes ver pedidos de este restaurante';
@@ -33,6 +33,8 @@ class OrderController extends Controller
             return $this->redirectToRoute('homepage');
         }
         $em = $this->getDoctrine()->getManager();
+        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
+        $title = 'Listado de pedidos para restaurante ' . $restaurant->getName();
         $orders = $em->getRepository("AppBundle:Order")->findBy(array('restaurantid' => $id));
 
         return $this->render("orders.html.twig", array(
@@ -50,7 +52,13 @@ class OrderController extends Controller
             $orderlines_set = $request->request->get('orderlines');
             $tableid = $request->request->get('tableid');
             $table = $em->getRepository("AppBundle:Table")->find($tableid);
+            if (is_null($table)){
+                return new Response('Mesa no encontrada con id '.strval($tableid), 400);
+            }
             $restaurant = $em->getRepository("AppBundle:Restaurant")->find($id);
+            if (is_null($restaurant)){
+                return new Response('Restaurant no encontrado con id '.strval($id), 400);
+            }
             $order = new Order();
             $order->setRestaurantid($restaurant);
             $order->setTableid($table);

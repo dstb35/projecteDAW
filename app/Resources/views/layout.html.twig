@@ -37,11 +37,16 @@
                             <a class='dropdown-item'
                                href='{{ path('restaurant_edit', {'id': app.user.restaurantid }) }}'>Mi Restaurante</a>
                             <a class='dropdown-item'
-                               href='{{ path('restaurant_password', {'id': app.user.restaurantid }) }}'>Mi Contraseña</a>
-                            <a class='dropdown-item' href='{{ path('product_index', {'id': app.user.restaurantid }) }}'>Mis Productos</a>
-                            <a class='dropdown-item' href='{{ path('employee_index', {'id': app.user.restaurantid }) }}'>Mis Empleados</a>
-                            <a class='dropdown-item' href='{{ path('table_index', {'id': app.user.restaurantid }) }}'>Mis Mesas</a>
-                            <a class='dropdown-item' href='{{ path('order_index', {'id': app.user.restaurantid }) }}'>Mis Pedidos</a>
+                               href='{{ path('restaurant_password', {'id': app.user.restaurantid }) }}'>Mi
+                                Contraseña</a>
+                            <a class='dropdown-item' href='{{ path('product_index', {'id': app.user.restaurantid }) }}'>Mis
+                                Productos</a>
+                            <a class='dropdown-item'
+                               href='{{ path('employee_index', {'id': app.user.restaurantid }) }}'>Mis Empleados</a>
+                            <a class='dropdown-item' href='{{ path('table_index', {'id': app.user.restaurantid }) }}'>Mis
+                                Mesas</a>
+                            <a class='dropdown-item' href='{{ path('order_index', {'id': app.user.restaurantid }) }}'>Mis
+                                Pedidos</a>
                         {% else %}
                             <a class='dropdown-item' href='{{ path('login') }}'>Entrar</a>
                             <a class='dropdown-item' href='{{ path('register') }}'>Registro</a>
@@ -50,7 +55,11 @@
                 </li>
                 {% if id is defined %}
                     <li class='nav-item'>
-                        <a class='nav-link' href='{{ path('allergen_index', {'id' : id }) }}'>Alérgenos</a>
+                        {% if tableid is defined %}
+                            <a class='nav-link' href='{{ path('allergen_index', {'id' : id, 'tableid' : tableid }) }}'>Alérgenos</a>
+                        {% else %}
+                            <a class='nav-link' href='{{ path('allergen_index', {'id' : id }) }}'>Alérgenos</a>
+                        {% endif %}
                     </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
