@@ -2,15 +2,18 @@ $(document).ready(function () {
     orderlines = [];
     found = false;
     restaurantid = $('#enviar').data('restaurantid');
+    tableid = $('#enviar').data('tableid');
 
-    $.ajax({
-        type: "GET",
-        // TODO quitar debug mode
-        url: '/app_dev.php/table/' + restaurantid + '/index',
-        data: {'restaurantid': restaurantid},
-        success: fill_tables,
-        error: error
-    });
+    if (tableid == 0){
+        $.ajax({
+            type: "GET",
+            // TODO quitar debug mode
+            url: '/app_dev.php/table/' + restaurantid + '/index',
+            data: {'restaurantid': restaurantid},
+            success: fill_tables,
+            error: error
+        });
+    }
 
     $(document).on('click', '#comprar', function () {
         orderline = {
@@ -38,7 +41,6 @@ $(document).ready(function () {
         found = false;
         $.each(orderlines, function (i, val) {
             if (val.productid == productid) {
-                console.log(orderline);
                 orderlines[i].quantity -= 1;
                 if (orderlines[i].quantity == 0) {
                     orderlines.splice(i, 1);
@@ -58,13 +60,15 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#enviar', function () {
-        var table = $('#tables option:selected').val();
-        if ($.isNumeric(table)) {
+        if (tableid == 0){
+            tableid = $('#tables option:selected').val();
+        }
+        if ($.isNumeric(tableid)) {
             $.ajax({
                 type: "POST",
                 //url: 'order/'+restaurantid+'/add', quitar debug mode
                 url: '/app_dev.php/order/' + restaurantid + '/add',
-                data: {'orderlines': orderlines, 'tableid': table},
+                data: {'orderlines': orderlines, 'tableid': tableid},
                 success: success,
                 //dataType: 'json',
                 error: error
@@ -104,7 +108,6 @@ function rellenar_cart() {
 }
 
 function success(data, statusText, jqXHR) {
-    console.log(data.data.orderid);
     $('#cart').empty();
     $('#enviar').hide();
     orderlines = [];
@@ -113,11 +116,11 @@ function success(data, statusText, jqXHR) {
 }
 
 function error(jqXHR, statusText, error) {
-    console.log(error, statusText);
+    console.log(error);
+    alert(jqXHR.responseText);
 }
 
 function fill_tables(data, statusText, jqXHR){
-    console.log(data);
     tables = $('#tables');
     $.each(data.tables, function(i, val){
         tables.append($('<option></option>').val(val.tableid).html(val.name));

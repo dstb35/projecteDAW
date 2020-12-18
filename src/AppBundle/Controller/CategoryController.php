@@ -18,18 +18,6 @@ class CategoryController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction()
-    {
-        $title = 'Categorías disponibles';
-        $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('AppBundle:Category')->findAll();
-
-        return $this->render('category.html.twig', array(
-            'title' => $title,
-            'categories' => $categories,
-        ));
-    }
-
     public function adminAction()
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar categorías');
@@ -103,30 +91,6 @@ class CategoryController extends Controller
             }
             return $this->redirectToRoute('category_index');
         }
-    }
-
-    public function productsByCategoryAction($id, $categoryid)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppBundle:Category')->find(($categoryid));
-        $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
-        $title = 'Productos de tipo ' . $category->getname() . ' para restaurante ' . $restaurant->getName();
-
-        $product_repo = $em->getRepository('AppBundle:Product');
-        $products = $product_repo->findBy(array('restaurantid' => $id));
-        $productsbycategory = array();
-        foreach ($products as $product) {
-            if ($product->getCategoryid() == $category) {
-                $productsbycategory[] = $product;
-            }
-        }
-
-        return $this->render('products.html.twig', array(
-            'title' => $title,
-            'products' => $productsbycategory,
-            'restaurant' => $restaurant,
-            'id' => $id
-        ));
     }
 
     public function editAction(Request $request, $categoryid)

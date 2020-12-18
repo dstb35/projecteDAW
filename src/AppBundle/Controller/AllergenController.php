@@ -24,7 +24,7 @@ class AllergenController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction($id)
+    public function indexAction($id, $tableid)
     {
         $title = 'Listado de alérgenos';
         $em = $this->getDoctrine()->getManager();
@@ -34,7 +34,8 @@ class AllergenController extends Controller
         return $this->render('allergen.html.twig', array(
             'title' => $title,
             'allergens' => $allergens,
-            'id' => $id
+            'id' => $id,
+            'tableid' => $tableid
         ));
     }
 
@@ -137,7 +138,7 @@ class AllergenController extends Controller
         }
     }
 
-    public function productsByAllergenAction(UserInterface $user = null, $id, $allergenid)
+    public function productsByAllergenAction(UserInterface $user = null, $id, $allergenid, $tableid)
     {
         $em = $this->getDoctrine()->getManager();
         $allergen = $em->getRepository('AppBundle:Allergen')->find(($allergenid));
@@ -181,7 +182,8 @@ class AllergenController extends Controller
             'title' => $title,
             'categories' => $categories,
             'id' => $id,
-            'restaurant' => $restaurant
+            'restaurant' => $restaurant,
+            'tableid' => $tableid
         ));
     }
 

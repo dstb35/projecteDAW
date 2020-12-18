@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -26,6 +27,7 @@ class AdminController extends Controller
 
     public function indexClientsAction()
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar restaurantes');
         $title = 'Clientes disponibles';
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder();
@@ -60,8 +62,7 @@ class AdminController extends Controller
                 'widget' => 'single_text',
                 'label' => 'Fecha del pago',
                 'input' => 'datetime',
-                'attr' => array(
-                )));
+                'attr' => array()));
         $form->remove('password');
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
@@ -121,6 +122,13 @@ class AdminController extends Controller
         $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
 
         if ($restaurant) {
+            try {
+                $fs = new Filesystem();
+                $fs->remove($this->getParameter('restaurants_images') . '/' . $restaurant->getImage());
+            } catch (IOException $e) {
+                $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+                $this->session->getFlashBag()->add('danger', $status);
+            }
             $em->remove($restaurant);
             $flush = $em->flush();
 

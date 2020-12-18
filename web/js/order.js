@@ -65,6 +65,7 @@ $(document).ready(function () {
 })
 
 function error(jqXHR, statusText, error) {
+    console.log(error);
 }
 
 function fill_employees(data, statusText, jqXHR) {

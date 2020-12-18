@@ -18,6 +18,7 @@
 			{%  for table in tables %}
 				<div class="col-12 col-lg-4 text-center py-3 separator bs-qrder">
 					<h4 class="label label-qrder mb-4">{{ table.name}}</h4>
+					<a class="btn btn-info" href="{{ path('table_qr', {'id' : id, 'tableid': table.tableid}) }}">Generar QR</a>
 					<a class="btn btn-warning" href="{{ path('table_edit', {'id' : id, 'tableid': table.tableid}) }}">Modificar</a>
 					<a class="btn btn-danger" href="{{ path('table_remove', {'id' : id, 'tableid': table.tableid}) }}">Eliminar</a>
 				</div>

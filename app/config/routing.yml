@@ -24,10 +24,12 @@ allergen_remove:
     allergenid: '\d+'
 
 allergen_index:
-  path: /allergen/{id}/index
-  defaults: { _controller: AppBundle:Allergen:index }
+  path: /allergen/{id}/{tableid}/index
+  controller: AppBundle:Allergen:index
+  defaults: { tableid: 0 }
   requirements:
-    id: '\d+'
+      id: '\d+'
+      allergenid: '\d+'
 
 allergen_admin:
   path: /allergen/admin
@@ -86,14 +88,17 @@ product_remove:
     productid: '\d+'
 
 product_index:
-  path: /product/{id}/index
-  defaults: { _controller: AppBundle:Product:index }
+  path: /product/{id}/{tableid}/index
+  controller: AppBundle:Product:index
+  defaults: { tableid : 0 }
   requirements:
     id: '\d+'
+    tableid: '\d+'
 
 product_byallergen:
-  path: /product/{id}/{allergenid}/index
-  defaults: { _controller: AppBundle:Allergen:productsByAllergen }
+  path: /product/{id}/{tableid}/index/{allergenid}
+  controller: AppBundle:Allergen:productsByAllergen
+  defaults: { tableid : 0 }
   requirements:
     id: '\d+'
     allergenid: '\d+'
@@ -127,6 +132,13 @@ table_index:
 table_edit:
   path: /table/{id}/edit/{tableid}
   defaults: { _controller: AppBundle:Table:edit }
+  requirements:
+    id: '\d+'
+    tableid: '\d+'
+
+table_qr:
+  path: /table/{id}/qr/{tableid}
+  defaults: { _controller: AppBundle:Table:qr }
   requirements:
     id: '\d+'
     tableid: '\d+'
@@ -219,12 +231,6 @@ category_remove:
   defaults: { _controller: AppBundle:Category:remove }
   requirements:
     categoryid: '\d+'
-
-category_index:
-  path: /category/index
-  defaults: { _controller: AppBundle:Category:index }
-  requirements:
-    id: '\d+'
 
 category_edit:
   path: /category/{categoryid}/edit

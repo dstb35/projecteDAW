@@ -22,7 +22,7 @@ class ProductController extends Controller
         $this->session = new Session();
     }
 
-    public function indexAction(UserInterface $user = null, $id)
+    public function indexAction(UserInterface $user = null, $id, $tableid)
     {
         $em = $this->getDoctrine()->getManager();
         $product_repo = $em->getRepository('AppBundle:Product');
@@ -62,7 +62,8 @@ class ProductController extends Controller
             'title' => $title,
             'categories' => $categories,
             'id' => $id,
-            'restaurant' => $restaurant
+            'restaurant' => $restaurant,
+            'tableid' => $tableid
         ));
 
     }
@@ -89,10 +90,6 @@ class ProductController extends Controller
                 if ($form->isValid()) {
                     $imageFile = $form->get('image')->getData();
                     if ($imageFile) {
-                        //$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                        // this is needed to safely include the file name as part of the URL
-                        //$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                        //$newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         $newFilename = $user->getRestaurantid() . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $imageFile->move(
@@ -154,10 +151,6 @@ class ProductController extends Controller
                 if ($form->isValid()) {
                     $imageFile = $form->get('image')->getData();
                     if ($imageFile) {
-                        //$originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                        // this is needed to safely include the file name as part of the URL
-                        //$safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                        //$newFilename = $user->getRestaurantid() . '-' . $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         $newFilename = $user->getRestaurantid() . '-' . uniqid() . '.' . $imageFile->guessExtension();
                         try {
                             $fs = new Filesystem();

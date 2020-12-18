@@ -8,7 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Table;
 use AppBundle\Form\TableType;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Factory\QrCodeFactory;
 
 
 class TableController extends Controller
@@ -25,6 +28,7 @@ class TableController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $table_repo = $em->getRepository("AppBundle:Table");
+        $tables = array();
         if ($request->isXMLHttpRequest()) {
             $restaurantid = $request->query->get('restaurantid');
             $tablesset = $table_repo->findBy(array('restaurantid' => $restaurantid));
@@ -103,6 +107,7 @@ class TableController extends Controller
             "title" => $title
         ));
     }
+
     public function editAction(Request $request, UserInterface $user = null, $tableid, $id)
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para editar mesas');
@@ -179,4 +184,19 @@ class TableController extends Controller
         return $this->redirectToRoute("table_index", array('id' => $id ));
     }
 
+    public function qrAction (UserInterface $user = null, $tableid, $id){
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'No tienes acceso para generar QR');
+        if ($user->getRestaurantid() != $id) {
+            $status = 'No puedes generar qr de este restaurante';
+            $this->session->getFlashBag()->add('danger', $status);
+            return $this->redirectToRoute('homepage');
+        }
+
+        $qrCode = new QrCode($this->generateUrl("product_index", array('id' => $id, 'tableid' => $tableid), UrlGeneratorInterface::ABSOLUTE_URL));
+        $qr = $qrCode->writeDataUri();
+        return $this->render("qr.html.twig", array(
+            "qr" => $qr,
+            "tableid" => $tableid
+        ));
+    }
 }
