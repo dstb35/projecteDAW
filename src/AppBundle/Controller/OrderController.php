@@ -37,6 +37,11 @@ class OrderController extends Controller
         $title = 'Listado de pedidos para restaurante ' . $restaurant->getName();
         $orders = $em->getRepository("AppBundle:Order")->findBy(array('restaurantid' => $id));
 
+        foreach ($orders as $order) {
+            $tablename = $em->getRepository("AppBundle:Table")->find($order->getTableid())->getName();
+            $order->setTableName($tablename);
+        }
+
         return $this->render("orders.html.twig", array(
             'orders' => $orders,
             'title' => $title,

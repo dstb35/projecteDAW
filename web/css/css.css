@@ -228,6 +228,7 @@
         top: 0;
         left: 0;
         position: fixed;
+        margin-top: 0;
     }
 }
 
@@ -261,6 +262,12 @@
 .label-qrder:hover a {
     color: #ffffff80;
     text-decoration: none;
+}
+
+.label-success {
+    color: #F9F9F9;
+    background-color: #28a745;
+    padding: 0.95rem 0;
 }
 
 .add-products {

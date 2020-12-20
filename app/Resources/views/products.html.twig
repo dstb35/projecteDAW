@@ -10,18 +10,26 @@
         <div class="col-lg-9">
             <div class="row px-md-5">
                 {% if is_granted('ROLE_USER') and app.user.restaurantid == id %}
-                    <div class="col-lg-4 add-products">
+                    <div class="col-lg-12 add-products text-center">
                         <a href="{{ path('product_add', {'id': id }) }}">Añadir productos a la carta</a>
                     </div>
                 {% endif %}
+            </div>
+            <div class="row px-md-5">
                 {% if tableid == 0 %}
-                    <div class="col-lg-4 mt-3">
+                    <div class="col-lg-4 offset-lg-4 mt-3">
                         <div class="form-group">
                             <label for="tables">Mesas disponibles: </label>
                             <select id="tables" class="form-control"></select>
                         </div>
                     </div>
+                {% else %}
+                    <div class="col-lg-4 offset-lg-4 mt-3">
+                        <p class="mx-5 px-3 label-success text-center">{{ table.name }}</p>
+                    </div>
                 {% endif %}
+            </div>
+            <div class="row px-md-5">
                 <div class="col-lg-12">
                     {% for key, category in categories %}
                     <div class="row">
