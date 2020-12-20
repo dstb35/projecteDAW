@@ -32,6 +32,7 @@
                             </p>
                         </div>
                         <div class="col-6">
+                            <p class="label label-success text-uppercase">Mesa: {{ order.tablename }}</p>
                             <label for="select-{{ order.orderid }}">Empleado</label>
                             <select class="employees custom-select" id="select-{{ order.orderid }}"></select>
                             <button id="asignar" type="button" class="btn btn-info buttons" data-orderid="{{ order.orderid }}">Reasignar</button>

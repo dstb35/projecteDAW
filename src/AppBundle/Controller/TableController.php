@@ -192,10 +192,14 @@ class TableController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $table = $em->getRepository("AppBundle:Table")->find($tableid);
+
         $qrCode = new QrCode($this->generateUrl("product_index", array('id' => $id, 'tableid' => $tableid), UrlGeneratorInterface::ABSOLUTE_URL));
         $qr = $qrCode->writeDataUri();
         return $this->render("qr.html.twig", array(
             "qr" => $qr,
+            "table" => $table,
             "tableid" => $tableid
         ));
     }

@@ -49,6 +49,11 @@ class Order
      */
     private $restaurantid;
 
+    /**
+     * @var \AppBundle\Entity\Table
+     */
+    private $table_name;
+
     /*public function __construct($restaurantid, $tableid){
         $this->restaurantid = $restaurantid;
         $this->tableid = $tableid;
@@ -241,6 +246,25 @@ class Order
     public function getRestaurantid()
     {
         return $this->restaurantid;
+    }
+
+    /**
+     * @return Table
+     */
+    public function getTableName()
+    {
+        return $this->table_name;
+    }
+
+    /**
+     * @param null $tablename
+     * @return $this
+     */
+    public function setTableName($tablename = null)
+    {
+        $this->table_name = $tablename;
+
+        return $this;
     }
 }
 

@@ -58,12 +58,16 @@ class ProductController extends Controller
             $title = 'Restaurante no encontrado para id: ' . $id;
         }
 
+        $table_repo = $em->getRepository('AppBundle:Table');
+        $table = $table_repo->find($tableid);
+
         return $this->render('products.html.twig', array(
             'title' => $title,
             'categories' => $categories,
             'id' => $id,
             'restaurant' => $restaurant,
-            'tableid' => $tableid
+            'tableid' => $tableid,
+            'table' => $table
         ));
 
     }
