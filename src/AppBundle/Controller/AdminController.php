@@ -122,17 +122,23 @@ class AdminController extends Controller
         $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
 
         if ($restaurant) {
-            try {
-                $fs = new Filesystem();
-                $fs->remove($this->getParameter('restaurants_images') . '/' . $restaurant->getImage());
-            } catch (IOException $e) {
-                $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
-                $this->session->getFlashBag()->add('danger', $status);
+            foreach ($restaurant->getOrders() as $order){
+             $em->remove($order);
             }
+            $restaurant->getEmployees()->clear();
+            $em->persist($restaurant);
+            $em->flush();
             $em->remove($restaurant);
             $flush = $em->flush();
 
             if ($flush == null) {
+                try {
+                    $fs = new Filesystem();
+                    $fs->remove($this->getParameter('restaurants_images') . '/' . $restaurant->getImage());
+                } catch (IOException $e) {
+                    $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+                    $this->session->getFlashBag()->add('danger', $status);
+                }
                 $status = 'El restaurante se ha borrado correctamente';
                 $this->session->getFlashBag()->add('success', $status);
             } else {
@@ -143,6 +149,7 @@ class AdminController extends Controller
             $status = 'No se ha encontrado el restaurante con id: ' . $id;
             $this->session->getFlashBag()->add('danger', $status);
         }
-        return $this->redirectToRoute('restaurant_index');
+        //return $this->redirectToRoute('restaurant_index');
+        return $this->indexClientsAction();
     }
 }

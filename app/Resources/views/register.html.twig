@@ -1,18 +1,44 @@
-{%  extends 'layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 {% block content %}
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12 title">
-				<h1>Registrar nuevo restaurante en QRder</h1>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row my-3">
-			<div class="col-12 col-md-6 offset-md-3">
-				{{ form_start(form) }}
-				{{  form_end(form) }}
-			</div>
-		</div>
-	</div>
-{%  endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 title">
+                <h1>Registrar nuevo restaurante en QRder</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-9">
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_row(form.cif) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.name) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.address) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.password) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.email) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.phone) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.manager) }}
+                </div>
+                <div class="custom-file my-3">
+                    <label for="appbundle_restaurant_image" class="custom-file-label">Imagen</label>
+                    {{ form_row(form.image) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

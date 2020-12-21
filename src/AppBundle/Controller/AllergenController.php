@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class AllergenController extends Controller
 {
-
     private $session;
 
     public function __construct()
@@ -186,8 +185,6 @@ class AllergenController extends Controller
             'tableid' => $tableid
         ));
     }
-
-
 
     public function editAction(Request $request, $allergenid){
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'No tienes acceso para editar alérgenos');

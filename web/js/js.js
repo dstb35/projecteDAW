@@ -60,15 +60,19 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '#enviar', function () {
+        var tablesele = 0;
         if (tableid == 0){
-            tableid = $('#tables option:selected').val();
+            tablesele = $('#tables option:selected').val();
+            console.log($('#tables option:selected').val());
+        }else{
+            tablesele = tableid;
         }
-        if ($.isNumeric(tableid)) {
+        if ($.isNumeric(tablesele)) {
             $.ajax({
                 type: "POST",
                 //url: 'order/'+restaurantid+'/add', quitar debug mode
                 url: '/app_dev.php/order/' + restaurantid + '/add',
-                data: {'orderlines': orderlines, 'tableid': tableid},
+                data: {'orderlines': orderlines, 'tableid': tablesele},
                 success: success,
                 //dataType: 'json',
                 error: error

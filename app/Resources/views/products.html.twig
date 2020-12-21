@@ -32,14 +32,15 @@
             <div class="row px-md-5">
                 <div class="col-lg-12">
                     {% for key, category in categories %}
+                    {% if category|length > 0 %}
                     <div class="row">
                         <div class="col-lg-12 category">{{ key }}</div>
                         {% for product in category %}
-                        {% if not product.published %}
-                        <div class="col-md-4 col-xs-12 despublicado">
+                            {% if not product.published %}
+                                <div class="col-md-4 col-xs-12 despublicado">
                             {% else %}
-                            <div class="col-md-4 col-xs-12">
-                                {% endif %}
+                                <div class="col-md-4 col-xs-12">
+                            {% endif %}
                                 <div class="product row">
                                     <div class="col-6 col-md-12 text-center product-container">
                                         <img class="productos"
@@ -73,6 +74,7 @@
                             </div>
                             {% endfor %}
                         </div>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>

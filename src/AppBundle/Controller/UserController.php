@@ -51,6 +51,7 @@ class UserController extends Controller {
 	}
 
 	public function registrerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+        $title = 'Registro Nuevo Restaurante: ';
 		$restaurant = new Restaurant();
 		$form = $this->createForm(RestaurantType::class, $restaurant);
 		$form->handleRequest($request);
@@ -66,6 +67,7 @@ class UserController extends Controller {
 								$this->getParameter('restaurants_images'),
 								$newFilename
 						);
+                        $restaurant->setImage($newFilename);
 					} catch (FileException $e) {
 						$status = 'No se ha podido guardar la imagen' . $e->getMessage();
 						$this->session->getFlashBag()->add('danger', $status);
@@ -103,6 +105,7 @@ class UserController extends Controller {
 		return $this->render('register.html.twig', array(
 					'form' => $form->createView()
 		));
+
 	}
 
 	public function editAction(Request $request, UserInterface $user = null, $id, UserPasswordEncoderInterface $passwordEncoder) {

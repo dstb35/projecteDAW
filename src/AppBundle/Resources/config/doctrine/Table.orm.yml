@@ -32,6 +32,7 @@ AppBundle\Entity\Table:
             joinColumns:
                 restaurantId:
                     referencedColumnName: restaurantId
+                    onDelete: CASCADE
             orphanRemoval: true
     oneToMany:
         orders:

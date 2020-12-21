@@ -45,7 +45,7 @@ class RestaurantType extends AbstractType
             ->add('manager', TextType::class, array('label' => 'Persona de contacto', 'required' => 'required', 'attr' => array(
                 'class' => 'form-control',
             )))
-            ->add('image', FileType::class, array('label' => false, 'required' => false,
+            ->add('image', FileType::class, array('label' => 'Imagen', 'required' => false,
                 'attr' => array(
                     'class' => 'custom-file-input'
                 ),

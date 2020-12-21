@@ -54,6 +54,7 @@ AppBundle\Entity\Order:
             joinColumns:
                 employeeId:
                     referencedColumnName: employeeId
+                    onDelete: "SET NULL"
             orphanRemoval: false
         tableid:
             targetEntity: Table
@@ -64,6 +65,7 @@ AppBundle\Entity\Order:
             joinColumns:
                 tableId:
                     referencedColumnName: tableId
+                    onDelete: "SET NULL"
             orphanRemoval: true
         restaurantid:
             targetEntity: Restaurant
@@ -74,6 +76,7 @@ AppBundle\Entity\Order:
             joinColumns:
                 restaurantId:
                     referencedColumnName: restaurantId
+                    onDelete: CASCADE
             orphanRemoval: true
     oneToMany:
         orderlines:

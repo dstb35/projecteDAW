@@ -89,7 +89,7 @@ class CategoryController extends Controller
                 $status = 'No se ha encontrado la categoría con id: ' . $categoryid;
                 $this->session->getFlashBag()->add('danger', $status);
             }
-            return $this->redirectToRoute('category_index');
+            return $this->adminAction();
         }
     }
 

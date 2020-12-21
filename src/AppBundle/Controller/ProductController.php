@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Filesystem\Exception\IOException;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Symfony\Component\Filesystem\Filesystem;
 
 class ProductController extends Controller
@@ -214,16 +215,21 @@ class ProductController extends Controller
 
             if ($product) {
                 try {
-                    $fs = new Filesystem();
-                    $fs->remove($this->getParameter('products_images') . '/' . $product->getImage());
-                } catch (IOException $e) {
-                    $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
-                    $this->session->getFlashBag()->add('danger', $status);
+                    $em->remove($product);
+                    $flush = $em->flush();
+                } catch (ForeignKeyConstraintViolationException $e){
+                    $error = 'No se ha podido borrar el producto porque existen pedidos con '.$product->getName();
+                    $this->session->getFlashBag()->add('danger', $error);
+                    return $this->redirectToRoute('product_index', array('id' => $id));
                 }
-                $em->remove($product);
-                $flush = $em->flush();
-
                 if ($flush == null) {
+                    try{
+                        $fs = new Filesystem();
+                        $fs->remove($this->getParameter('products_images') . '/' . $product->getImage());
+                    } catch (IOException $e) {
+                        $status = 'No se ha podido borrar el archivo de imagen' . $e->getMessage();
+                        $this->session->getFlashBag()->add('danger', $status);
+                    }
                     $status = 'El producto se ha borrado correctamente';
                     $this->session->getFlashBag()->add('success', $status);
                 } else {
@@ -237,5 +243,4 @@ class ProductController extends Controller
             return $this->redirectToRoute('product_index', array('id' => $id));
         }
     }
-
 }

@@ -45,7 +45,7 @@ class TableController extends Controller
                 $this->session->getFlashBag()->add('danger', $status);
                 return $this->redirectToRoute('homepage');
             }
-            $tables = $table_repo->findAll();
+            $tables = $table_repo->findBy(array('restaurantid' => $id));
             $restaurant = $em->getRepository('AppBundle:Restaurant')->find($id);
             if (isset($restaurant)) {
                 $title = 'Mesas para restaurante ' . $restaurant->getName();

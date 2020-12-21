@@ -11,9 +11,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#asignar', function () {
         orderid = $(this).data('orderid');
-        console.log('Order para asignar ' + orderid);
         employee = $('#select-' + orderid + ' option:selected').val();
-        console.log('Empleado para asignar ' + employee);
         if ($.isNumeric(employee)) {
             $.ajax({
                 type: "POST",
@@ -29,7 +27,6 @@ $(document).ready(function () {
 
     $(document).on('click', '#cobrar', function () {
         orderid = $(this).data('orderid');
-        console.log('Order para cobrar ' + orderid);
         $.ajax({
             type: "POST",
             //url: 'order/'+restaurantid+'/add', quitar debug mode
@@ -41,7 +38,6 @@ $(document).ready(function () {
 
     $(document).on('click', '#servir', function () {
         orderid = $(this).data('orderid');
-        console.log('Order para servir ' + orderid);
         $.ajax({
             type: "POST",
             //url: 'order/'+restaurantid+'/add', quitar debug mode
@@ -53,7 +49,6 @@ $(document).ready(function () {
 
     $(document).on('click', '#borrar', function () {
         orderid = $(this).data('orderid');
-        console.log('Order para borrar ' + orderid);
         $.ajax({
             type: "POST",
             //url: 'order/'+restaurantid+'/add', quitar debug mode
@@ -77,24 +72,18 @@ function fill_employees(data, statusText, jqXHR) {
 }
 
 function success(data, statusText, jqXHR) {
-    console.log(data.assigned.employee);
     $('#span-' + data.assigned.orderid).text('Empleado: ' + data.assigned.employee)
 }
 
 function paySuccess(data, statusText, jqXHR) {
-    console.log(data.paid.message);
-    console.log(data.paid.orderid);
     $('#paid-' + data.paid.orderid).text('Cobrado: ' + data.paid.message);
 }
 
 function serveSuccess(data, statusText, jqXHR) {
-    console.log(data.served.message);
-    console.log(data.served.orderid);
     $('#served-' + data.served.orderid).text('Servido: ' + data.served.message);
 }
 
 function removeSuccess(data, statusText, jqXHR) {
-    console.log(data.removed.orderid);
     var url = $(location).attr("href");
     var patt = new RegExp('get$');
     if (patt.test(url)){

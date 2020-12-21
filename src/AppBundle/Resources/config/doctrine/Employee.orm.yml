@@ -32,7 +32,7 @@ AppBundle\Entity\Employee:
             joinColumns:
                 restaurantId:
                     referencedColumnName: restaurantId
-                    nullable: false
+                    onDelete: CASCADE
             orphanRemoval: true
     oneToMany:
         orders:
